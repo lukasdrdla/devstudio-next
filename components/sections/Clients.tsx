@@ -13,7 +13,7 @@ const clients = [
 
 export function Clients() {
   return (
-    <section className="py-16 border-y border-black/5 overflow-hidden">
+    <section className="py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 mb-8">
         <p className="text-center text-sm text-muted-foreground">
           Důvěřují nám firmy z celé ČR
@@ -31,7 +31,7 @@ export function Clients() {
             {[...clients, ...clients].map((client, index) => (
               <span
                 key={`${client}-${index}`}
-                className="text-2xl font-bold text-muted-foreground whitespace-nowrap hover:text-foreground transition-colors cursor-default"
+                className="text-2xl font-bold text-muted-foreground whitespace-nowrap cursor-default"
               >
                 {client}
               </span>

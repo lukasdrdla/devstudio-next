@@ -32,10 +32,9 @@ export function Navbar() {
       className={`
         fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${isScrolled
-          ? 'bg-white/95 shadow-[0_1px_30px_rgba(0,0,0,0.05)]'
-          : 'bg-background/80'
+          ? 'bg-white/90 backdrop-blur-xl shadow-[0_1px_30px_rgba(0,0,0,0.06)]'
+          : 'bg-transparent'
         }
-        backdrop-blur-xl
       `}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
