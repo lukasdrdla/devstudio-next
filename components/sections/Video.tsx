@@ -31,7 +31,7 @@ export function Video() {
 
   return (
     <>
-      <section className="py-24 px-6 lg:px-12">
+      <section id="video" className="py-24 px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
