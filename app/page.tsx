@@ -9,7 +9,6 @@ import { BeforeAfter } from '@/components/sections/BeforeAfter'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { Calculator } from '@/components/sections/Calculator'
 import { Process } from '@/components/sections/Process'
-import { Guarantees } from '@/components/sections/Guarantees'
 import { Stats } from '@/components/sections/Stats'
 import { Testimonials } from '@/components/sections/Testimonials'
 import { FAQ } from '@/components/sections/FAQ'
@@ -28,9 +27,8 @@ export default function Home() {
         <BeforeAfter />
         <Portfolio />
         <Calculator />
-        <Process />
-        <Guarantees />
         <Stats />
+        <Process />
         <Testimonials />
         <FAQ />
         <CTA />
