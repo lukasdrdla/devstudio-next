@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ContactModal } from '@/components/shared/ContactModal'
 
-const words = ['weby', 'aplikace', 'software', 'řešení']
+const words = ['software', 'branding', 'automatizaci']
 
 export function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false)
