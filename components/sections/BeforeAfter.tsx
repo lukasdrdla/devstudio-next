@@ -123,7 +123,7 @@ const beforeHtml = `<!DOCTYPE html>
     <main class="main">
         <div class="section-title"><h2>O naší firmě</h2><div class="underline"></div></div>
         <div class="about-section">
-            <div class="about-image"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80" alt="Stavba"></div>
+            <div class="about-image"><img loading="lazy" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80" alt="Stavba"></div>
             <div class="about-text">
                 <h3>Jsme rodinná stavební firma s tradicí</h3>
                 <p>Firma StavoMal s.r.o. působí na trhu již od roku 1998. Za tuto dobu jsme realizovali stovky projektů po celé Moravě. Specializujeme se na výstavbu rodinných domů, rekonstrukce a průmyslové stavby.</p>
@@ -172,14 +172,14 @@ const beforeHtml = `<!DOCTYPE html>
         <div class="section-title"><h2>Naše reference</h2><div class="underline"></div></div>
         <div class="references">
             <div class="ref-grid">
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=80" alt="Reference 1"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Reference 2"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" alt="Reference 3"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&q=80" alt="Reference 4"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80" alt="Reference 5"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&q=80" alt="Reference 6"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=80" alt="Reference 7"></div>
-                <div class="ref-item"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" alt="Reference 8"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=80" alt="Reference 1"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Reference 2"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" alt="Reference 3"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&q=80" alt="Reference 4"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80" alt="Reference 5"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&q=80" alt="Reference 6"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=80" alt="Reference 7"></div>
+                <div class="ref-item"><img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" alt="Reference 8"></div>
             </div>
         </div>
         <div class="why-us">
@@ -226,11 +226,8 @@ const afterHtml = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MALODOM</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --color-bg: #FAFAF8; --color-cream: #F5F3EF; --color-sage: #9CAF93; --color-sage-light: #E8EDE6; --color-sage-dark: #7A9171; --color-dark: #1C1C1C; --color-text: #2D2D2D; --color-muted: #6B6B6B; --color-light-gray: #E5E5E5; --font-display: 'Playfair Display', Georgia, serif; --font-body: 'DM Sans', system-ui, sans-serif; }
+        :root { --color-bg: #FAFAF8; --color-cream: #F5F3EF; --color-sage: #9CAF93; --color-sage-light: #E8EDE6; --color-sage-dark: #7A9171; --color-dark: #1C1C1C; --color-text: #2D2D2D; --color-muted: #6B6B6B; --color-light-gray: #E5E5E5; --font-display: Georgia, serif; --font-body: system-ui, -apple-system, sans-serif; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: transparent; transition: all 0.3s ease; }
@@ -363,7 +360,7 @@ const afterHtml = `<!DOCTYPE html>
         </div>
     </nav>
     <section class="hero">
-        <div class="hero-bg"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1920&q=85" alt="Moderní rodinný dům"></div>
+        <div class="hero-bg"><img loading="lazy" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1920&q=85" alt="Moderní rodinný dům"></div>
         <div class="hero-content">
             <span class="hero-tag">Rodinné domy na klíč</span>
             <h1 class="hero-title">Postavíme váš <em>vysněný</em> domov</h1>
@@ -394,9 +391,9 @@ const afterHtml = `<!DOCTYPE html>
             <a href="#" class="btn-dark"><span>Více o nás</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
         <div class="intro-images">
-            <div class="intro-img"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="Dům"></div>
-            <div class="intro-img"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" alt="Interiér"></div>
-            <div class="intro-img"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=400&q=80" alt="Detail"></div>
+            <div class="intro-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="Dům"></div>
+            <div class="intro-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" alt="Interiér"></div>
+            <div class="intro-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=400&q=80" alt="Detail"></div>
         </div>
     </section>
     <section class="floorplans">
@@ -406,15 +403,15 @@ const afterHtml = `<!DOCTYPE html>
         </div>
         <div class="plans-grid">
             <div class="plan-card">
-                <div class="plan-image"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Dům 1"></div>
+                <div class="plan-image"><img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Dům 1"></div>
                 <div class="plan-info"><h3 class="plan-name">MALODOM 4+kk 120m²</h3><div class="plan-specs"><span class="plan-spec">120 m²</span><span class="plan-spec">4 pokoje</span><span class="plan-spec">2 koupelny</span></div></div>
             </div>
             <div class="plan-card">
-                <div class="plan-image"><span class="plan-badge">Populární</span><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Dům 2"></div>
+                <div class="plan-image"><span class="plan-badge">Populární</span><img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Dům 2"></div>
                 <div class="plan-info"><h3 class="plan-name">MALODOM 5+kk 145m²</h3><div class="plan-specs"><span class="plan-spec">145 m²</span><span class="plan-spec">5 pokojů</span><span class="plan-spec">2 koupelny</span></div></div>
             </div>
             <div class="plan-card">
-                <div class="plan-image"><span class="plan-badge">Novinka</span><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Dům 3"></div>
+                <div class="plan-image"><span class="plan-badge">Novinka</span><img loading="lazy" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Dům 3"></div>
                 <div class="plan-info"><h3 class="plan-name">MALODOM 3+kk 95m²</h3><div class="plan-specs"><span class="plan-spec">95 m²</span><span class="plan-spec">3 pokoje</span><span class="plan-spec">1 koupelna</span></div></div>
             </div>
         </div>
@@ -441,16 +438,16 @@ const afterHtml = `<!DOCTYPE html>
         </div>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-img"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80" alt="Projekt 1"></div>
+                <div class="project-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80" alt="Projekt 1"></div>
                 <span class="project-badge">Doporučujeme</span>
                 <div class="project-info"><h4 class="project-name">Rodinný dům Štramberk</h4><p class="project-location">Štramberk, Moravskoslezský kraj</p><div class="project-specs"><span>145 m²</span><span>•</span><span>5+kk</span></div></div>
             </div>
             <div class="project-card">
-                <div class="project-img"><img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=600&q=80" alt="Projekt 2"></div>
+                <div class="project-img"><img loading="lazy" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=600&q=80" alt="Projekt 2"></div>
                 <div class="project-info"><h4 class="project-name">Moderní bungalov</h4><p class="project-location">Frýdek-Místek</p></div>
             </div>
             <div class="project-card">
-                <div class="project-img"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Projekt 3"></div>
+                <div class="project-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Projekt 3"></div>
                 <div class="project-info"><h4 class="project-name">Pasivní dům</h4><p class="project-location">Ostrava-Poruba</p></div>
             </div>
         </div>
@@ -468,12 +465,12 @@ const afterHtml = `<!DOCTYPE html>
         </div>
         <div class="contact-form-wrap">
             <h3>Nezávazná poptávka</h3>
-            <form>
+            <div>
                 <div class="form-row"><div class="form-group"><label>Jméno</label><input type="text" placeholder="Vaše jméno"></div><div class="form-group"><label>Telefon</label><input type="tel" placeholder="+420"></div></div>
                 <div class="form-group"><label>Email</label><input type="email" placeholder="vas@email.cz"></div>
                 <div class="form-group"><label>Zpráva</label><textarea placeholder="Popište váš projekt..."></textarea></div>
-                <button type="submit" class="btn-submit">Odeslat poptávku</button>
-            </form>
+                <button type="button" class="btn-submit">Odeslat poptávku</button>
+            </div>
         </div>
     </section>
     <footer>
@@ -488,16 +485,6 @@ const afterHtml = `<!DOCTYPE html>
             <div class="footer-social"><a href="#">FB</a><a href="#">IG</a><a href="#">LI</a></div>
         </div>
     </footer>
-    <script>
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 </html>`
 
@@ -657,7 +644,8 @@ export function BeforeAfter() {
                     srcDoc={beforeHtml}
                     className="w-full h-full border-0"
                     title="Before website"
-                    sandbox="allow-same-origin allow-scripts"
+                    sandbox="allow-same-origin"
+                    loading="lazy"
                     style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}
                   />
                 </div>
@@ -678,7 +666,8 @@ export function BeforeAfter() {
                       srcDoc={afterHtml}
                       className="w-full h-full border-0"
                       title="After website"
-                      sandbox="allow-same-origin allow-scripts"
+                      sandbox="allow-same-origin"
+                      loading="lazy"
                       style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}
                     />
                   </div>

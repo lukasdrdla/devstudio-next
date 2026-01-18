@@ -48,6 +48,8 @@ export function Video() {
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=675&fit=crop"
               alt="Video thumbnail"
               fill
+              priority
+              sizes="(max-width: 1000px) 100vw, 1000px"
               className="object-cover opacity-80 transition-all duration-500 group-hover:opacity-60 group-hover:scale-[1.02]"
             />
 
@@ -71,7 +73,7 @@ export function Video() {
 
           {/* Text */}
           <div className="text-center mt-8">
-            <h3 className="text-xl font-semibold mb-2">Poznejte náš tým</h3>
+            <h2 className="text-xl font-semibold mb-2">Poznejte náš tým</h2>
             <p className="text-muted">60 sekund o tom, kdo jsme a jak pracujeme</p>
           </div>
         </motion.div>

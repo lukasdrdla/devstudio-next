@@ -123,9 +123,9 @@ export function Testimonials() {
                     />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-foreground">
+                    <h3 className="font-semibold text-lg text-foreground">
                       {currentTestimonial.author}
-                    </h4>
+                    </h3>
                     <p className="text-muted">
                       {currentTestimonial.role}, {currentTestimonial.company}
                     </p>
