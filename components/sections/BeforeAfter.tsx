@@ -585,13 +585,13 @@ export function BeforeAfter() {
       {isInteractive && (
         <button
           onClick={closeInteractive}
-          className="fixed top-4 right-4 lg:top-6 lg:right-6 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors z-[60]"
+          className="fixed top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors z-[60]"
         >
-          <X className="w-6 h-6 text-white" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
       )}
 
-      <section className="py-32 px-6 lg:px-12 mx-4 lg:mx-8 bg-white rounded-[40px]">
+      <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
         <div className="max-w-[1100px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -603,7 +603,7 @@ export function BeforeAfter() {
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-6">
               Před a po
             </h2>
-            <p className="text-lg text-muted max-w-[500px] mb-16">
+            <p className="text-base sm:text-lg text-muted max-w-[500px] mb-10 sm:mb-16">
               Podívejte se, jak měníme zastaralé weby v moderní digitální zážitky.
             </p>
           </motion.div>
@@ -611,10 +611,10 @@ export function BeforeAfter() {
           {/* Browser Mockup Container */}
           <div
             ref={browserRef}
-            className={`bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transition-all duration-300 ${isInteractive ? 'relative z-50 scale-[1.02] shadow-[0_25px_80px_rgba(0,0,0,0.5)]' : ''}`}
+            className={`bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl overflow-hidden border border-gray-200 transition-all duration-300 ${isInteractive ? 'relative z-50 scale-[1.01] sm:scale-[1.02] shadow-[0_15px_50px_rgba(0,0,0,0.4)] sm:shadow-[0_25px_80px_rgba(0,0,0,0.5)]' : ''}`}
           >
-            {/* Browser Chrome */}
-            <div className="bg-gray-100 px-4 py-3 flex items-center gap-3 border-b border-gray-200">
+            {/* Browser Chrome - Hidden on mobile */}
+            <div className="hidden sm:flex bg-gray-100 px-4 py-3 items-center gap-3 border-b border-gray-200">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-400" />
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -628,10 +628,16 @@ export function BeforeAfter() {
               <div className="w-16" />
             </div>
 
+            {/* Mobile hint bar */}
+            <div className="sm:hidden bg-gray-50 px-3 py-2 flex items-center justify-center gap-2 border-b border-gray-200">
+              <MoveHorizontal className="w-4 h-4 text-gray-400" />
+              <span className="text-xs text-gray-500">Přejeďte prstem pro porovnání</span>
+            </div>
+
             {/* Comparison slider */}
             <div
               ref={containerRef}
-              className="relative cursor-ew-resize select-none"
+              className="relative cursor-ew-resize select-none touch-pan-y"
               onMouseDown={(e) => {
                 if ((e.target as HTMLElement).closest('[data-click-overlay]')) return
                 handleMouseDown()
@@ -639,22 +645,25 @@ export function BeforeAfter() {
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
               onMouseMove={handleMouseMove}
+              onTouchStart={handleMouseDown}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleMouseUp}
             >
-              {/* Before - Old website (iframe) */}
-              <div className="relative h-[500px] lg:h-[600px]">
-                <iframe
-                  ref={beforeIframeRef}
-                  srcDoc={beforeHtml}
-                  className="w-full h-full border-0"
-                  title="Before website"
-                  sandbox="allow-same-origin allow-scripts"
-                  style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}
-                />
+              {/* Before - Old website (iframe) - scaled on mobile */}
+              <div className="relative h-[280px] sm:h-[400px] lg:h-[600px] overflow-hidden">
+                <div className="w-[200%] sm:w-full h-[200%] sm:h-full origin-top-left scale-50 sm:scale-100">
+                  <iframe
+                    ref={beforeIframeRef}
+                    srcDoc={beforeHtml}
+                    className="w-full h-full border-0"
+                    title="Before website"
+                    sandbox="allow-same-origin allow-scripts"
+                    style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}
+                  />
+                </div>
               </div>
 
-              {/* After - Modern website (iframe) - clipped */}
+              {/* After - Modern website (iframe) - clipped & scaled on mobile */}
               <div
                 className="absolute inset-0 overflow-hidden border-r-[3px] border-white"
                 style={{ width: `${sliderPosition}%` }}
@@ -663,22 +672,24 @@ export function BeforeAfter() {
                   className="h-full"
                   style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100vw' }}
                 >
-                  <iframe
-                    ref={afterIframeRef}
-                    srcDoc={afterHtml}
-                    className="w-full h-full border-0"
-                    title="After website"
-                    sandbox="allow-same-origin allow-scripts"
-                    style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}
-                  />
+                  <div className="w-[200%] sm:w-full h-[200%] sm:h-full origin-top-left scale-50 sm:scale-100">
+                    <iframe
+                      ref={afterIframeRef}
+                      srcDoc={afterHtml}
+                      className="w-full h-full border-0"
+                      title="After website"
+                      sandbox="allow-same-origin allow-scripts"
+                      style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Click to interact overlay */}
+              {/* Click to interact overlay - Desktop only */}
               {!isInteractive && !isDragging && (
                 <div
                   data-click-overlay
-                  className="absolute inset-0 z-20 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-colors cursor-pointer group"
+                  className="hidden sm:flex absolute inset-0 z-20 items-center justify-center bg-black/0 hover:bg-black/10 transition-colors cursor-pointer group"
                   onClick={() => setIsInteractive(true)}
                 >
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium text-gray-700">
@@ -691,26 +702,28 @@ export function BeforeAfter() {
               {/* Overlay during drag */}
               {isDragging && <div className="absolute inset-0 z-10" />}
 
-              {/* Handle */}
+              {/* Handle - larger touch target on mobile */}
               <div
                 className="absolute top-0 bottom-0 flex items-center justify-center pointer-events-none z-30"
                 style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
               >
-                <div className="w-[50px] h-[50px] bg-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] border border-gray-100 pointer-events-auto cursor-ew-resize">
+                {/* Invisible larger touch target */}
+                <div className="absolute w-14 h-full pointer-events-auto cursor-ew-resize sm:hidden" />
+                <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] bg-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.25)] border-2 border-gray-100 pointer-events-auto cursor-ew-resize">
                   <MoveHorizontal className="w-5 h-5 text-gray-600" />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Labels */}
-          <div className="flex justify-between mt-6">
-            <div className="flex items-center gap-2 text-sm font-medium text-muted">
-              <span className="w-3 h-3 rounded-full bg-orange-500" />
+          {/* Labels - stacked on mobile */}
+          <div className="flex flex-col gap-2 sm:flex-row sm:justify-between mt-4 sm:mt-6">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-muted">
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500" />
               Původní web
             </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-muted">
-              <span className="w-3 h-3 rounded-full bg-accent-green" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-muted">
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-accent-green" />
               Moderní redesign
             </div>
           </div>

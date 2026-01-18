@@ -99,10 +99,21 @@ body {
 /* Marquee animation */
 .marquee-track {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   animation: marquee 25s linear infinite;
 }
 
+@media (min-width: 640px) {
+  .marquee-track {
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-track {
+    gap: 4rem;
+  }
+}
 
 @keyframes marquee {
   0% { transform: translateX(0); }

@@ -31,7 +31,7 @@ export function Video() {
 
   return (
     <>
-      <section id="video" className="py-24 px-6 lg:px-12">
+      <section id="video" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,18 +54,18 @@ export function Video() {
             {/* Play button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
-                <Play className="w-7 h-7 ml-1 text-foreground" fill="currentColor" />
+                <Play className="w-6 h-6 sm:w-7 sm:h-7 ml-1 text-foreground" fill="currentColor" />
               </motion.div>
             </div>
 
             {/* Ripple effect on hover */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-20 h-20 rounded-full border-2 border-white/30 animate-ping opacity-0 group-hover:opacity-100" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/30 animate-ping opacity-0 group-hover:opacity-100" />
             </div>
           </button>
 

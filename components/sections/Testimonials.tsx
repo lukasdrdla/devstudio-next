@@ -58,14 +58,14 @@ export function Testimonials() {
   const currentTestimonial = testimonials[currentIndex]
 
   return (
-    <section className="py-32 px-6 lg:px-12">
+    <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12">
       <div className="max-w-[900px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
           <SectionLabel centered>Reference</SectionLabel>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight">
@@ -75,23 +75,23 @@ export function Testimonials() {
 
         {/* Testimonial Card */}
         <div className="relative">
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Hidden on mobile, shown on sm+ */}
           <button
             onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-20 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-lg"
+            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 sm:-translate-x-4 lg:-translate-x-20 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-lg"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
           <button
             onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-20 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-lg"
+            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 sm:translate-x-4 lg:translate-x-20 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-lg"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Card */}
-          <div className="bg-white rounded-3xl p-10 lg:p-16 shadow-[0_8px_40px_rgba(0,0,0,0.06)] relative overflow-hidden">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-16 shadow-[0_8px_40px_rgba(0,0,0,0.06)] relative overflow-hidden">
             {/* Quote Icon */}
             <div className="absolute top-8 right-8 lg:top-12 lg:right-12">
               <Quote className="w-16 h-16 lg:w-24 lg:h-24 text-gray-100 fill-gray-100" />
@@ -107,13 +107,13 @@ export function Testimonials() {
                 className="relative z-10"
               >
                 {/* Quote */}
-                <blockquote className="text-xl lg:text-2xl leading-relaxed text-gray-800 mb-10 font-medium">
+                <blockquote className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-800 mb-6 sm:mb-10 font-medium">
                   "{currentTestimonial.quote}"
                 </blockquote>
 
                 {/* Author */}
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-full overflow-hidden ring-4 ring-gray-50">
+                <div className="flex items-center gap-4 sm:gap-5">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden ring-4 ring-gray-50 flex-shrink-0">
                     <Image
                       src={currentTestimonial.avatar}
                       alt={currentTestimonial.author}
@@ -136,19 +136,38 @@ export function Testimonials() {
           </div>
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentIndex(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                currentIndex === i
-                  ? 'w-8 bg-foreground'
-                  : 'w-2 bg-gray-300 hover:bg-gray-400'
-              }`}
-            />
-          ))}
+        {/* Mobile Navigation + Dots */}
+        <div className="flex items-center justify-center gap-4 mt-6 sm:mt-8">
+          {/* Mobile prev arrow */}
+          <button
+            onClick={prev}
+            className="sm:hidden w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-md"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          {/* Dots */}
+          <div className="flex gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === i
+                    ? 'w-6 sm:w-8 bg-foreground'
+                    : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile next arrow */}
+          <button
+            onClick={next}
+            className="sm:hidden w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-md"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </section>

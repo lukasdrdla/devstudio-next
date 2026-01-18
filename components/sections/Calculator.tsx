@@ -284,7 +284,7 @@ export function Calculator() {
   }
 
   return (
-    <section id="calculator" className="py-32 px-6 lg:px-12 mx-4 lg:mx-8 bg-white rounded-[40px]">
+    <section id="calculator" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
       <div className="max-w-[900px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -303,8 +303,8 @@ export function Calculator() {
         </motion.div>
 
         {/* Progress bar */}
-        <div className="relative mb-12">
-          <div className="absolute top-5 left-[5%] right-[5%] h-[3px] bg-gray-200 z-0">
+        <div className="relative mb-8 sm:mb-12">
+          <div className="absolute top-4 sm:top-5 left-[8%] right-[8%] sm:left-[5%] sm:right-[5%] h-[2px] sm:h-[3px] bg-gray-200 z-0">
             <div
               className="absolute left-0 top-0 h-full bg-gradient-to-r from-accent-green to-accent-green-dark transition-all duration-500"
               style={{ width: `${progressWidth}%` }}
@@ -312,9 +312,9 @@ export function Calculator() {
           </div>
           <div className="flex justify-between relative z-10">
             {stepLabels.map((s) => (
-              <div key={s.num} className="flex flex-col items-center gap-2">
+              <div key={s.num} className="flex flex-col items-center gap-1 sm:gap-2">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold transition-all ${
                     step >= s.num
                       ? step > s.num
                         ? 'bg-accent-green border-accent-green text-white'
@@ -322,9 +322,9 @@ export function Calculator() {
                       : 'bg-white border-2 border-gray-200'
                   }`}
                 >
-                  {step > s.num ? <Check className="w-4 h-4" /> : s.num}
+                  {step > s.num ? <Check className="w-3 h-3 sm:w-4 sm:h-4" /> : s.num}
                 </div>
-                <span className={`text-xs font-medium hidden sm:block ${step === s.num ? 'text-foreground' : 'text-muted-foreground'}`}>
+                <span className={`text-[10px] sm:text-xs font-medium hidden sm:block ${step === s.num ? 'text-foreground' : 'text-muted-foreground'}`}>
                   {s.label}
                 </span>
               </div>
@@ -343,25 +343,25 @@ export function Calculator() {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-semibold text-center mb-8">Co potřebujete?</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 sm:mb-8">Co potřebujete?</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 {categories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => handleCategorySelect(cat.id)}
-                    className={`p-8 rounded-[20px] border-2 text-center transition-all ${
+                    className={`p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-[20px] border-2 text-center transition-all ${
                       selectedCategory === cat.id
                         ? 'border-foreground bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
                         : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:-translate-y-1'
                     }`}
                   >
-                    <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 transition-all ${
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
                       selectedCategory === cat.id ? 'bg-foreground text-white' : 'bg-white'
                     }`}>
-                      <cat.icon className="w-8 h-8" />
+                      <cat.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-1">{cat.title}</h4>
-                    <p className="text-sm text-muted">{cat.desc}</p>
+                    <h4 className="text-base sm:text-lg font-semibold mb-1">{cat.title}</h4>
+                    <p className="text-xs sm:text-sm text-muted">{cat.desc}</p>
                   </button>
                 ))}
               </div>
@@ -377,26 +377,26 @@ export function Calculator() {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-semibold text-center mb-8">Jaký typ {getCategoryName().toLowerCase()}?</h3>
-              <div className={`grid grid-cols-1 ${currentSubcategories.length > 2 ? 'md:grid-cols-2' : 'md:grid-cols-2 max-w-[600px] mx-auto'} gap-4`}>
+              <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 sm:mb-8">Jaký typ {getCategoryName().toLowerCase()}?</h3>
+              <div className={`grid grid-cols-1 ${currentSubcategories.length > 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 max-w-[600px] mx-auto'} gap-3 sm:gap-4`}>
                 {currentSubcategories.map((sub) => (
                   <button
                     key={sub.id}
                     onClick={() => handleSubcategorySelect(sub.id)}
-                    className={`p-6 rounded-[20px] border-2 text-center transition-all ${
+                    className={`p-4 sm:p-6 rounded-2xl sm:rounded-[20px] border-2 text-center transition-all ${
                       selectedSubcategory === sub.id
                         ? 'border-foreground bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
                         : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:-translate-y-1'
                     }`}
                   >
-                    <div className={`w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4 transition-all ${
+                    <div className={`w-11 h-11 sm:w-14 sm:h-14 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
                       selectedSubcategory === sub.id ? 'bg-foreground text-white' : 'bg-white'
                     }`}>
-                      <sub.icon className="w-7 h-7" />
+                      <sub.icon className="w-5 h-5 sm:w-7 sm:h-7" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-1">{sub.title}</h4>
-                    <p className="text-sm text-muted mb-3">{sub.desc}</p>
-                    <span className="text-sm font-semibold text-accent-green">
+                    <h4 className="text-base sm:text-lg font-semibold mb-1">{sub.title}</h4>
+                    <p className="text-xs sm:text-sm text-muted mb-2 sm:mb-3">{sub.desc}</p>
+                    <span className="text-xs sm:text-sm font-semibold text-accent-green">
                       od {sub.basePrice.toLocaleString('cs-CZ')} Kč
                     </span>
                   </button>
@@ -414,52 +414,52 @@ export function Calculator() {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-semibold text-center mb-2">{currentOptions.title}</h3>
-              <p className="text-center text-muted mb-8">Vyberte vše, co potřebujete (minimálně 1)</p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2">{currentOptions.title}</h3>
+              <p className="text-center text-sm sm:text-base text-muted mb-6 sm:mb-8">Vyberte vše, co potřebujete (minimálně 1)</p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {currentOptions.items.map((option) => (
                   <div key={option.id} className="relative">
                     <button
                       onClick={() => toggleOption(option.id)}
-                      className={`w-full flex items-center gap-4 p-5 rounded-2xl border-2 text-left transition-all ${
+                      className={`w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                         selectedOptions.includes(option.id)
                           ? 'border-accent-green bg-emerald-50'
                           : 'border-gray-200 bg-gray-50 hover:border-gray-300'
                       }`}
                     >
-                      <div className={`w-7 h-7 ${option.group ? 'rounded-full' : 'rounded-lg'} border-2 flex items-center justify-center flex-shrink-0 transition-all ${
+                      <div className={`w-6 h-6 sm:w-7 sm:h-7 ${option.group ? 'rounded-full' : 'rounded-lg'} border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                         selectedOptions.includes(option.id)
                           ? 'bg-accent-green border-accent-green'
                           : 'border-gray-300'
                       }`}>
                         {option.group ? (
-                          <div className={`w-3 h-3 rounded-full bg-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
+                          <div className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
                         ) : (
-                          <Check className={`w-4 h-4 text-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
+                          <Check className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
                         )}
                       </div>
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                      <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${
                         selectedOptions.includes(option.id) ? 'bg-accent-green text-white' : 'bg-white'
                       }`}>
-                        <option.icon className="w-5 h-5" />
+                        <option.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                       <div className="flex-grow min-w-0">
                         <div className="flex items-center gap-2">
-                          <h4 className="font-semibold text-[15px]">{option.label}</h4>
+                          <h4 className="font-semibold text-sm sm:text-[15px]">{option.label}</h4>
                           {option.example && (
                             <div className="group/tip relative">
                               <Info className="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                              <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 z-30 pointer-events-none">
+                              <div className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-full mb-2 w-56 sm:w-64 max-w-[calc(100vw-3rem)] p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 z-30 pointer-events-none">
                                 <p className="leading-relaxed">{option.example}</p>
                                 <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-900" />
                               </div>
                             </div>
                           )}
                         </div>
-                        <p className="text-sm text-muted truncate">{option.desc}</p>
+                        <p className="text-xs sm:text-sm text-muted truncate">{option.desc}</p>
                       </div>
-                      <span className={`text-sm font-semibold whitespace-nowrap ${selectedOptions.includes(option.id) ? 'text-accent-green' : 'text-muted'}`}>
+                      <span className={`text-xs sm:text-sm font-semibold whitespace-nowrap ${selectedOptions.includes(option.id) ? 'text-accent-green' : 'text-muted'}`}>
                         {option.price === 0 ? 'Základ' : `+${option.price.toLocaleString('cs-CZ')} Kč`}
                       </span>
                     </button>
@@ -478,23 +478,23 @@ export function Calculator() {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-semibold text-center mb-2">Jak rychle to potřebujete?</h3>
-              <p className="text-center text-muted mb-8">Termín ovlivňuje finální cenu</p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2">Jak rychle to potřebujete?</h3>
+              <p className="text-center text-sm sm:text-base text-muted mb-6 sm:mb-8">Termín ovlivňuje finální cenu</p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 {timelineOptions.map((option) => (
                   <button
                     key={option.id}
                     onClick={() => setTimeline(option.id)}
-                    className={`p-6 rounded-2xl border-2 text-center transition-all ${
+                    className={`p-4 sm:p-6 rounded-2xl border-2 text-center transition-all ${
                       timeline === option.id
                         ? 'border-foreground bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
                         : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:-translate-y-1'
                     }`}
                   >
-                    <h4 className="text-lg font-semibold mb-1">{option.label}</h4>
-                    <p className="text-sm text-muted mb-3">{option.desc}</p>
-                    <span className={`text-sm font-semibold ${
+                    <h4 className="text-base sm:text-lg font-semibold mb-1">{option.label}</h4>
+                    <p className="text-xs sm:text-sm text-muted mb-2 sm:mb-3">{option.desc}</p>
+                    <span className={`text-xs sm:text-sm font-semibold ${
                       option.multiplier > 1 ? 'text-orange-500' :
                       option.multiplier < 1 ? 'text-accent-green' : 'text-foreground'
                     }`}>
@@ -515,48 +515,48 @@ export function Calculator() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              <div className="bg-gradient-to-br from-foreground to-gray-800 rounded-3xl p-12 text-white text-center">
-                <div className="w-20 h-20 bg-accent-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-12 h-12 text-accent-green" />
+              <div className="bg-gradient-to-br from-foreground to-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-white text-center">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-accent-green/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-accent-green" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-8">Váš odhad je připraven!</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8">Váš odhad je připraven!</h3>
 
-                <div className="bg-white/10 rounded-2xl p-6 mb-8 text-left">
-                  <div className="flex justify-between py-3 border-b border-white/10 text-[15px]">
+                <div className="bg-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-left">
+                  <div className="flex justify-between py-2 sm:py-3 border-b border-white/10 text-sm sm:text-[15px]">
                     <span className="text-white/60">Kategorie:</span>
                     <strong>{getCategoryName()}</strong>
                   </div>
-                  <div className="flex justify-between py-3 border-b border-white/10 text-[15px]">
+                  <div className="flex justify-between py-2 sm:py-3 border-b border-white/10 text-sm sm:text-[15px]">
                     <span className="text-white/60">Typ:</span>
                     <strong>{currentSubcategoryData?.title}</strong>
                   </div>
-                  <div className="flex justify-between py-3 border-b border-white/10 text-[15px]">
+                  <div className="flex justify-between py-2 sm:py-3 border-b border-white/10 text-sm sm:text-[15px]">
                     <span className="text-white/60">Zahrnuje:</span>
-                    <strong className="text-right max-w-[200px]">{getSelectedOptionsText()}</strong>
+                    <strong className="text-right max-w-[150px] sm:max-w-[200px]">{getSelectedOptionsText()}</strong>
                   </div>
-                  <div className="flex justify-between py-3 text-[15px]">
+                  <div className="flex justify-between py-2 sm:py-3 text-sm sm:text-[15px]">
                     <span className="text-white/60">Termín:</span>
                     <strong>{timelineOptions.find(t => t.id === timeline)?.label}</strong>
                   </div>
                 </div>
 
-                <div className="bg-white/5 rounded-2xl p-8 mb-8">
-                  <span className="text-sm text-white/60 block mb-2">Orientační cena</span>
-                  <div className="text-4xl font-bold mb-2">
+                <div className="bg-white/5 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 mb-6 sm:mb-8">
+                  <span className="text-xs sm:text-sm text-white/60 block mb-2">Orientační cena</span>
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
                     {priceRange.min.toLocaleString('cs-CZ')} - {priceRange.max.toLocaleString('cs-CZ')} Kč
                   </div>
-                  <span className="text-sm text-white/50">Přesnou cenu upřesníme po konzultaci</span>
+                  <span className="text-xs sm:text-sm text-white/50">Přesnou cenu upřesníme po konzultaci</span>
                 </div>
 
-                <Button variant="cta" size="lg" className="group">
+                <Button variant="cta" size="lg" className="group w-full sm:w-auto">
                   Chci nezávaznou nabídku
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <p className="text-sm text-white/50 mt-4">Odpovíme do 24 hodin</p>
+                <p className="text-xs sm:text-sm text-white/50 mt-4">Odpovíme do 24 hodin</p>
 
                 <button
                   onClick={resetCalculator}
-                  className="mt-6 text-sm text-white/40 hover:text-white/60 transition-colors underline"
+                  className="mt-4 sm:mt-6 text-xs sm:text-sm text-white/40 hover:text-white/60 transition-colors underline"
                 >
                   Spočítat znovu
                 </button>
@@ -567,10 +567,10 @@ export function Calculator() {
 
         {/* Navigation */}
         {step < 5 && (
-          <div className="flex justify-between items-center mt-8 pt-8 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-gray-200">
             <button
               onClick={prevStep}
-              className={`flex items-center gap-2 px-6 py-4 border border-gray-200 rounded-full font-medium transition-all hover:border-foreground hover:bg-foreground hover:text-white ${
+              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 border border-gray-200 rounded-full font-medium transition-all hover:border-foreground hover:bg-foreground hover:text-white order-2 sm:order-1 ${
                 step === 1 ? 'invisible' : ''
               }`}
             >
@@ -578,15 +578,15 @@ export function Calculator() {
               Zpět
             </button>
 
-            <div className="text-center">
+            <div className="text-center order-1 sm:order-2">
               <span className="text-sm text-muted-foreground block">Aktuální odhad:</span>
-              <strong className="text-2xl font-bold">{totalPrice.toLocaleString('cs-CZ')} Kč</strong>
+              <strong className="text-xl sm:text-2xl font-bold">{totalPrice.toLocaleString('cs-CZ')} Kč</strong>
             </div>
 
             <button
               onClick={nextStep}
               disabled={!canProceed()}
-              className={`flex items-center gap-2 px-6 py-4 bg-foreground text-white rounded-full font-medium transition-all hover:bg-gray-800 ${
+              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-foreground text-white rounded-full font-medium transition-all hover:bg-gray-800 order-3 ${
                 !canProceed() ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >

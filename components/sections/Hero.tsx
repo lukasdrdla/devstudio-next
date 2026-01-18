@@ -42,7 +42,7 @@ export function Hero() {
 
   return (
     <>
-      <section className="min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
+      <section className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden">
 
         {/* Content */}
         <div className="relative z-10 text-center max-w-[900px]">
@@ -52,19 +52,19 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <h1 className="text-[clamp(2.5rem,8vw,6rem)] font-bold leading-[1.05] tracking-tight mb-8">
-              <span className="block text-gray-400 text-[0.5em] font-normal mb-2">
+            <h1 className="text-[clamp(2.5rem,10vw,6rem)] font-bold leading-[1.05] tracking-tight mb-6 sm:mb-8">
+              <span className="block text-gray-400 text-[0.45em] sm:text-[0.5em] font-normal mb-1 sm:mb-2">
                 Děláme
               </span>
               <span className="relative">
                 {displayText}
                 <motion.span
-                  className="inline-block w-[4px] h-[0.9em] bg-gray-900 ml-1 align-middle"
+                  className="inline-block w-[3px] sm:w-[4px] h-[0.9em] bg-gray-900 ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
                 />
               </span>
-              <span className="block text-gray-400 text-[0.5em] font-normal mt-2">
+              <span className="block text-gray-400 text-[0.45em] sm:text-[0.5em] font-normal mt-1 sm:mt-2">
                 na míru
               </span>
             </h1>
@@ -75,7 +75,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-xl text-muted mb-12 max-w-[500px] mx-auto leading-relaxed"
+            className="text-lg sm:text-xl text-muted mb-8 sm:mb-12 max-w-[500px] mx-auto leading-relaxed"
           >
             Mladý tým. Moderní technologie. Výsledky, které mluví za nás.
           </motion.p>
@@ -109,12 +109,12 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center pt-2"
+            className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-300 rounded-full flex justify-center pt-1.5 sm:pt-2"
           >
             <div className="w-1 h-2 bg-gray-400 rounded-full" />
           </motion.div>

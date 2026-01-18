@@ -31,7 +31,7 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="py-32 px-6 lg:px-12 mx-4 lg:mx-8 bg-white rounded-[40px]"
+      className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]"
     >
       <div className="max-w-[800px] mx-auto">
         <motion.div

@@ -30,7 +30,7 @@ export function Process() {
   return (
     <section
       id="process"
-      className="py-32 px-6 lg:px-12 mx-4 lg:mx-8 bg-white rounded-[40px]"
+      className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]"
     >
       <div className="max-w-[1400px] mx-auto">
         <motion.div
@@ -43,12 +43,12 @@ export function Process() {
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-6">
             Jak spolupráce probíhá
           </h2>
-          <p className="text-lg text-muted max-w-[500px] mb-16">
+          <p className="text-base sm:text-lg text-muted max-w-[500px] mb-10 sm:mb-16">
             Jednoduchý a transparentní postup.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -58,11 +58,11 @@ export function Process() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center group"
             >
-              <div className="w-[60px] h-[60px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6 text-lg font-semibold transition-all duration-400 group-hover:scale-110 group-hover:from-accent-indigo group-hover:to-accent-pink">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-[60px] lg:h-[60px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg font-semibold transition-all duration-400 group-hover:scale-110 group-hover:from-accent-indigo group-hover:to-accent-pink">
                 {step.number}
               </div>
-              <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
-              <p className="text-sm text-muted">{step.description}</p>
+              <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">{step.title}</h3>
+              <p className="text-xs sm:text-sm text-muted leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
         </div>

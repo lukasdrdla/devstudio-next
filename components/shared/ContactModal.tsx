@@ -55,7 +55,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg z-50 px-4"
           >
-            <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-2xl relative">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl relative">
               {/* Close button */}
               <button
                 onClick={onClose}
@@ -78,8 +78,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </motion.div>
               ) : (
                 <>
-                  <h3 className="text-2xl font-semibold mb-2">Napište nám</h3>
-                  <p className="text-muted mb-8">
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2">Napište nám</h3>
+                  <p className="text-sm sm:text-base text-muted mb-6 sm:mb-8">
                     Popište váš projekt a my se vám ozveme do 24 hodin.
                   </p>
 
