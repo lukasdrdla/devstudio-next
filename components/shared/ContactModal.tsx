@@ -132,7 +132,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       />
                     </div>
 
-                    <Button type="submit" variant="primary" size="lg" className="w-full group">
+                    <Button type="submit" size="lg" className="w-full group">
                       Odeslat zprávu
                       <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </Button>
