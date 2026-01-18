@@ -31,38 +31,51 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]"
+      className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12"
     >
       <div className="max-w-[800px] mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10 sm:mb-12"
         >
           <SectionLabel centered>FAQ</SectionLabel>
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight">
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-4">
             Časté dotazy
           </h2>
+          <p className="text-base sm:text-lg text-muted max-w-[450px] mx-auto">
+            Odpovědi na nejčastější otázky. Nenašli jste odpověď? Napište nám.
+          </p>
         </motion.div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <AccordionItem value={`item-${index}`}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
+        {/* Accordion in white card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100"
+        >
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border-b border-gray-100 last:border-0"
+              >
+                <AccordionTrigger className="text-left text-base sm:text-lg py-5 sm:py-6">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent>
+                  {faq.answer}
+                </AccordionContent>
               </AccordionItem>
-            </motion.div>
-          ))}
-        </Accordion>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   )
