@@ -59,12 +59,12 @@ export function Stats() {
             {/* Stats row */}
             <div className="flex flex-wrap gap-6 sm:gap-10">
               <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-1">50+</div>
-                <div className="text-sm text-muted">Dokončených projektů</div>
+                <div className="text-3xl sm:text-4xl font-bold mb-1">2 týdny</div>
+                <div className="text-sm text-muted">Průměrná dodávka</div>
               </div>
               <div>
                 <div className="text-3xl sm:text-4xl font-bold mb-1">100%</div>
-                <div className="text-sm text-muted">Spokojených klientů</div>
+                <div className="text-sm text-muted">Dodáno včas</div>
               </div>
               <div>
                 <div className="text-3xl sm:text-4xl font-bold mb-1">24h</div>

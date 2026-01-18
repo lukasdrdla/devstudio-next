@@ -2,19 +2,18 @@ import Link from 'next/link'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 const services = [
-  { href: '#', label: 'Webové stránky' },
-  { href: '#', label: 'Aplikace' },
-  { href: '#', label: 'E-shopy' },
-  { href: '#', label: 'Design' },
-  { href: '#', label: 'Marketing' },
+  { href: '/sluzby#webove-stranky', label: 'Webové stránky' },
+  { href: '/sluzby#aplikace', label: 'Aplikace' },
+  { href: '/sluzby#e-shopy', label: 'E-shopy' },
+  { href: '/sluzby#design', label: 'Design' },
+  { href: '/sluzby#marketing', label: 'Marketing' },
 ]
 
 const company = [
-  { href: '#', label: 'O nás' },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '#process', label: 'Jak pracujeme' },
-  { href: '#', label: 'Blog' },
-  { href: '#', label: 'Kariéra' },
+  { href: '/', label: 'Domů' },
+  { href: '/o-nas', label: 'O nás' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/kontakt', label: 'Kontakt' },
 ]
 
 export function Footer() {
@@ -121,7 +120,7 @@ export function Footer() {
                     <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-4 h-4" />
                     </div>
-                    Ostrava, Česko
+                    Zlín, Česko
                   </div>
                 </li>
               </ul>

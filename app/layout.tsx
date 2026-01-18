@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'DevStudio - Tvoříme digitální produkty na míru',
   description: 'Weby, aplikace, design a marketing. Vše pod jednou střechou, bez kompromisů.',
-  keywords: ['webové stránky', 'aplikace', 'e-shop', 'design', 'marketing', 'SEO', 'Ostrava'],
+  keywords: ['webové stránky', 'aplikace', 'e-shop', 'design', 'marketing', 'SEO', 'Zlín'],
   authors: [{ name: 'DevStudio' }],
   metadataBase: new URL('https://devstudio-next.vercel.app'),
   openGraph: {
@@ -50,7 +50,7 @@ const schemaData = {
   description: 'Tvoříme weby, aplikace a e-shopy na míru. Vše pod jednou střechou, bez kompromisů.',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Ostrava',
+    addressLocality: 'Zlín',
     addressCountry: 'CZ',
   },
   contactPoint: {

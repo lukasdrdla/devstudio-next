@@ -1,14 +1,14 @@
 'use client'
 
-const clients = [
-  'FLAVEX',
-  'TechNova',
-  'BuildPro',
-  'GreenLeaf',
-  'MediaHouse',
-  'AutoServis',
-  'FoodPoint',
-  'HealthCare+',
+const technologies = [
+  'React',
+  'Next.js',
+  'TypeScript',
+  'Tailwind CSS',
+  'Node.js',
+  'Vercel',
+  'PostgreSQL',
+  'Figma',
 ]
 
 export function Clients() {
@@ -16,7 +16,7 @@ export function Clients() {
     <section className="py-10 sm:py-12 lg:py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 mb-6 sm:mb-8">
         <p className="text-center text-sm text-muted-foreground">
-          Důvěřují nám firmy z celé ČR
+          Stavíme na moderních technologiích
         </p>
       </div>
 
@@ -28,12 +28,12 @@ export function Clients() {
         {/* Marquee */}
         <div className="flex overflow-hidden">
           <div className="marquee-track">
-            {[...clients, ...clients].map((client, index) => (
+            {[...technologies, ...technologies].map((tech, index) => (
               <span
-                key={`${client}-${index}`}
+                key={`${tech}-${index}`}
                 className="text-lg sm:text-xl md:text-2xl font-bold text-muted-foreground whitespace-nowrap cursor-default"
               >
-                {client}
+                {tech}
               </span>
             ))}
           </div>

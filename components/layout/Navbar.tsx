@@ -7,12 +7,11 @@ import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { href: '#services', label: 'Služby' },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '#calculator', label: 'Kalkulačka' },
-  { href: '#process', label: 'Jak pracujeme' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Kontakt' },
+  { href: '/', label: 'Domů' },
+  { href: '/sluzby', label: 'Služby' },
+  { href: '/o-nas', label: 'O nás' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/kontakt', label: 'Kontakt' },
 ]
 
 export function Navbar() {
