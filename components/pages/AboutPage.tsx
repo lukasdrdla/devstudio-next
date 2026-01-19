@@ -50,7 +50,7 @@ export function AboutPage() {
               Mladý tým s velkými ambicemi
             </h1>
             <p className="text-lg sm:text-xl text-muted leading-relaxed mb-6">
-              Jsme DevStudio. Mladá digitální agentura ze Zlína, která mění pravidla hry.
+              Jsme weware. Mladá digitální agentura ze Zlína, která mění pravidla hry.
               Žádné korporátní kecy, žádné zbytečnosti. Jen čistá práce a výsledky.
             </p>
             <p className="text-muted leading-relaxed mb-8">
@@ -77,7 +77,7 @@ export function AboutPage() {
             <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
               <Image
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-                alt="DevStudio tým při práci"
+                alt="weware tým při práci"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -127,7 +127,7 @@ export function AboutPage() {
           className="text-center mb-12"
         >
           <SectionLabel centered>Náš tým</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl font-semibold mb-4">Lidi za DevStudio</h2>
+          <h2 className="text-3xl sm:text-4xl font-semibold mb-4">Lidi za weware</h2>
           <p className="text-muted max-w-[600px] mx-auto">
             Jsme dva kamarádi, co spojili síly. Lukáš kóduje, Pepa designuje. Společně tvoříme weby, které fungují.
           </p>

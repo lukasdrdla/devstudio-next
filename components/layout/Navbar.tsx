@@ -53,9 +53,9 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-9 h-9 bg-gradient-to-br from-foreground to-gray-700 rounded-[10px] flex items-center justify-center text-white font-bold text-sm transition-transform duration-300 group-hover:-rotate-[5deg] group-hover:scale-105">
-              D
+              W
             </div>
-            <span className="font-semibold text-lg tracking-tight">DevStudio</span>
+            <span className="font-semibold text-lg tracking-tight">weware.</span>
           </Link>
 
           {/* Desktop Navigation */}

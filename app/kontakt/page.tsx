@@ -5,13 +5,13 @@ import { Footer } from '@/components/layout/Footer'
 import { ContactPage } from '@/components/pages/ContactPage'
 
 export const metadata: Metadata = {
-  title: 'Kontakt - Spojte se s námi | DevStudio',
+  title: 'Kontakt - Spojte se s námi | weware',
   description: 'Máte projekt nebo dotaz? Kontaktujte nás. Nabízíme bezplatnou konzultaci a odpovídáme do 24 hodin. Sídlíme ve Zlíně, pracujeme po celé ČR.',
-  keywords: ['kontakt', 'DevStudio', 'poptávka', 'konzultace', 'Zlín', 'webová agentura'],
+  keywords: ['kontakt', 'weware', 'poptávka', 'konzultace', 'Zlín', 'webová agentura'],
   openGraph: {
-    title: 'Kontakt - Spojte se s námi | DevStudio',
+    title: 'Kontakt - Spojte se s námi | weware',
     description: 'Máte projekt nebo dotaz? Kontaktujte nás. Nabízíme bezplatnou konzultaci a odpovídáme do 24 hodin.',
-    url: 'https://devstudio-next.vercel.app/kontakt',
+    url: 'https://weware.cz/kontakt',
   },
 }
 

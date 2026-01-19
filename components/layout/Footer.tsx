@@ -27,9 +27,9 @@ export function Footer() {
             <div className="sm:col-span-2 lg:col-span-1">
               <Link href="/" className="inline-flex items-center gap-3 mb-4 sm:mb-6">
                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-foreground font-bold text-base">
-                  D
+                  W
                 </div>
-                <span className="font-semibold text-xl tracking-tight">DevStudio</span>
+                <span className="font-semibold text-xl tracking-tight">weware.</span>
               </Link>
               <p className="text-white/70 text-sm sm:text-[15px] leading-relaxed max-w-[280px] mb-6">
                 Tvoříme digitální produkty, které fungují a pomáhají firmám růst.
@@ -95,13 +95,13 @@ export function Footer() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="mailto:info@devstudio.cz"
+                    href="mailto:info@weware.cz"
                     className="flex items-center gap-3 text-sm sm:text-[15px] text-white/70 hover:text-white transition-colors group"
                   >
                     <div className="w-9 h-9 rounded-lg bg-white/10 group-hover:bg-white/20 flex items-center justify-center transition-colors flex-shrink-0">
                       <Mail className="w-4 h-4" />
                     </div>
-                    info@devstudio.cz
+                    info@weware.cz
                   </a>
                 </li>
                 <li>
@@ -132,7 +132,7 @@ export function Footer() {
         <div className="py-6 border-t border-white/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs sm:text-sm text-white/50 text-center sm:text-left">
-              © 2025 DevStudio. Všechna práva vyhrazena.
+              © 2025 weware. Všechna práva vyhrazena.
             </p>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
               <Link

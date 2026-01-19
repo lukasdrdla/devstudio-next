@@ -11,8 +11,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'info@devstudio.cz',
-    href: 'mailto:info@devstudio.cz',
+    value: 'info@weware.cz',
+    href: 'mailto:info@weware.cz',
     description: 'Pro běžné dotazy a poptávky',
   },
   {

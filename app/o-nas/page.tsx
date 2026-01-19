@@ -5,13 +5,13 @@ import { Footer } from '@/components/layout/Footer'
 import { AboutPage } from '@/components/pages/AboutPage'
 
 export const metadata: Metadata = {
-  title: 'O nás - Kdo jsme a jak pracujeme | DevStudio',
+  title: 'O nás - Kdo jsme a jak pracujeme | weware',
   description: 'Jsme tým vývojářů a designérů ze Zlína. Tvoříme weby, aplikace a digitální produkty pro firmy po celé České republice. Poznejte náš příběh a hodnoty.',
-  keywords: ['o nás', 'DevStudio', 'vývojáři', 'designéři', 'Zlín', 'webová agentura', 'tým'],
+  keywords: ['o nás', 'weware', 'vývojáři', 'designéři', 'Zlín', 'webová agentura', 'tým'],
   openGraph: {
-    title: 'O nás - Kdo jsme a jak pracujeme | DevStudio',
+    title: 'O nás - Kdo jsme a jak pracujeme | weware',
     description: 'Jsme tým vývojářů a designérů ze Zlína. Tvoříme weby, aplikace a digitální produkty pro firmy po celé České republice.',
-    url: 'https://devstudio-next.vercel.app/o-nas',
+    url: 'https://weware.cz/o-nas',
   },
 }
 

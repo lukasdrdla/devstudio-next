@@ -71,7 +71,7 @@ export function CTA() {
                 {/* Quick contact cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                   <a
-                    href="mailto:info@devstudio.cz"
+                    href="mailto:info@weware.cz"
                     className="group flex items-center gap-4 p-4 sm:p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all"
                   >
                     <div className="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
@@ -79,7 +79,7 @@ export function CTA() {
                     </div>
                     <div>
                       <p className="text-xs text-muted mb-1">Email</p>
-                      <p className="font-medium">info@devstudio.cz</p>
+                      <p className="font-medium">info@weware.cz</p>
                     </div>
                   </a>
 

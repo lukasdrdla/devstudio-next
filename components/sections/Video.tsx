@@ -117,7 +117,7 @@ export function Video() {
               {/* YouTube embed - replace VIDEO_ID with actual video ID */}
               <iframe
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1"
-                title="DevStudio - Poznejte náš tým"
+                title="weware - Poznejte náš tým"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"

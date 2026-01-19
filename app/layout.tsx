@@ -8,16 +8,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'DevStudio - Tvoříme digitální produkty na míru',
+  title: 'weware - Tvoříme digitální produkty na míru',
   description: 'Weby, aplikace, design a marketing. Vše pod jednou střechou, bez kompromisů.',
   keywords: ['webové stránky', 'aplikace', 'e-shop', 'design', 'marketing', 'SEO', 'Zlín'],
-  authors: [{ name: 'DevStudio' }],
-  metadataBase: new URL('https://devstudio-next.vercel.app'),
+  authors: [{ name: 'weware' }],
+  metadataBase: new URL('https://weware.cz'),
   openGraph: {
-    title: 'DevStudio - Tvoříme digitální produkty na míru',
+    title: 'weware - Tvoříme digitální produkty na míru',
     description: 'Weby, aplikace, design a marketing. Vše pod jednou střechou, bez kompromisů.',
-    url: 'https://devstudio-next.vercel.app',
-    siteName: 'DevStudio',
+    url: 'https://weware.cz',
+    siteName: 'weware',
     type: 'website',
     locale: 'cs_CZ',
     images: [
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'DevStudio - Tvoříme digitální produkty na míru',
+        alt: 'weware - Tvoříme digitální produkty na míru',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevStudio - Tvoříme digitální produkty na míru',
+    title: 'weware - Tvoříme digitální produkty na míru',
     description: 'Weby, aplikace, design a marketing. Vše pod jednou střechou, bez kompromisů.',
     images: ['/og-image.png'],
   },
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
 const schemaData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'DevStudio',
-  url: 'https://devstudio-next.vercel.app',
-  logo: 'https://devstudio-next.vercel.app/icon.svg',
+  name: 'weware',
+  url: 'https://weware.cz',
+  logo: 'https://weware.cz/icon.svg',
   description: 'Tvoříme weby, aplikace a e-shopy na míru. Vše pod jednou střechou, bez kompromisů.',
   address: {
     '@type': 'PostalAddress',

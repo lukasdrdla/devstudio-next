@@ -23,9 +23,9 @@ export default function ComingSoon() {
           >
             <div className="inline-flex items-center gap-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-foreground rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg sm:text-xl">D</span>
+                <span className="text-white font-bold text-lg sm:text-xl">W</span>
               </div>
-              <span className="text-xl sm:text-2xl font-semibold tracking-tight">DevStudio</span>
+              <span className="text-xl sm:text-2xl font-semibold tracking-tight">weware.</span>
             </div>
           </motion.div>
 
@@ -137,7 +137,7 @@ export default function ComingSoon() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:info@devstudio.cz"
+              href="mailto:info@weware.cz"
               className="w-11 h-11 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-foreground hover:border-gray-300 transition-all"
             >
               <Mail className="w-5 h-5" />
@@ -152,7 +152,7 @@ export default function ComingSoon() {
             className="text-sm text-muted mt-8"
           >
             Už teď máte projekt?{' '}
-            <a href="mailto:info@devstudio.cz" className="text-foreground font-medium hover:underline">
+            <a href="mailto:info@weware.cz" className="text-foreground font-medium hover:underline">
               Napište nám
             </a>
           </motion.p>
