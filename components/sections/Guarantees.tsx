@@ -24,7 +24,7 @@ const guarantees = [
 
 export function Guarantees() {
   return (
-    <section className="py-24 px-6 lg:px-12 mx-4 lg:mx-8 bg-gradient-to-br from-emerald-50 to-green-100 rounded-[40px]">
+    <section className="py-24 px-6 lg:px-12 mx-4 lg:mx-8 bg-gradient-to-br from-emerald-50 to-green-100 dark:from-emerald-950/50 dark:to-green-900/30 rounded-[40px]">
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -47,7 +47,7 @@ export function Guarantees() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-[20px] text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
+              className="bg-surface p-8 rounded-[20px] text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-accent-green to-accent-green-dark rounded-full flex items-center justify-center mx-auto mb-6">
                 <guarantee.icon className="w-7 h-7 text-white" />

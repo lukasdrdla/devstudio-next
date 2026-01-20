@@ -71,14 +71,14 @@ export function Services() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             {/* Mobile: horizontal layout, Desktop: vertical */}
-            <div className="group relative bg-white/70 backdrop-blur-xl border border-black/5 p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl cursor-pointer transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] hover:bg-white overflow-hidden">
+            <div className="group relative bg-surface/70 backdrop-blur-xl border border-border p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl cursor-pointer transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_25px_60px_rgba(0,0,0,0.3)] hover:bg-surface overflow-hidden">
               {/* Top gradient line on hover */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-indigo via-accent-pink to-emerald-300 scale-x-0 origin-left transition-transform duration-400 group-hover:scale-x-100" />
 
               {/* Mobile: flex row, Desktop: block */}
               <div className="flex items-start gap-4 sm:block">
                 {/* Icon */}
-                <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white border border-black/5 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 sm:mb-6 transition-all duration-400 group-hover:scale-110 group-hover:bg-foreground group-hover:border-foreground group-hover:text-white">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 bg-surface border border-border rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 sm:mb-6 transition-all duration-400 group-hover:scale-110 group-hover:bg-foreground group-hover:border-foreground group-hover:text-background">
                   <service.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
 

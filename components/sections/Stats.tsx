@@ -82,13 +82,13 @@ export function Stats() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group relative bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                className="group relative bg-surface rounded-2xl p-5 sm:p-6 border border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 {/* Accent line */}
                 <div className={`absolute top-0 left-0 right-0 h-1 ${value.accent}`} />
 
                 {/* Number */}
-                <span className="text-xs font-medium text-gray-400 mb-3 block">
+                <span className="text-xs font-medium text-muted-foreground mb-3 block">
                   {value.number}
                 </span>
 
@@ -106,7 +106,7 @@ export function Stats() {
 
                 {/* Hover arrow */}
                 <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </div>
               </motion.div>
             ))}

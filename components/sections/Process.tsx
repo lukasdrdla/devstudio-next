@@ -55,11 +55,11 @@ export function Process() {
         </motion.div>
 
         {/* White card container */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100">
+        <div className="bg-surface rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.3)] border border-border">
           {/* Desktop: Centered alternating timeline */}
           <div className="hidden lg:block relative">
             {/* Center vertical line */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gray-200" />
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border" />
 
             {/* Steps */}
             <div className="space-y-16">
@@ -76,15 +76,15 @@ export function Process() {
                   >
                     {/* Center node */}
                     <div className="absolute left-1/2 -translate-x-1/2 top-0 z-10">
-                      <div className="w-14 h-14 rounded-full bg-gray-50 border-2 border-gray-200 flex items-center justify-center shadow-sm">
-                        <step.icon className="w-6 h-6 text-gray-600" />
+                      <div className="w-14 h-14 rounded-full bg-surface-secondary border-2 border-border flex items-center justify-center shadow-sm">
+                        <step.icon className="w-6 h-6 text-muted" />
                       </div>
                     </div>
 
                     {/* Content - alternating sides */}
                     <div className={`flex ${isLeft ? 'justify-start' : 'justify-end'}`}>
                       <div className={`w-[calc(50%-40px)] ${isLeft ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                        <span className="inline-block text-xs font-medium text-muted bg-gray-100 px-2 py-1 rounded mb-3">
+                        <span className="inline-block text-xs font-medium text-muted bg-surface-secondary px-2 py-1 rounded mb-3">
                           Krok {step.number}
                         </span>
                         <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
@@ -107,7 +107,7 @@ export function Process() {
           {/* Mobile/Tablet: Left-aligned timeline */}
           <div className="lg:hidden relative">
             {/* Vertical line */}
-            <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gray-200" />
+            <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-border" />
 
             {/* Steps */}
             <div className="space-y-8 sm:space-y-10">
@@ -122,14 +122,14 @@ export function Process() {
                 >
                   {/* Timeline node */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gray-50 border-2 border-gray-200 flex items-center justify-center shadow-sm">
-                      <step.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-surface-secondary border-2 border-border flex items-center justify-center shadow-sm">
+                      <step.icon className="w-5 h-5 sm:w-6 sm:h-6 text-muted" />
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 pt-1 sm:pt-3">
-                    <span className="inline-block text-xs font-medium text-muted bg-gray-100 px-2 py-1 rounded mb-2">
+                    <span className="inline-block text-xs font-medium text-muted bg-surface-secondary px-2 py-1 rounded mb-2">
                       Krok {step.number}
                     </span>
                     <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">{step.title}</h3>

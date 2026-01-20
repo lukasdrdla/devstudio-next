@@ -74,7 +74,7 @@ export function AboutPage() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-surface-secondary">
               <Image
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                 alt="weware tým při práci"
@@ -83,7 +83,7 @@ export function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-gray-100">
+            <div className="absolute -bottom-6 -left-6 bg-surface rounded-2xl p-4 shadow-xl border border-border">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-foreground rounded-xl flex items-center justify-center">
                   <Rocket className="w-6 h-6 text-white" />
@@ -108,7 +108,7 @@ export function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl border border-gray-200 p-6 text-center"
+              className="bg-surface rounded-2xl border border-border p-6 text-center"
             >
               <p className="text-2xl sm:text-3xl font-semibold text-foreground mb-1">{stat.number}</p>
               <p className="text-sm text-muted">{stat.label}</p>
@@ -141,7 +141,7 @@ export function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="bg-white rounded-3xl border border-gray-200 overflow-hidden"
+              className="bg-surface rounded-3xl border border-border overflow-hidden"
             >
               <div className="grid grid-cols-1 sm:grid-cols-5">
                 {/* Photo */}
@@ -176,7 +176,7 @@ export function AboutPage() {
                     {member.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 bg-gray-100 rounded-full text-sm text-muted"
+                        className="px-3 py-1 bg-surface-secondary rounded-full text-sm text-muted"
                       >
                         {skill}
                       </span>
@@ -191,7 +191,7 @@ export function AboutPage() {
 
       {/* How we work */}
       <section className="px-4 sm:px-6 lg:px-12 max-w-[1400px] mx-auto mb-16 sm:mb-24">
-        <div className="bg-gray-50 rounded-3xl p-8 sm:p-12">
+        <div className="bg-surface-secondary rounded-3xl p-8 sm:p-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,7 +218,7 @@ export function AboutPage() {
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-start gap-4 bg-white rounded-xl p-4">
+                <div className="flex items-start gap-4 bg-surface rounded-xl p-4">
                   <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Zap className="w-5 h-5 text-emerald-600" />
                   </div>
@@ -228,7 +228,7 @@ export function AboutPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 bg-white rounded-xl p-4">
+                <div className="flex items-start gap-4 bg-surface rounded-xl p-4">
                   <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Users className="w-5 h-5 text-emerald-600" />
                   </div>
@@ -238,7 +238,7 @@ export function AboutPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 bg-white rounded-xl p-4">
+                <div className="flex items-start gap-4 bg-surface rounded-xl p-4">
                   <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Clock className="w-5 h-5 text-emerald-600" />
                   </div>
@@ -260,7 +260,7 @@ export function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-foreground rounded-3xl p-8 sm:p-12 lg:p-16 text-center text-white"
+          className="bg-gray-900 dark:bg-gray-950 rounded-3xl p-8 sm:p-12 lg:p-16 text-center text-white"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
             Připraveni začít?
@@ -269,7 +269,7 @@ export function AboutPage() {
             Máte nápad? Pojďme ho proměnit v realitu. První konzultace je na nás.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-foreground hover:bg-gray-100" asChild>
+            <Button size="lg" variant="secondary" className="bg-surface text-foreground hover:bg-surface-hover border border-border" asChild>
               <Link href="/kontakt">
                 Ozvat se
                 <ArrowRight className="w-5 h-5 ml-2" />

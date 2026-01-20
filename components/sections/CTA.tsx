@@ -24,14 +24,14 @@ export function CTA() {
               {/* Left - Text content */}
               <div className="text-center lg:text-left">
                 {/* Capacity badge */}
-                <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-full mb-6 sm:mb-8 text-sm">
-                  <span className="text-emerald-700 font-medium">Kapacita:</span>
+                <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-full mb-6 sm:mb-8 text-sm">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-medium">Kapacita:</span>
                   <div className="flex gap-1">
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                    <span className="w-2 h-2 rounded-full bg-gray-300" />
-                    <span className="w-2 h-2 rounded-full bg-gray-300" />
+                    <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                    <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
                   </div>
-                  <span className="text-emerald-700">Zbývají 2 místa</span>
+                  <span className="text-emerald-700 dark:text-emerald-400">Zbývají 2 místa</span>
                 </div>
 
                 <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-semibold tracking-tight mb-4 sm:mb-6">
@@ -72,10 +72,10 @@ export function CTA() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                   <a
                     href="mailto:info@weware.cz"
-                    className="group flex items-center gap-4 p-4 sm:p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all"
+                    className="group flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border hover:border-muted-foreground hover:shadow-lg transition-all"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
-                      <Mail className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                    <div className="w-12 h-12 rounded-xl bg-surface-secondary group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
+                      <Mail className="w-5 h-5 text-muted group-hover:text-background transition-colors" />
                     </div>
                     <div>
                       <p className="text-xs text-muted mb-1">Email</p>
@@ -85,10 +85,10 @@ export function CTA() {
 
                   <a
                     href="tel:+420123456789"
-                    className="group flex items-center gap-4 p-4 sm:p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all"
+                    className="group flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border hover:border-muted-foreground hover:shadow-lg transition-all"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
-                      <Phone className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                    <div className="w-12 h-12 rounded-xl bg-surface-secondary group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
+                      <Phone className="w-5 h-5 text-muted group-hover:text-background transition-colors" />
                     </div>
                     <div>
                       <p className="text-xs text-muted mb-1">Telefon</p>
@@ -96,13 +96,13 @@ export function CTA() {
                     </div>
                   </a>
 
-                  <div className="flex items-center gap-4 p-4 sm:p-5 bg-white rounded-2xl border border-gray-200 sm:col-span-2 lg:col-span-1">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-5 h-5 text-emerald-600" />
+                  <div className="flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border sm:col-span-2 lg:col-span-1">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
                       <p className="text-xs text-muted mb-1">Doba odpovědi</p>
-                      <p className="font-medium text-emerald-600">Do 24 hodin</p>
+                      <p className="font-medium text-emerald-600 dark:text-emerald-400">Do 24 hodin</p>
                     </div>
                   </div>
                 </div>

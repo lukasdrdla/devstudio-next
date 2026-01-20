@@ -78,23 +78,23 @@ export function Testimonials() {
           {/* Navigation Arrows - Hidden on mobile, shown on sm+ */}
           <button
             onClick={prev}
-            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 sm:-translate-x-4 lg:-translate-x-20 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-lg"
+            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 sm:-translate-x-4 lg:-translate-x-20 z-10 w-12 h-12 rounded-full bg-surface border border-border items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-background shadow-lg"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
           <button
             onClick={next}
-            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 sm:translate-x-4 lg:translate-x-20 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-lg"
+            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 sm:translate-x-4 lg:translate-x-20 z-10 w-12 h-12 rounded-full bg-surface border border-border items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-background shadow-lg"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Card */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-16 shadow-[0_8px_40px_rgba(0,0,0,0.06)] relative overflow-hidden">
+          <div className="bg-surface rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-16 shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.3)] relative overflow-hidden">
             {/* Quote Icon */}
             <div className="absolute top-8 right-8 lg:top-12 lg:right-12">
-              <Quote className="w-16 h-16 lg:w-24 lg:h-24 text-gray-100 fill-gray-100" />
+              <Quote className="w-16 h-16 lg:w-24 lg:h-24 text-surface-secondary fill-surface-secondary" />
             </div>
 
             <AnimatePresence mode="wait">
@@ -107,13 +107,13 @@ export function Testimonials() {
                 className="relative z-10"
               >
                 {/* Quote */}
-                <blockquote className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-800 mb-6 sm:mb-10 font-medium">
+                <blockquote className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-foreground mb-6 sm:mb-10 font-medium">
                   "{currentTestimonial.quote}"
                 </blockquote>
 
                 {/* Author */}
                 <div className="flex items-center gap-4 sm:gap-5">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden ring-4 ring-gray-50 flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden ring-4 ring-surface-secondary flex-shrink-0">
                     <Image
                       src={currentTestimonial.avatar}
                       alt={currentTestimonial.author}
@@ -141,7 +141,7 @@ export function Testimonials() {
           {/* Mobile prev arrow */}
           <button
             onClick={prev}
-            className="sm:hidden w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-md"
+            className="sm:hidden w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-background shadow-md"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -155,7 +155,7 @@ export function Testimonials() {
                 className={`h-2 rounded-full transition-all duration-300 ${
                   currentIndex === i
                     ? 'w-6 sm:w-8 bg-foreground'
-                    : 'w-2 bg-gray-300 hover:bg-gray-400'
+                    : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
                 }`}
               />
             ))}
@@ -164,7 +164,7 @@ export function Testimonials() {
           {/* Mobile next arrow */}
           <button
             onClick={next}
-            className="sm:hidden w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-white shadow-md"
+            className="sm:hidden w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center transition-all hover:bg-foreground hover:border-foreground hover:text-background shadow-md"
           >
             <ChevronRight className="w-4 h-4" />
           </button>

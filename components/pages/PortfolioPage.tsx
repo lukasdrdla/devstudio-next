@@ -170,8 +170,8 @@ export function PortfolioPage() {
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all ${
                 activeCategory === category.id
-                  ? 'bg-foreground text-white'
-                  : 'bg-gray-100 text-muted hover:bg-gray-200'
+                  ? 'bg-gray-900 text-white'
+                  : 'bg-surface-secondary text-muted hover:bg-surface-hover'
               }`}
             >
               {category.label}
@@ -207,7 +207,7 @@ export function PortfolioPage() {
                   }`}>
                     {/* Image */}
                     <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                      <div className="aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100">
+                      <div className="aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-surface-secondary">
                         <Image
                           src={project.image}
                           alt={project.title}
@@ -217,7 +217,7 @@ export function PortfolioPage() {
                         />
                       </div>
                       <div className="absolute top-4 left-4">
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full">
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-surface/90 backdrop-blur-sm rounded-full">
                           <Icon className="w-4 h-4" />
                           <span className="text-sm font-medium">{project.categoryLabel}</span>
                         </div>
@@ -234,7 +234,7 @@ export function PortfolioPage() {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-gray-100 rounded-full text-sm text-muted"
+                            className="px-3 py-1 bg-surface-secondary rounded-full text-sm text-muted"
                           >
                             {tag}
                           </span>
@@ -252,7 +252,7 @@ export function PortfolioPage() {
                       </div>
 
                       {/* Testimonial */}
-                      <div className="bg-gray-50 rounded-xl p-4 mb-6">
+                      <div className="bg-surface-secondary rounded-xl p-4 mb-6">
                         <p className="text-sm text-muted italic mb-2">&quot;{project.testimonial.text}&quot;</p>
                         <p className="text-sm font-medium">
                           {project.testimonial.author}
@@ -277,7 +277,7 @@ export function PortfolioPage() {
 
       {/* Stats section */}
       <section className="px-4 sm:px-6 lg:px-12 max-w-[1400px] mx-auto mb-16 sm:mb-24">
-        <div className="bg-gray-50 rounded-3xl p-8 sm:p-12">
+        <div className="bg-surface-secondary rounded-3xl p-8 sm:p-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -315,7 +315,7 @@ export function PortfolioPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-foreground rounded-3xl p-8 sm:p-12 lg:p-16 text-center text-white"
+          className="bg-gray-900 dark:bg-gray-950 rounded-3xl p-8 sm:p-12 lg:p-16 text-center text-white"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
             Máte projekt na mysli?
@@ -325,7 +325,7 @@ export function PortfolioPage() {
             Konzultace je zdarma a nezávazná.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-foreground hover:bg-gray-100" asChild>
+            <Button size="lg" variant="secondary" className="bg-surface text-foreground hover:bg-surface-hover border border-border" asChild>
               <Link href="/kontakt">
                 Začít projekt
                 <ArrowRight className="w-5 h-5 ml-2" />

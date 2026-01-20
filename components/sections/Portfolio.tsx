@@ -87,7 +87,7 @@ export function Portfolio() {
             {/* Meta */}
             <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-between sm:items-baseline">
               <h3 className="text-lg sm:text-xl font-semibold">{project.title}</h3>
-              <span className="text-xs sm:text-sm text-muted-foreground bg-black/5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full w-fit">
+              <span className="text-xs sm:text-sm text-muted-foreground bg-foreground/5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full w-fit">
                 {project.type}
               </span>
             </div>

@@ -177,10 +177,10 @@ export function ServicesPage() {
                   </p>
 
                   <div className="flex flex-wrap gap-4 mb-6">
-                    <div className="px-4 py-2 bg-gray-100 rounded-full">
+                    <div className="px-4 py-2 bg-surface-secondary rounded-full">
                       <span className="text-sm font-medium">{service.price}</span>
                     </div>
-                    <div className="px-4 py-2 bg-gray-100 rounded-full">
+                    <div className="px-4 py-2 bg-surface-secondary rounded-full">
                       <span className="text-sm font-medium">Doba realizace: {service.timeline}</span>
                     </div>
                   </div>
@@ -194,7 +194,7 @@ export function ServicesPage() {
                 </div>
 
                 {/* Features */}
-                <div className={`bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div className={`bg-surface rounded-3xl border border-border p-6 sm:p-8 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                   <h3 className="font-semibold mb-4">Co zahrnuje</h3>
                   <ul className="space-y-3">
                     {service.features.map((feature) => (
@@ -220,7 +220,7 @@ export function ServicesPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-foreground rounded-3xl p-8 sm:p-12 lg:p-16 text-center text-white"
+          className="bg-gray-900 dark:bg-gray-950 rounded-3xl p-8 sm:p-12 lg:p-16 text-center text-white"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
             Nevíte, co přesně potřebujete?
@@ -230,7 +230,7 @@ export function ServicesPage() {
             Konzultace je zdarma a nezávazná.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-foreground hover:bg-gray-100" asChild>
+            <Button size="lg" variant="secondary" className="bg-surface text-foreground hover:bg-surface-hover border border-border" asChild>
               <Link href="/kontakt">
                 Domluvit konzultaci
               </Link>

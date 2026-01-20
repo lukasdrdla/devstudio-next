@@ -18,7 +18,7 @@ const company = [
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-white">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Main footer content */}
         <div className="py-12 sm:py-16 lg:py-20">

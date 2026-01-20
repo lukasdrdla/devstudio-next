@@ -55,11 +55,11 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg z-50 px-4"
           >
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl relative">
+            <div className="bg-surface rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl relative border border-border">
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-colors"
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center text-muted hover:bg-surface-hover hover:text-foreground transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -70,8 +70,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-10"
                 >
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Odesláno!</h3>
                   <p className="text-muted">Ozveme se vám co nejdříve.</p>
@@ -95,7 +95,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-foreground focus:ring-2 focus:ring-foreground/10 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface-secondary focus:bg-surface focus:border-foreground focus:ring-2 focus:ring-foreground/10 outline-none transition-all"
                         placeholder="Jan Novák"
                       />
                     </div>
@@ -111,7 +111,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-foreground focus:ring-2 focus:ring-foreground/10 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface-secondary focus:bg-surface focus:border-foreground focus:ring-2 focus:ring-foreground/10 outline-none transition-all"
                         placeholder="jan@firma.cz"
                       />
                     </div>
@@ -127,7 +127,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         onChange={handleChange}
                         required
                         rows={4}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-foreground focus:ring-2 focus:ring-foreground/10 outline-none transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface-secondary focus:bg-surface focus:border-foreground focus:ring-2 focus:ring-foreground/10 outline-none transition-all resize-none"
                         placeholder="Popište váš projekt nebo nápad..."
                       />
                     </div>

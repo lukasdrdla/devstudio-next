@@ -123,19 +123,19 @@ export function ContactPage() {
               {item.href ? (
                 <a
                   href={item.href}
-                  className="block bg-white rounded-2xl border border-gray-200 p-5 hover:border-gray-300 hover:shadow-lg transition-all group"
+                  className="block bg-surface rounded-2xl border border-border p-5 hover:border-muted-foreground hover:shadow-lg transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-foreground flex items-center justify-center mb-4 transition-colors">
-                    <item.icon className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                  <div className="w-12 h-12 rounded-xl bg-surface-secondary group-hover:bg-foreground flex items-center justify-center mb-4 transition-colors">
+                    <item.icon className="w-5 h-5 text-muted group-hover:text-background transition-colors" />
                   </div>
                   <p className="text-sm text-muted mb-1">{item.label}</p>
                   <p className="font-semibold mb-1">{item.value}</p>
                   <p className="text-sm text-muted">{item.description}</p>
                 </a>
               ) : (
-                <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                  <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
-                    <item.icon className="w-5 h-5 text-gray-600" />
+                <div className="bg-surface rounded-2xl border border-border p-5">
+                  <div className="w-12 h-12 rounded-xl bg-surface-secondary flex items-center justify-center mb-4">
+                    <item.icon className="w-5 h-5 text-muted" />
                   </div>
                   <p className="text-sm text-muted mb-1">{item.label}</p>
                   <p className="font-semibold mb-1">{item.value}</p>
@@ -157,7 +157,7 @@ export function ContactPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <div className="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 lg:p-10 h-full flex flex-col">
+            <div className="bg-surface rounded-3xl border border-border p-6 sm:p-8 lg:p-10 h-full flex flex-col">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-indigo to-accent-pink flex items-center justify-center">
                   <MessageSquare className="w-6 h-6 text-white" />
@@ -174,8 +174,8 @@ export function ContactPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-emerald-600" />
+                  <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Děkujeme za zprávu!</h3>
                   <p className="text-muted mb-6">
@@ -213,7 +213,7 @@ export function ContactPage() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
                         placeholder="Jan Novák"
                       />
                     </div>
@@ -228,7 +228,7 @@ export function ContactPage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
                         placeholder="jan@firma.cz"
                       />
                     </div>
@@ -245,7 +245,7 @@ export function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
                         placeholder="+420 123 456 789"
                       />
                     </div>
@@ -259,7 +259,7 @@ export function ContactPage() {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
                         placeholder="Název firmy"
                       />
                     </div>
@@ -276,7 +276,7 @@ export function ContactPage() {
                         required
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
                       >
                         <option value="">Vyberte službu</option>
                         {services.map(service => (
@@ -293,7 +293,7 @@ export function ContactPage() {
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
                       >
                         <option value="">Vyberte rozpočet</option>
                         {budgets.map(budget => (
@@ -314,7 +314,7 @@ export function ContactPage() {
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-surface focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors resize-none"
                       placeholder="Popište váš projekt nebo nápad. Čím více detailů, tím lépe vám budeme moci pomoci."
                     />
                   </div>
@@ -356,30 +356,30 @@ export function ContactPage() {
             className="lg:col-span-2 space-y-6"
           >
             {/* Trust badges - first to align with form */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <div className="bg-surface rounded-2xl border border-border p-6">
               <h3 className="font-semibold mb-4">Proč s námi?</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-sm">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <span>Moderní technologie</span>
                 </li>
                 <li className="flex items-center gap-3 text-sm">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <span>Rychlá dodávka (2 týdny)</span>
                 </li>
                 <li className="flex items-center gap-3 text-sm">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <span>Fixní ceny bez překvapení</span>
                 </li>
                 <li className="flex items-center gap-3 text-sm">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <span>Odpověď do 24 hodin</span>
                 </li>
@@ -387,14 +387,14 @@ export function ContactPage() {
             </div>
 
             {/* Quick contact */}
-            <div className="bg-foreground text-white rounded-2xl p-6">
+            <div className="bg-gray-900 dark:bg-gray-950 text-white rounded-2xl p-6">
               <h3 className="font-semibold mb-2">Preferujete telefonát?</h3>
               <p className="text-white/70 text-sm mb-4">
                 Zavolejte nám a probereme váš projekt osobně.
               </p>
               <Button
                 variant="secondary"
-                className="w-full bg-white text-foreground hover:bg-gray-100"
+                className="w-full bg-surface text-foreground hover:bg-surface-hover"
                 asChild
               >
                 <a href="tel:+420123456789">
@@ -405,7 +405,7 @@ export function ContactPage() {
             </div>
 
             {/* FAQ preview */}
-            <div className="bg-gray-50 rounded-2xl p-6">
+            <div className="bg-surface-secondary rounded-2xl p-6">
               <h3 className="font-semibold mb-4">Časté dotazy</h3>
               <div className="space-y-4">
                 <div>

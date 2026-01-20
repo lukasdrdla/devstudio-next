@@ -578,7 +578,7 @@ export function BeforeAfter() {
         </button>
       )}
 
-      <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
+      <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-surface rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
         <div className="max-w-[1100px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -598,17 +598,17 @@ export function BeforeAfter() {
           {/* Browser Mockup Container */}
           <div
             ref={browserRef}
-            className={`bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl overflow-hidden border border-gray-200 transition-all duration-300 ${isInteractive ? 'relative z-50 scale-[1.01] sm:scale-[1.02] shadow-[0_15px_50px_rgba(0,0,0,0.4)] sm:shadow-[0_25px_80px_rgba(0,0,0,0.5)]' : ''}`}
+            className={`bg-surface rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl overflow-hidden border border-border transition-all duration-300 ${isInteractive ? 'relative z-50 scale-[1.01] sm:scale-[1.02] shadow-[0_15px_50px_rgba(0,0,0,0.4)] sm:shadow-[0_25px_80px_rgba(0,0,0,0.5)]' : ''}`}
           >
             {/* Browser Chrome - Hidden on mobile */}
-            <div className="hidden sm:flex bg-gray-100 px-4 py-3 items-center gap-3 border-b border-gray-200">
+            <div className="hidden sm:flex bg-surface-secondary px-4 py-3 items-center gap-3 border-b border-border">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-400" />
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
                 <div className="w-3 h-3 rounded-full bg-green-400" />
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="bg-white rounded-lg px-4 py-1.5 text-xs text-gray-500 border border-gray-200 w-64 text-center">
+                <div className="bg-surface rounded-lg px-4 py-1.5 text-xs text-muted border border-border w-64 text-center">
                   www.stavomal.cz → www.malodom.cz
                 </div>
               </div>
@@ -616,9 +616,9 @@ export function BeforeAfter() {
             </div>
 
             {/* Mobile hint bar */}
-            <div className="sm:hidden bg-gray-50 px-3 py-2 flex items-center justify-center gap-2 border-b border-gray-200">
-              <MoveHorizontal className="w-4 h-4 text-gray-400" />
-              <span className="text-xs text-gray-500">Přejeďte prstem pro porovnání</span>
+            <div className="sm:hidden bg-surface-secondary px-3 py-2 flex items-center justify-center gap-2 border-b border-border">
+              <MoveHorizontal className="w-4 h-4 text-muted-foreground" />
+              <span className="text-xs text-muted">Přejeďte prstem pro porovnání</span>
             </div>
 
             {/* Comparison slider */}
@@ -698,8 +698,8 @@ export function BeforeAfter() {
               >
                 {/* Invisible larger touch target */}
                 <div className="absolute w-14 h-full pointer-events-auto cursor-ew-resize sm:hidden" />
-                <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] bg-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.25)] border-2 border-gray-100 pointer-events-auto cursor-ew-resize">
-                  <MoveHorizontal className="w-5 h-5 text-gray-600" />
+                <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] bg-surface rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.25)] border-2 border-border pointer-events-auto cursor-ew-resize">
+                  <MoveHorizontal className="w-5 h-5 text-muted" />
                 </div>
               </div>
             </div>

@@ -53,18 +53,18 @@ export function Hero() {
             transition={{ delay: 0.2 }}
           >
             <h1 className="text-[clamp(2.5rem,10vw,6rem)] font-bold leading-[1.05] tracking-tight mb-6 sm:mb-8">
-              <span className="block text-gray-400 text-[0.45em] sm:text-[0.5em] font-normal mb-1 sm:mb-2">
+              <span className="block text-muted-foreground text-[0.45em] sm:text-[0.5em] font-normal mb-1 sm:mb-2">
                 Děláme
               </span>
               <span className="relative">
                 {displayText}
                 <motion.span
-                  className="inline-block w-[3px] sm:w-[4px] h-[0.9em] bg-gray-900 ml-1 align-middle"
+                  className="inline-block w-[3px] sm:w-[4px] h-[0.9em] bg-foreground ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
                 />
               </span>
-              <span className="block text-gray-400 text-[0.45em] sm:text-[0.5em] font-normal mt-1 sm:mt-2">
+              <span className="block text-muted-foreground text-[0.45em] sm:text-[0.5em] font-normal mt-1 sm:mt-2">
                 na míru
               </span>
             </h1>
@@ -114,9 +114,9 @@ export function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-300 rounded-full flex justify-center pt-1.5 sm:pt-2"
+            className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-border rounded-full flex justify-center pt-1.5 sm:pt-2"
           >
-            <div className="w-1 h-2 bg-gray-400 rounded-full" />
+            <div className="w-1 h-2 bg-muted-foreground rounded-full" />
           </motion.div>
         </motion.div>
       </section>

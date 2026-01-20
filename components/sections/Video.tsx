@@ -56,7 +56,7 @@ export function Video() {
             {/* Play button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-surface rounded-full flex items-center justify-center shadow-lg"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}

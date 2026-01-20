@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-@theme {
-  --font-family-sans: var(--font-inter), system-ui, sans-serif;
-
+/* Define theme CSS variables first */
+:root {
+  /* Light mode colors (default) */
   --color-background: #fafafa;
   --color-foreground: #111111;
   --color-muted: #666666;
@@ -11,16 +11,114 @@
   --color-accent-pink: #fbcfe8;
   --color-accent-green: #22c55e;
   --color-accent-green-dark: #16a34a;
-  --color-border: rgba(0, 0, 0, 0.05);
+  --color-border: rgba(0, 0, 0, 0.08);
 
+  /* Surface colors for cards/containers */
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f9fafb;
+  --color-surface-hover: #f3f4f6;
+
+  /* Interactive element colors */
+  --color-input-bg: #f9fafb;
+  --color-input-border: #e5e7eb;
+  --color-input-border-focus: #111111;
+
+  /* Blob colors for AnimatedBackground */
+  --color-blob-indigo-from: #e0e7ff;
+  --color-blob-indigo-to: #c7d2fe;
+  --color-blob-pink-from: #fce7f3;
+  --color-blob-pink-to: #fbcfe8;
+  --color-blob-green-from: #d1fae5;
+  --color-blob-green-to: #a7f3d0;
+  --color-blob-opacity: 0.5;
+
+  /* Grid pattern */
+  --color-grid-line: rgba(0, 0, 0, 0.03);
+
+  /* Legacy vars */
+  --background: #fafafa;
+  --foreground: #111111;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-muted-foreground: #71717a;
+  --color-accent-indigo: #818cf8;
+  --color-accent-pink: #f472b6;
+  --color-accent-green: #4ade80;
+  --color-accent-green-dark: #22c55e;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  /* Surface colors for dark mode */
+  --color-surface: #18181b;
+  --color-surface-secondary: #27272a;
+  --color-surface-hover: #3f3f46;
+
+  /* Interactive elements */
+  --color-input-bg: #27272a;
+  --color-input-border: #3f3f46;
+  --color-input-border-focus: #fafafa;
+
+  /* Dark mode blobs - deeper, more saturated, subtle visibility */
+  --color-blob-indigo-from: #312e81;
+  --color-blob-indigo-to: #4338ca;
+  --color-blob-pink-from: #831843;
+  --color-blob-pink-to: #be185d;
+  --color-blob-green-from: #14532d;
+  --color-blob-green-to: #166534;
+  --color-blob-opacity: 0.12;
+
+  /* Grid pattern for dark */
+  --color-grid-line: rgba(255, 255, 255, 0.03);
+
+  /* Legacy vars */
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+}
+
+/* Tailwind theme - reference CSS variables for dynamic theming */
+@theme {
+  --font-family-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Reference CSS variables so Tailwind uses var() in generated utilities */
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-accent-indigo: var(--color-accent-indigo);
+  --color-accent-pink: var(--color-accent-pink);
+  --color-accent-green: var(--color-accent-green);
+  --color-accent-green-dark: var(--color-accent-green-dark);
+  --color-border: var(--color-border);
+  --color-surface: var(--color-surface);
+  --color-surface-secondary: var(--color-surface-secondary);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-input-bg: var(--color-input-bg);
+  --color-input-border: var(--color-input-border);
+  --color-input-border-focus: var(--color-input-border-focus);
+
+  /* Animations */
   --animate-float: float 20s ease-in-out infinite;
   --animate-marquee: marquee 25s linear infinite;
   --animate-rotate: rotate 30s linear infinite;
 }
 
-:root {
-  --background: #fafafa;
-  --foreground: #111111;
+/* Smooth color transitions */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Disable transitions on page load to prevent flash */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
 }
 
 html {
@@ -28,34 +126,34 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - theme aware */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-surface-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: var(--color-muted-foreground);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #999;
+  background: var(--color-muted);
 }
 
-/* Gradient text */
+/* Gradient text - theme aware */
 .gradient-text {
-  background: linear-gradient(135deg, #111, #444);
+  background: linear-gradient(135deg, var(--color-foreground), var(--color-muted));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -74,7 +172,7 @@ body {
   left: 0;
   right: 0;
   height: 0.3em;
-  background: linear-gradient(135deg, #c7d2fe, #fbcfe8);
+  background: linear-gradient(135deg, var(--color-accent-indigo), var(--color-accent-pink));
   z-index: -1;
   transform: skewX(-5deg);
   opacity: 0.6;
@@ -85,14 +183,14 @@ body {
   content: '';
   width: 30px;
   height: 1px;
-  background: #ccc;
+  background: var(--color-muted-foreground);
 }
 
-/* Grid pattern background */
+/* Grid pattern background - theme aware */
 .bg-grid-pattern {
   background-image:
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -120,10 +218,10 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Gradient blob */
+/* Gradient blob - theme aware */
 .blob {
   filter: blur(80px);
-  opacity: 0.5;
+  opacity: var(--color-blob-opacity);
   animation: float 20s ease-in-out infinite;
 }
 
@@ -139,14 +237,14 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Range slider custom styles */
+/* Range slider custom styles - theme aware */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 8px;
   border-radius: 4px;
-  background: #ddd;
+  background: var(--color-surface-secondary);
   outline: none;
 }
 
@@ -155,7 +253,7 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 24px;
   height: 24px;
-  background: #111;
+  background: var(--color-foreground);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -169,10 +267,54 @@ input[type="range"]::-webkit-slider-thumb:hover {
 input[type="range"]::-moz-range-thumb {
   width: 24px;
   height: 24px;
-  background: #111;
+  background: var(--color-foreground);
   border-radius: 50%;
   cursor: pointer;
   border: none;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s;
+}
+
+/* ==========================================
+   ANIMATION ENHANCEMENTS FOR COMING SOON
+   ========================================== */
+
+/* Glow utility classes */
+.glow-green {
+  box-shadow: 0 0 20px var(--color-accent-green), 0 0 40px var(--color-accent-green);
+}
+
+/* Animated gradient text */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* Focus visible styles for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .blob {
+    animation: none !important;
+  }
 }

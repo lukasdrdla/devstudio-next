@@ -284,7 +284,7 @@ export function Calculator() {
   }
 
   return (
-    <section id="calculator" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-white rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
+    <section id="calculator" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-surface rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
       <div className="max-w-[900px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -304,7 +304,7 @@ export function Calculator() {
 
         {/* Progress bar */}
         <div className="relative mb-8 sm:mb-12">
-          <div className="absolute top-4 sm:top-5 left-[8%] right-[8%] sm:left-[5%] sm:right-[5%] h-[2px] sm:h-[3px] bg-gray-200 z-0">
+          <div className="absolute top-4 sm:top-5 left-[8%] right-[8%] sm:left-[5%] sm:right-[5%] h-[2px] sm:h-[3px] bg-border z-0">
             <div
               className="absolute left-0 top-0 h-full bg-gradient-to-r from-accent-green to-accent-green-dark transition-all duration-500"
               style={{ width: `${progressWidth}%` }}
@@ -318,8 +318,8 @@ export function Calculator() {
                     step >= s.num
                       ? step > s.num
                         ? 'bg-accent-green border-accent-green text-white'
-                        : 'bg-foreground border-foreground text-white'
-                      : 'bg-white border-2 border-gray-200'
+                        : 'bg-gray-900 border-gray-900 text-white'
+                      : 'bg-surface border-2 border-border'
                   }`}
                 >
                   {step > s.num ? <Check className="w-3 h-3 sm:w-4 sm:h-4" /> : s.num}
@@ -351,12 +351,12 @@ export function Calculator() {
                     onClick={() => handleCategorySelect(cat.id)}
                     className={`p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-[20px] border-2 text-center transition-all ${
                       selectedCategory === cat.id
-                        ? 'border-foreground bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
-                        : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:-translate-y-1'
+                        ? 'border-foreground bg-surface shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
+                        : 'border-border bg-surface-secondary hover:border-muted-foreground hover:-translate-y-1'
                     }`}
                   >
                     <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
-                      selectedCategory === cat.id ? 'bg-foreground text-white' : 'bg-white'
+                      selectedCategory === cat.id ? 'bg-gray-900 text-white' : 'bg-surface'
                     }`}>
                       <cat.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
                     </div>
@@ -385,12 +385,12 @@ export function Calculator() {
                     onClick={() => handleSubcategorySelect(sub.id)}
                     className={`p-4 sm:p-6 rounded-2xl sm:rounded-[20px] border-2 text-center transition-all ${
                       selectedSubcategory === sub.id
-                        ? 'border-foreground bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
-                        : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:-translate-y-1'
+                        ? 'border-foreground bg-surface shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
+                        : 'border-border bg-surface-secondary hover:border-muted-foreground hover:-translate-y-1'
                     }`}
                   >
                     <div className={`w-11 h-11 sm:w-14 sm:h-14 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
-                      selectedSubcategory === sub.id ? 'bg-foreground text-white' : 'bg-white'
+                      selectedSubcategory === sub.id ? 'bg-gray-900 text-white' : 'bg-surface'
                     }`}>
                       <sub.icon className="w-5 h-5 sm:w-7 sm:h-7" />
                     </div>
@@ -424,14 +424,14 @@ export function Calculator() {
                       onClick={() => toggleOption(option.id)}
                       className={`w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                         selectedOptions.includes(option.id)
-                          ? 'border-accent-green bg-emerald-50'
-                          : 'border-gray-200 bg-gray-50 hover:border-gray-300'
+                          ? 'border-accent-green bg-accent-green/10'
+                          : 'border-border bg-surface-secondary hover:border-muted-foreground'
                       }`}
                     >
                       <div className={`w-6 h-6 sm:w-7 sm:h-7 ${option.group ? 'rounded-full' : 'rounded-lg'} border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                         selectedOptions.includes(option.id)
                           ? 'bg-accent-green border-accent-green'
-                          : 'border-gray-300'
+                          : 'border-muted-foreground'
                       }`}>
                         {option.group ? (
                           <div className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
@@ -440,7 +440,7 @@ export function Calculator() {
                         )}
                       </div>
                       <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${
-                        selectedOptions.includes(option.id) ? 'bg-accent-green text-white' : 'bg-white'
+                        selectedOptions.includes(option.id) ? 'bg-accent-green text-white' : 'bg-surface'
                       }`}>
                         <option.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
@@ -488,8 +488,8 @@ export function Calculator() {
                     onClick={() => setTimeline(option.id)}
                     className={`p-4 sm:p-6 rounded-2xl border-2 text-center transition-all ${
                       timeline === option.id
-                        ? 'border-foreground bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
-                        : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:-translate-y-1'
+                        ? 'border-foreground bg-surface shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
+                        : 'border-border bg-surface-secondary hover:border-muted-foreground hover:-translate-y-1'
                     }`}
                   >
                     <h4 className="text-base sm:text-lg font-semibold mb-1">{option.label}</h4>
@@ -567,10 +567,10 @@ export function Calculator() {
 
         {/* Navigation */}
         {step < 5 && (
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-border">
             <button
               onClick={prevStep}
-              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 border border-gray-200 rounded-full font-medium transition-all hover:border-foreground hover:bg-foreground hover:text-white order-2 sm:order-1 ${
+              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 border border-border rounded-full font-medium transition-all hover:border-gray-900 hover:bg-gray-900 hover:text-white order-2 sm:order-1 ${
                 step === 1 ? 'invisible' : ''
               }`}
             >
@@ -586,7 +586,7 @@ export function Calculator() {
             <button
               onClick={nextStep}
               disabled={!canProceed()}
-              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-foreground text-white rounded-full font-medium transition-all hover:bg-gray-800 order-3 ${
+              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-gray-900 text-white rounded-full font-medium transition-all hover:bg-gray-800 order-3 ${
                 !canProceed() ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >
