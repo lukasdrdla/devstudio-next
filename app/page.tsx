@@ -10,6 +10,7 @@ import { CustomCursor } from '@/components/shared/CustomCursor'
 import { MagneticButton } from '@/components/shared/MagneticButton'
 import { AnimatedText } from '@/components/shared/AnimatedText'
 import { FloatingElements } from '@/components/shared/FloatingElements'
+import Orb from '@/components/Orb'
 
 export default function ComingSoon() {
   const [state, handleSubmit] = useForm('xvzzarbe')
@@ -18,6 +19,17 @@ export default function ComingSoon() {
   return (
     <>
       <CustomCursor />
+
+      {/* Orb background - subtle effect */}
+      <div className="fixed inset-0 z-[-4] opacity-30 pointer-events-none">
+        <Orb
+          hue={0}
+          hoverIntensity={0.01}
+          rotateOnHover
+          forceHoverState={false}
+        />
+      </div>
+
       <AnimatedBackground />
       <FloatingElements />
 

@@ -1,4 +1,6 @@
 import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
+import { CustomCursor } from '@/components/shared/CustomCursor'
+import { FloatingElements } from '@/components/shared/FloatingElements'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Hero } from '@/components/sections/Hero'
@@ -17,7 +19,9 @@ import { CTA } from '@/components/sections/CTA'
 export default function Home() {
   return (
     <>
+      <CustomCursor />
       <AnimatedBackground />
+      <FloatingElements />
       <Navbar />
       <main>
         <Hero />

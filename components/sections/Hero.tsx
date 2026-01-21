@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ContactModal } from '@/components/shared/ContactModal'
+import Orb from '@/components/Orb'
 
 const words = ['software', 'branding', 'automatizaci']
 
@@ -43,6 +44,16 @@ export function Hero() {
   return (
     <>
       <section className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden">
+
+        {/* Orb background - subtle effect */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <Orb
+            hue={0}
+            hoverIntensity={0.04}
+            rotateOnHover
+            forceHoverState={false}
+          />
+        </div>
 
         {/* Content */}
         <div className="relative z-10 text-center max-w-[900px]">
