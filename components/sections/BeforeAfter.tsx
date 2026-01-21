@@ -590,7 +590,7 @@ export function BeforeAfter() {
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-6">
               Před a po
             </h2>
-            <p className="text-base sm:text-lg text-muted max-w-[500px] mb-10 sm:mb-16">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-[500px] mb-10 sm:mb-16">
               Podívejte se, jak měníme zastaralé weby v moderní digitální zážitky.
             </p>
           </motion.div>
@@ -608,7 +608,7 @@ export function BeforeAfter() {
                 <div className="w-3 h-3 rounded-full bg-green-400" />
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="bg-surface rounded-lg px-4 py-1.5 text-xs text-muted border border-border w-64 text-center">
+                <div className="bg-surface rounded-lg px-4 py-1.5 text-xs text-gray-600 dark:text-gray-300 border border-border w-64 text-center">
                   www.stavomal.cz → www.malodom.cz
                 </div>
               </div>
@@ -618,7 +618,7 @@ export function BeforeAfter() {
             {/* Mobile hint bar */}
             <div className="sm:hidden bg-surface-secondary px-3 py-2 flex items-center justify-center gap-2 border-b border-border">
               <MoveHorizontal className="w-4 h-4 text-muted-foreground" />
-              <span className="text-xs text-muted">Přejeďte prstem pro porovnání</span>
+              <span className="text-xs text-gray-600 dark:text-gray-300">Přejeďte prstem pro porovnání</span>
             </div>
 
             {/* Comparison slider */}
@@ -681,7 +681,7 @@ export function BeforeAfter() {
                   className="hidden sm:flex absolute inset-0 z-20 items-center justify-center bg-black/0 hover:bg-black/10 transition-colors cursor-pointer group"
                   onClick={() => setIsInteractive(true)}
                 >
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-white">
                     <MousePointer className="w-4 h-4" />
                     Klikněte pro interakci
                   </div>
@@ -699,7 +699,7 @@ export function BeforeAfter() {
                 {/* Invisible larger touch target */}
                 <div className="absolute w-14 h-full pointer-events-auto cursor-ew-resize sm:hidden" />
                 <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] bg-surface rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.25)] border-2 border-border pointer-events-auto cursor-ew-resize">
-                  <MoveHorizontal className="w-5 h-5 text-muted" />
+                  <MoveHorizontal className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 </div>
               </div>
             </div>
@@ -707,11 +707,11 @@ export function BeforeAfter() {
 
           {/* Labels - stacked on mobile */}
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-between mt-4 sm:mt-6">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-muted">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500" />
               Původní web
             </div>
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-muted">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-accent-green" />
               Moderní redesign
             </div>

@@ -103,7 +103,7 @@ export function ContactPage() {
           <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-semibold tracking-tight mb-6">
             Pojďme si promluvit o vašem projektu
           </h1>
-          <p className="text-lg sm:text-xl text-muted leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
             Máte nápad, který chcete realizovat? Potřebujete pomoct s digitální transformací
             vašeho podnikání? Ozvěte se nám. První konzultace je vždy zdarma a nezávazná.
           </p>
@@ -126,20 +126,20 @@ export function ContactPage() {
                   className="block bg-surface rounded-2xl border border-border p-5 hover:border-muted-foreground hover:shadow-lg transition-all group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-surface-secondary group-hover:bg-foreground flex items-center justify-center mb-4 transition-colors">
-                    <item.icon className="w-5 h-5 text-muted group-hover:text-background transition-colors" />
+                    <item.icon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-background transition-colors" />
                   </div>
-                  <p className="text-sm text-muted mb-1">{item.label}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">{item.label}</p>
                   <p className="font-semibold mb-1">{item.value}</p>
-                  <p className="text-sm text-muted">{item.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{item.description}</p>
                 </a>
               ) : (
                 <div className="bg-surface rounded-2xl border border-border p-5">
                   <div className="w-12 h-12 rounded-xl bg-surface-secondary flex items-center justify-center mb-4">
-                    <item.icon className="w-5 h-5 text-muted" />
+                    <item.icon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </div>
-                  <p className="text-sm text-muted mb-1">{item.label}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">{item.label}</p>
                   <p className="font-semibold mb-1">{item.value}</p>
-                  <p className="text-sm text-muted">{item.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{item.description}</p>
                 </div>
               )}
             </motion.div>
@@ -164,7 +164,7 @@ export function ContactPage() {
                 </div>
                 <div>
                   <h2 className="text-xl font-semibold">Poptávkový formulář</h2>
-                  <p className="text-sm text-muted">Odpovíme do 24 hodin</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Odpovíme do 24 hodin</p>
                 </div>
               </div>
 
@@ -178,7 +178,7 @@ export function ContactPage() {
                     <CheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Děkujeme za zprávu!</h3>
-                  <p className="text-muted mb-6">
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
                     Vaši poptávku jsme přijali a ozveme se vám co nejdříve.
                   </p>
                   <Button
@@ -339,7 +339,7 @@ export function ContactPage() {
                       )}
                     </Button>
 
-                    <p className="text-xs text-muted text-center">
+                    <p className="text-xs text-gray-600 dark:text-gray-300 text-center">
                       Odesláním formuláře souhlasíte se zpracováním osobních údajů.
                     </p>
                   </div>
@@ -394,7 +394,7 @@ export function ContactPage() {
               </p>
               <Button
                 variant="secondary"
-                className="w-full bg-surface text-foreground hover:bg-surface-hover"
+                className="w-full bg-surface text-gray-900 dark:text-white hover:bg-surface-hover"
                 asChild
               >
                 <a href="tel:+420123456789">
@@ -410,18 +410,18 @@ export function ContactPage() {
               <div className="space-y-4">
                 <div>
                   <p className="font-medium text-sm mb-1">Jak dlouho trvá realizace webu?</p>
-                  <p className="text-sm text-muted">Běžný web dodáme za 2–4 týdny. Složitější projekty mohou trvat déle.</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Běžný web dodáme za 2–4 týdny. Složitější projekty mohou trvat déle.</p>
                 </div>
                 <div>
                   <p className="font-medium text-sm mb-1">Jaké jsou platební podmínky?</p>
-                  <p className="text-sm text-muted">Standardně 50 % záloha a 50 % po dokončení. U větších projektů lze dohodnout splátky.</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Standardně 50 % záloha a 50 % po dokončení. U větších projektů lze dohodnout splátky.</p>
                 </div>
                 <div>
                   <p className="font-medium text-sm mb-1">Poskytujete podporu po spuštění?</p>
-                  <p className="text-sm text-muted">Ano, nabízíme průběžnou údržbu a podporu. První měsíc je zdarma.</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Ano, nabízíme průběžnou údržbu a podporu. První měsíc je zdarma.</p>
                 </div>
               </div>
-              <Link href="/#faq" className="inline-block mt-4 text-sm font-medium text-foreground hover:underline">
+              <Link href="/#faq" className="inline-block mt-4 text-sm font-medium text-gray-900 dark:text-white hover:underline">
                 Všechny FAQ →
               </Link>
             </div>

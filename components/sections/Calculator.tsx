@@ -297,7 +297,7 @@ export function Calculator() {
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight">
             Spočítejte si cenu za 30 sekund
           </h2>
-          <p className="text-lg text-muted mt-4">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
             Vyberte co potřebujete a získejte okamžitý odhad
           </p>
         </motion.div>
@@ -318,13 +318,13 @@ export function Calculator() {
                     step >= s.num
                       ? step > s.num
                         ? 'bg-accent-green border-accent-green text-white'
-                        : 'bg-gray-900 border-gray-900 text-white'
+                        : 'bg-gray-900 dark:bg-white border-gray-900 dark:border-white text-white dark:text-gray-900'
                       : 'bg-surface border-2 border-border'
                   }`}
                 >
                   {step > s.num ? <Check className="w-3 h-3 sm:w-4 sm:h-4" /> : s.num}
                 </div>
-                <span className={`text-[10px] sm:text-xs font-medium hidden sm:block ${step === s.num ? 'text-foreground' : 'text-muted-foreground'}`}>
+                <span className={`text-[10px] sm:text-xs font-medium hidden sm:block ${step === s.num ? 'text-gray-900 dark:text-white' : 'text-muted-foreground'}`}>
                   {s.label}
                 </span>
               </div>
@@ -356,12 +356,12 @@ export function Calculator() {
                     }`}
                   >
                     <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
-                      selectedCategory === cat.id ? 'bg-gray-900 text-white' : 'bg-surface'
+                      selectedCategory === cat.id ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900' : 'bg-surface'
                     }`}>
                       <cat.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
                     </div>
                     <h4 className="text-base sm:text-lg font-semibold mb-1">{cat.title}</h4>
-                    <p className="text-xs sm:text-sm text-muted">{cat.desc}</p>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{cat.desc}</p>
                   </button>
                 ))}
               </div>
@@ -395,7 +395,7 @@ export function Calculator() {
                       <sub.icon className="w-5 h-5 sm:w-7 sm:h-7" />
                     </div>
                     <h4 className="text-base sm:text-lg font-semibold mb-1">{sub.title}</h4>
-                    <p className="text-xs sm:text-sm text-muted mb-2 sm:mb-3">{sub.desc}</p>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 sm:mb-3">{sub.desc}</p>
                     <span className="text-xs sm:text-sm font-semibold text-accent-green">
                       od {sub.basePrice.toLocaleString('cs-CZ')} Kč
                     </span>
@@ -415,7 +415,7 @@ export function Calculator() {
               className="space-y-6"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2">{currentOptions.title}</h3>
-              <p className="text-center text-sm sm:text-base text-muted mb-6 sm:mb-8">Vyberte vše, co potřebujete (minimálně 1)</p>
+              <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">Vyberte vše, co potřebujete (minimálně 1)</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {currentOptions.items.map((option) => (
@@ -449,17 +449,17 @@ export function Calculator() {
                           <h4 className="font-semibold text-sm sm:text-[15px]">{option.label}</h4>
                           {option.example && (
                             <div className="group/tip relative">
-                              <Info className="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                              <div className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-full mb-2 w-56 sm:w-64 max-w-[calc(100vw-3rem)] p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 z-30 pointer-events-none">
+                              <Info className="w-4 h-4 text-gray-400 dark:text-gray-600 hover:text-gray-600 dark:hover:text-gray-400 cursor-help" />
+                              <div className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-full mb-2 w-56 sm:w-64 max-w-[calc(100vw-3rem)] p-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs rounded-lg shadow-lg dark:shadow-md opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 z-30 pointer-events-none">
                                 <p className="leading-relaxed">{option.example}</p>
-                                <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-900" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-900 dark:border-t-white" />
                               </div>
                             </div>
                           )}
                         </div>
-                        <p className="text-xs sm:text-sm text-muted truncate">{option.desc}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 truncate">{option.desc}</p>
                       </div>
-                      <span className={`text-xs sm:text-sm font-semibold whitespace-nowrap ${selectedOptions.includes(option.id) ? 'text-accent-green' : 'text-muted'}`}>
+                      <span className={`text-xs sm:text-sm font-semibold whitespace-nowrap ${selectedOptions.includes(option.id) ? 'text-accent-green' : 'text-gray-600 dark:text-gray-300'}`}>
                         {option.price === 0 ? 'Základ' : `+${option.price.toLocaleString('cs-CZ')} Kč`}
                       </span>
                     </button>
@@ -479,7 +479,7 @@ export function Calculator() {
               className="space-y-6"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2">Jak rychle to potřebujete?</h3>
-              <p className="text-center text-sm sm:text-base text-muted mb-6 sm:mb-8">Termín ovlivňuje finální cenu</p>
+              <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">Termín ovlivňuje finální cenu</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 {timelineOptions.map((option) => (
@@ -493,10 +493,10 @@ export function Calculator() {
                     }`}
                   >
                     <h4 className="text-base sm:text-lg font-semibold mb-1">{option.label}</h4>
-                    <p className="text-xs sm:text-sm text-muted mb-2 sm:mb-3">{option.desc}</p>
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 sm:mb-3">{option.desc}</p>
                     <span className={`text-xs sm:text-sm font-semibold ${
                       option.multiplier > 1 ? 'text-orange-500' :
-                      option.multiplier < 1 ? 'text-accent-green' : 'text-foreground'
+                      option.multiplier < 1 ? 'text-accent-green' : 'text-gray-900 dark:text-white'
                     }`}>
                       {option.multiplier > 1 ? `+${Math.round((option.multiplier - 1) * 100)}%` :
                        option.multiplier < 1 ? `-${Math.round((1 - option.multiplier) * 100)}%` : 'Standardní cena'}

@@ -51,9 +51,9 @@ export function ThemeToggle({ variant = 'simple', className = '' }: ThemeToggleP
             transition={{ duration: 0.2 }}
           >
             {resolvedTheme === 'light' ? (
-              <Moon className="w-5 h-5 text-muted" />
+              <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
             ) : (
-              <Sun className="w-5 h-5 text-muted" />
+              <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
             )}
           </motion.div>
         </AnimatePresence>
@@ -80,9 +80,9 @@ export function ThemeToggle({ variant = 'simple', className = '' }: ThemeToggleP
             transition={{ duration: 0.15 }}
           >
             {resolvedTheme === 'light' ? (
-              <Sun className="w-5 h-5 text-muted" />
+              <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
             ) : (
-              <Moon className="w-5 h-5 text-muted" />
+              <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
             )}
           </motion.div>
         </AnimatePresence>
@@ -111,8 +111,8 @@ export function ThemeToggle({ variant = 'simple', className = '' }: ThemeToggleP
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                   theme === value
-                    ? 'bg-surface-hover text-foreground font-medium'
-                    : 'text-muted hover:bg-surface-hover hover:text-foreground'
+                    ? 'bg-surface-hover text-gray-900 dark:text-white font-medium'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-surface-hover hover:text-gray-900 dark:hover:text-white'
                 }`}
                 role="menuitem"
               >

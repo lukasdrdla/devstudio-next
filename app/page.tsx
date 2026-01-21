@@ -53,7 +53,7 @@ export default function ComingSoon() {
                   <span className="text-white font-bold text-lg sm:text-xl">W</span>
                 </motion.div>
               </MagneticButton>
-              <span className="text-xl sm:text-2xl font-semibold tracking-tight">
+              <span className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 weware
               </span>
             </div>
@@ -67,7 +67,7 @@ export default function ComingSoon() {
             className="mb-6"
           >
             <motion.span
-              className="inline-flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-full text-sm text-muted shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-full text-sm text-gray-600 dark:text-gray-400 shadow-sm"
               whileHover={{ scale: 1.02 }}
             >
               <motion.span
@@ -87,7 +87,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4 text-gray-900 dark:text-white"
           >
             Připravujeme něco
             <br />
@@ -101,7 +101,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-base sm:text-lg text-foreground/80 mb-8 max-w-md mx-auto"
+            className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-md mx-auto"
           >
             Tvoříme weby, které fungují. Brzy vám ukážeme, co umíme.
           </motion.p>
@@ -169,7 +169,7 @@ export default function ComingSoon() {
                       <button
                         type="submit"
                         disabled={state.submitting}
-                        className="group px-5 py-3.5 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-700 text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
+                        className="group px-5 py-3.5 bg-gray-900 dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-100 disabled:bg-gray-700 dark:disabled:bg-gray-300 text-white dark:text-gray-900 rounded-xl font-medium transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
                       >
                         {state.submitting ? (
                           <>
@@ -207,7 +207,7 @@ export default function ComingSoon() {
                   href={social.href}
                   target={social.href.startsWith('http') ? '_blank' : undefined}
                   rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="w-11 h-11 rounded-xl bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-foreground/30 transition-all"
+                  className="w-11 h-11 rounded-xl bg-surface border border-border flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-foreground/30 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -226,12 +226,12 @@ export default function ComingSoon() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="text-sm text-muted mt-8"
+            className="text-sm text-gray-600 dark:text-gray-400 mt-8"
           >
             Už teď máte projekt?{' '}
             <motion.a
               href="mailto:info@weware.cz"
-              className="text-foreground font-medium hover:underline"
+              className="text-gray-900 dark:text-white font-medium hover:underline"
               whileHover={{ scale: 1.02 }}
             >
               Napište nám

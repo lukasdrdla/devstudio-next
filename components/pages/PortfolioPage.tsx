@@ -156,7 +156,7 @@ export function PortfolioPage() {
           <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-semibold tracking-tight mb-6">
             Naše realizované projekty
           </h1>
-          <p className="text-lg sm:text-xl text-muted leading-relaxed mb-8">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
             Prohlédněte si ukázky naší práce. Každý projekt je jedinečný a přizpůsobený
             potřebám klienta. Věříme, že kvalitní práce mluví sama za sebe.
           </p>
@@ -170,8 +170,8 @@ export function PortfolioPage() {
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all ${
                 activeCategory === category.id
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-surface-secondary text-muted hover:bg-surface-hover'
+                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
+                  : 'bg-surface-secondary text-gray-600 dark:text-gray-300 hover:bg-surface-hover'
               }`}
             >
               {category.label}
@@ -212,7 +212,7 @@ export function PortfolioPage() {
                           src={project.image}
                           alt={project.title}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover"
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                       </div>
@@ -227,14 +227,14 @@ export function PortfolioPage() {
                     {/* Content */}
                     <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
                       <h2 className="text-2xl sm:text-3xl font-semibold mb-3">{project.title}</h2>
-                      <p className="text-muted leading-relaxed mb-6">{project.description}</p>
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">{project.description}</p>
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-surface-secondary rounded-full text-sm text-muted"
+                            className="px-3 py-1 bg-surface-secondary rounded-full text-sm text-gray-600 dark:text-gray-300"
                           >
                             {tag}
                           </span>
@@ -246,17 +246,17 @@ export function PortfolioPage() {
                         {project.results.map((result) => (
                           <div key={result.label}>
                             <p className="text-2xl font-semibold text-accent-indigo">{result.value}</p>
-                            <p className="text-sm text-muted">{result.label}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-300">{result.label}</p>
                           </div>
                         ))}
                       </div>
 
                       {/* Testimonial */}
                       <div className="bg-surface-secondary rounded-xl p-4 mb-6">
-                        <p className="text-sm text-muted italic mb-2">&quot;{project.testimonial.text}&quot;</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 italic mb-2">&quot;{project.testimonial.text}&quot;</p>
                         <p className="text-sm font-medium">
                           {project.testimonial.author}
-                          <span className="text-muted font-normal"> — {project.testimonial.role}</span>
+                          <span className="text-gray-600 dark:text-gray-300 font-normal"> — {project.testimonial.role}</span>
                         </p>
                       </div>
 
@@ -288,20 +288,20 @@ export function PortfolioPage() {
             <h2 className="text-2xl sm:text-3xl font-semibold mb-8">Proč s námi?</h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               <div>
-                <p className="text-3xl sm:text-4xl font-semibold text-foreground mb-1">100%</p>
-                <p className="text-muted">Projektů dodáno včas</p>
+                <p className="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-white mb-1">100%</p>
+                <p className="text-gray-600 dark:text-gray-300">Projektů dodáno včas</p>
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-semibold text-foreground mb-1">2 týdny</p>
-                <p className="text-muted">Průměrná doba dodání</p>
+                <p className="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-white mb-1">2 týdny</p>
+                <p className="text-gray-600 dark:text-gray-300">Průměrná doba dodání</p>
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-semibold text-foreground mb-1">24h</p>
-                <p className="text-muted">Maximální doba odpovědi</p>
+                <p className="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-white mb-1">24h</p>
+                <p className="text-gray-600 dark:text-gray-300">Maximální doba odpovědi</p>
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-semibold text-foreground mb-1">0</p>
-                <p className="text-muted">Skrytých poplatků</p>
+                <p className="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-white mb-1">0</p>
+                <p className="text-gray-600 dark:text-gray-300">Skrytých poplatků</p>
               </div>
             </div>
           </motion.div>
@@ -325,7 +325,7 @@ export function PortfolioPage() {
             Konzultace je zdarma a nezávazná.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-surface text-foreground hover:bg-surface-hover border border-border" asChild>
+            <Button size="lg" variant="secondary" className="bg-surface text-gray-900 dark:text-white hover:bg-surface-hover border border-border" asChild>
               <Link href="/kontakt">
                 Začít projekt
                 <ArrowRight className="w-5 h-5 ml-2" />

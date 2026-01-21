@@ -126,7 +126,7 @@ export function ServicesPage() {
           <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-semibold tracking-tight mb-6">
             Kompletní digitální servis pro vaše podnikání
           </h1>
-          <p className="text-lg sm:text-xl text-muted leading-relaxed mb-8">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
             Od prvního návrhu po finální spuštění. Všechny služby pod jednou střechou,
             bez nutnosti koordinovat více dodavatelů. Ušetříte čas, peníze a nervy.
           </p>
@@ -167,12 +167,12 @@ export function ServicesPage() {
                       <service.icon className="w-7 h-7" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted">{service.subtitle}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{service.subtitle}</p>
                       <h2 className="text-2xl sm:text-3xl font-semibold">{service.title}</h2>
                     </div>
                   </div>
 
-                  <p className="text-muted text-base sm:text-lg leading-relaxed mb-6">
+                  <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
                     {service.description}
                   </p>
 
@@ -199,10 +199,10 @@ export function ServicesPage() {
                   <ul className="space-y-3">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-emerald-600" />
+                        <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                         </div>
-                        <span className="text-muted">{feature}</span>
+                        <span className="text-gray-600 dark:text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -230,7 +230,7 @@ export function ServicesPage() {
             Konzultace je zdarma a nezávazná.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-surface text-foreground hover:bg-surface-hover border border-border" asChild>
+            <Button size="lg" variant="secondary" className="bg-surface text-gray-900 dark:text-white hover:bg-surface-hover border border-border" asChild>
               <Link href="/kontakt">
                 Domluvit konzultaci
               </Link>

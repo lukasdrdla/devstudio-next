@@ -49,11 +49,11 @@ export function AboutPage() {
             <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-semibold tracking-tight mb-6">
               Mladý tým s velkými ambicemi
             </h1>
-            <p className="text-lg sm:text-xl text-muted leading-relaxed mb-6">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
               Jsme weware. Mladá digitální agentura ze Zlína, která mění pravidla hry.
               Žádné korporátní kecy, žádné zbytečnosti. Jen čistá práce a výsledky.
             </p>
-            <p className="text-muted leading-relaxed mb-8">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
               Vznikli jsme, protože nás štvalo, jak agentury pracují. Pomalé, drahé, s tunou
               zbytečných schůzek. My to děláme jinak. Rychle, transparentně a s využitím
               nejmodernějších technologií. Jsme hladoví po úspěchu – vašem i našem.
@@ -90,7 +90,7 @@ export function AboutPage() {
                 </div>
                 <div>
                   <p className="font-semibold">Startup</p>
-                  <p className="text-sm text-muted">mentalita</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">mentalita</p>
                 </div>
               </div>
             </div>
@@ -110,8 +110,8 @@ export function AboutPage() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-surface rounded-2xl border border-border p-6 text-center"
             >
-              <p className="text-2xl sm:text-3xl font-semibold text-foreground mb-1">{stat.number}</p>
-              <p className="text-sm text-muted">{stat.label}</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-1">{stat.number}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -128,7 +128,7 @@ export function AboutPage() {
         >
           <SectionLabel centered>Náš tým</SectionLabel>
           <h2 className="text-3xl sm:text-4xl font-semibold mb-4">Lidi za weware</h2>
-          <p className="text-muted max-w-[600px] mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-[600px] mx-auto">
             Jsme dva kamarádi, co spojili síly. Lukáš kóduje, Pepa designuje. Společně tvoříme weby, které fungují.
           </p>
         </motion.div>
@@ -163,11 +163,11 @@ export function AboutPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold">{member.name}</h3>
-                      <p className="text-sm text-muted">{member.role}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{member.role}</p>
                     </div>
                   </div>
 
-                  <p className="text-muted leading-relaxed mb-6 flex-1">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 flex-1">
                     {member.description}
                   </p>
 
@@ -176,7 +176,7 @@ export function AboutPage() {
                     {member.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 bg-surface-secondary rounded-full text-sm text-muted"
+                        className="px-3 py-1 bg-surface-secondary rounded-full text-sm text-gray-600 dark:text-gray-300"
                       >
                         {skill}
                       </span>
@@ -203,15 +203,15 @@ export function AboutPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               <div className="space-y-6">
-                <p className="text-muted leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Nesnášíme zbytečné schůzky a nekonečné emaily. Začneme krátkým callem,
                   pochopíme, co potřebujete, a jdeme na to. Bez bullshitu.
                 </p>
-                <p className="text-muted leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Pracujeme v krátkých sprintech. Za týden máte první verzi, za dva hotový web.
                   Průběžně vám ukazujeme, co děláme, a reagujeme na váš feedback v reálném čase.
                 </p>
-                <p className="text-muted leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Jsme online, když vy potřebujete. Slack, Discord, WhatsApp – jak vám to vyhovuje.
                   Žádné čekání na odpověď tři dny.
                 </p>
@@ -219,32 +219,32 @@ export function AboutPage() {
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4 bg-surface rounded-xl p-4">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Rychlá dodávka</h4>
-                    <p className="text-sm text-muted">Web za 2 týdny. Aplikace za měsíc. Bez kompromisů na kvalitě.</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Web za 2 týdny. Aplikace za měsíc. Bez kompromisů na kvalitě.</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4 bg-surface rounded-xl p-4">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Users className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Users className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Přímá linka</h4>
-                    <p className="text-sm text-muted">Mluvíte s vývojáři, ne s projekťáky. Bez ztráty informací.</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Mluvíte s vývojáři, ne s projekťáky. Bez ztráty informací.</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4 bg-surface rounded-xl p-4">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Vždy k dispozici</h4>
-                    <p className="text-sm text-muted">Odpovídáme do 24 hodin. Většinou mnohem rychleji.</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Odpovídáme do 24 hodin. Většinou mnohem rychleji.</p>
                   </div>
                 </div>
               </div>
@@ -269,7 +269,7 @@ export function AboutPage() {
             Máte nápad? Pojďme ho proměnit v realitu. První konzultace je na nás.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-surface text-foreground hover:bg-surface-hover border border-border" asChild>
+            <Button size="lg" variant="secondary" className="bg-surface text-gray-900 dark:text-white hover:bg-surface-hover border border-border" asChild>
               <Link href="/kontakt">
                 Ozvat se
                 <ArrowRight className="w-5 h-5 ml-2" />
