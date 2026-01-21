@@ -10,7 +10,6 @@ import { CustomCursor } from '@/components/shared/CustomCursor'
 import { MagneticButton } from '@/components/shared/MagneticButton'
 import { AnimatedText } from '@/components/shared/AnimatedText'
 import { FloatingElements } from '@/components/shared/FloatingElements'
-import { NoiseOverlay } from '@/components/shared/NoiseOverlay'
 
 export default function ComingSoon() {
   const [state, handleSubmit] = useForm('xvzzarbe')
@@ -21,7 +20,6 @@ export default function ComingSoon() {
       <CustomCursor />
       <AnimatedBackground />
       <FloatingElements />
-      <NoiseOverlay />
 
       {/* Theme toggle - fixed in corner */}
       <div className="fixed top-6 right-6 z-50">
@@ -42,7 +40,7 @@ export default function ComingSoon() {
             <div className="inline-flex items-center gap-3">
               <MagneticButton strength={0.15}>
                 <motion.div
-                  className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-900 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
                   whileHover={{ scale: 1.05, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: 'spring', stiffness: 400 }}

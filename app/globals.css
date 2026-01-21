@@ -42,41 +42,41 @@
 
 /* Dark mode overrides */
 .dark {
-  --color-background: #0a0a0a;
-  --color-foreground: #fafafa;
-  --color-muted: #a1a1aa;
-  --color-muted-foreground: #71717a;
-  --color-accent-indigo: #818cf8;
-  --color-accent-pink: #f472b6;
-  --color-accent-green: #4ade80;
-  --color-accent-green-dark: #22c55e;
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-background: #0d0d0f;
+  --color-foreground: #ededef;
+  --color-muted: #9ca3af;
+  --color-muted-foreground: #6b7280;
+  --color-accent-indigo: #a5b4fc;
+  --color-accent-pink: #f9a8d4;
+  --color-accent-green: #86efac;
+  --color-accent-green-dark: #4ade80;
+  --color-border: rgba(255, 255, 255, 0.06);
 
   /* Surface colors for dark mode */
-  --color-surface: #18181b;
-  --color-surface-secondary: #27272a;
-  --color-surface-hover: #3f3f46;
+  --color-surface: #1a1a1e;
+  --color-surface-secondary: #24242a;
+  --color-surface-hover: #2e2e36;
 
   /* Interactive elements */
-  --color-input-bg: #27272a;
-  --color-input-border: #3f3f46;
-  --color-input-border-focus: #fafafa;
+  --color-input-bg: #1f1f24;
+  --color-input-border: #2e2e36;
+  --color-input-border-focus: #d4d4d8;
 
-  /* Dark mode blobs - deeper, more saturated, subtle visibility */
-  --color-blob-indigo-from: #312e81;
-  --color-blob-indigo-to: #4338ca;
-  --color-blob-pink-from: #831843;
-  --color-blob-pink-to: #be185d;
-  --color-blob-green-from: #14532d;
-  --color-blob-green-to: #166534;
-  --color-blob-opacity: 0.12;
+  /* Dark mode blobs - lighter and less saturated for subtlety */
+  --color-blob-indigo-from: #4c1d95;
+  --color-blob-indigo-to: #6366f1;
+  --color-blob-pink-from: #9f1239;
+  --color-blob-pink-to: #ec4899;
+  --color-blob-green-from: #065f46;
+  --color-blob-green-to: #10b981;
+  --color-blob-opacity: 0.08;
 
   /* Grid pattern for dark */
   --color-grid-line: rgba(255, 255, 255, 0.03);
 
   /* Legacy vars */
-  --background: #0a0a0a;
-  --foreground: #fafafa;
+  --background: #0d0d0f;
+  --foreground: #ededef;
 }
 
 /* Tailwind theme - reference CSS variables for dynamic theming */
@@ -220,7 +220,7 @@ body {
 
 /* Gradient blob - theme aware */
 .blob {
-  filter: blur(80px);
+  filter: blur(100px);
   opacity: var(--color-blob-opacity);
   animation: float 20s ease-in-out infinite;
 }
@@ -301,6 +301,34 @@ a:focus-visible,
 input:focus-visible {
   outline: 2px solid var(--color-accent-green);
   outline-offset: 2px;
+}
+
+/* Vignette effect for depth - theme aware */
+.bg-vignette {
+  position: relative;
+}
+
+.bg-vignette::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+.dark .bg-vignette::before {
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
 
 /* Respect reduced motion preference */
