@@ -200,9 +200,14 @@
   --animate-rotate: rotate 30s linear infinite;
 }
 
-/* Smooth color transitions */
-*, *::before, *::after {
-  transition-property: background-color, border-color, color, fill, stroke, opacity;
+/* Smooth color transitions - REMOVED: caused flickering on page refresh */
+/* Transitions are now applied only to specific interactive elements below */
+
+/* Selective transitions for interactive elements only */
+button, a, input, select, textarea,
+[role="button"], [role="link"],
+.btn, .link, .card {
+  transition-property: background-color, border-color, color, opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }

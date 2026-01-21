@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
 import { CustomCursor } from '@/components/shared/CustomCursor'
-import { FloatingElements } from '@/components/shared/FloatingElements'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { ContactPage } from '@/components/pages/ContactPage'
@@ -22,7 +21,6 @@ export default function Kontakt() {
     <>
       <CustomCursor />
       <AnimatedBackground />
-      <FloatingElements />
       <Navbar />
       <main>
         <ContactPage />

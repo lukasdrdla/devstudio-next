@@ -6,8 +6,14 @@ import { Mail, Instagram, Linkedin, ArrowRight, Loader2 } from 'lucide-react'
 import { useForm } from '@formspree/react'
 import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
-import { CustomCursor } from '@/components/shared/CustomCursor'
 import { MagneticButton } from '@/components/shared/MagneticButton'
+import dynamic from 'next/dynamic'
+
+// Lazy load Orb to prevent flickering during hydration
+const Orb = dynamic(() => import('@/components/Orb'), {
+  ssr: false,
+  loading: () => null
+})
 
 export default function ComingSoon() {
   const [state, handleSubmit] = useForm('xvzzarbe')
@@ -15,7 +21,9 @@ export default function ComingSoon() {
 
   return (
     <>
-      <CustomCursor />
+      <div className="fixed inset-0 z-[-1]">
+        <Orb />
+      </div>
       <AnimatedBackground />
 
       {/* Theme toggle - fixed in corner */}

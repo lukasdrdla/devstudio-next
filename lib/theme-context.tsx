@@ -44,10 +44,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement
     const resolved = theme === 'system' ? getSystemTheme() : theme
 
-    // Remove no-transitions class after initial load
-    requestAnimationFrame(() => {
-      root.classList.remove('no-transitions')
-    })
+    // No longer removing no-transitions class - global transitions are disabled
+    // This prevents flickering during theme changes
 
     if (resolved === 'dark') {
       root.classList.add('dark')
