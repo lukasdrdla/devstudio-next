@@ -8,8 +8,6 @@ import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
 import { CustomCursor } from '@/components/shared/CustomCursor'
 import { MagneticButton } from '@/components/shared/MagneticButton'
-import { FloatingElements } from '@/components/shared/FloatingElements'
-import Orb from '@/components/Orb'
 
 export default function ComingSoon() {
   const [state, handleSubmit] = useForm('xvzzarbe')
@@ -18,19 +16,7 @@ export default function ComingSoon() {
   return (
     <>
       <CustomCursor />
-
-      {/* Orb background - subtle effect */}
-      <div className="fixed inset-0 z-[-4] opacity-30 pointer-events-none">
-        <Orb
-          hue={0}
-          hoverIntensity={0.01}
-          rotateOnHover
-          forceHoverState={false}
-        />
-      </div>
-
       <AnimatedBackground />
-      <FloatingElements />
 
       {/* Theme toggle - fixed in corner */}
       <div className="fixed top-6 right-6 z-50">
