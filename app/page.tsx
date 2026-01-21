@@ -103,14 +103,14 @@ export default function ComingSoon() {
               <AnimatedText
                 text="Připravujeme něco"
                 variant="reveal"
-                delay={0.4}
-                staggerDelay={0.03}
+                delay={0.3}
+                staggerDelay={0.02}
               />
               <br />
               <AnimatedText
                 text="výjimečného"
                 variant="gradient"
-                delay={0.8}
+                delay={0.5}
                 className="text-accent-green"
               />
             </h1>
@@ -120,8 +120,8 @@ export default function ComingSoon() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-base sm:text-lg text-muted mb-8 max-w-md mx-auto"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base sm:text-lg text-foreground/70 dark:text-foreground/60 mb-8 max-w-md mx-auto"
           >
             Tvoříme weby, které fungují. Brzy vám ukážeme, co umíme.
           </motion.p>
