@@ -8,7 +8,6 @@ import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
 import { CustomCursor } from '@/components/shared/CustomCursor'
 import { MagneticButton } from '@/components/shared/MagneticButton'
-import { AnimatedText } from '@/components/shared/AnimatedText'
 import { FloatingElements } from '@/components/shared/FloatingElements'
 import Orb from '@/components/Orb'
 
@@ -60,12 +59,9 @@ export default function ComingSoon() {
                   <span className="text-white font-bold text-lg sm:text-xl">W</span>
                 </motion.div>
               </MagneticButton>
-              <AnimatedText
-                text="weware"
-                variant="reveal"
-                delay={0.3}
-                className="text-xl sm:text-2xl font-semibold tracking-tight"
-              />
+              <span className="text-xl sm:text-2xl font-semibold tracking-tight">
+                weware
+              </span>
             </div>
           </motion.div>
 
@@ -92,36 +88,26 @@ export default function ComingSoon() {
             </motion.span>
           </motion.div>
 
-          {/* Headline with character animation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-4"
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
-              <AnimatedText
-                text="Připravujeme něco"
-                variant="reveal"
-                delay={0.3}
-                staggerDelay={0.02}
-              />
-              <br />
-              <AnimatedText
-                text="výjimečného"
-                variant="gradient"
-                delay={0.5}
-                className="text-accent-green"
-              />
-            </h1>
-          </motion.div>
+            Připravujeme něco
+            <br />
+            <span className="bg-gradient-to-r from-accent-green via-emerald-400 to-accent-green bg-clip-text text-transparent">
+              výjimečného
+            </span>
+          </motion.h1>
 
           {/* Description */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base sm:text-lg text-foreground/70 dark:text-foreground/60 mb-8 max-w-md mx-auto"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-base sm:text-lg text-foreground/80 mb-8 max-w-md mx-auto"
           >
             Tvoříme weby, které fungují. Brzy vám ukážeme, co umíme.
           </motion.p>
