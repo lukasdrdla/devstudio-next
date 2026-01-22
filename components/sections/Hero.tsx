@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ContactModal } from '@/components/shared/ContactModal'
 import Orb from '@/components/Orb'
+import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
 
 const words = ['software', 'branding', 'automatizaci']
 
@@ -98,20 +99,24 @@ export function Hero() {
             transition={{ delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button size="lg" className="group" onClick={() => setIsModalOpen(true)}>
-              Nezávazná konzultace
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={() => {
-                const portfolio = document.getElementById('portfolio')
-                portfolio?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              Naše práce
-            </Button>
+            <MagneticWrapper strength={0.2}>
+              <Button size="lg" className="group" onClick={() => setIsModalOpen(true)}>
+                Nezávazná konzultace
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </MagneticWrapper>
+            <MagneticWrapper strength={0.2}>
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => {
+                  const portfolio = document.getElementById('portfolio')
+                  portfolio?.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                Naše práce
+              </Button>
+            </MagneticWrapper>
           </motion.div>
         </div>
 

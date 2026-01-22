@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
 import { CustomCursor } from '@/components/shared/CustomCursor'
 import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
+import { Footer, FOOTER_HEIGHT } from '@/components/layout/Footer'
 import { ContactPage } from '@/components/pages/ContactPage'
 
 export const metadata: Metadata = {
@@ -20,11 +20,16 @@ export default function Kontakt() {
   return (
     <>
       <CustomCursor />
-      <AnimatedBackground />
-      <Navbar />
-      <main>
-        <ContactPage />
-      </main>
+      <div
+        className="relative z-10 bg-background shadow-2xl rounded-b-[2rem] sm:rounded-b-[3rem]"
+        style={{ marginBottom: FOOTER_HEIGHT }}
+      >
+        <AnimatedBackground />
+        <Navbar />
+        <main>
+          <ContactPage />
+        </main>
+      </div>
       <Footer />
     </>
   )

@@ -4,18 +4,18 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] active:transition-none',
   {
     variants: {
       variant: {
         default:
-          'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-gray-200/20',
+          'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-lg dark:hover:shadow-gray-200/20',
         secondary:
-          'bg-surface/80 text-foreground border border-border backdrop-blur-sm hover:bg-surface hover:border-foreground hover:-translate-y-0.5',
+          'bg-surface/80 text-foreground border border-border backdrop-blur-sm hover:bg-surface hover:border-foreground hover:-translate-y-0.5 hover:scale-[1.02]',
         ghost:
-          'hover:bg-foreground/5',
+          'hover:bg-foreground/5 hover:scale-[1.02]',
         cta:
-          'bg-surface text-foreground hover:-translate-y-0.5 hover:shadow-[0_15px_40px_rgba(255,255,255,0.2)]',
+          'bg-surface text-foreground hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(255,255,255,0.2)]',
       },
       size: {
         default: 'px-7 py-3',

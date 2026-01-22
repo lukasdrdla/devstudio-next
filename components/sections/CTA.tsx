@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Phone, Mail, Clock } from 'lucide-react'
+import { ArrowRight, Mail, Clock, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ContactModal } from '@/components/shared/ContactModal'
+import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
 
 export function CTA() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -44,25 +45,29 @@ export function CTA() {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                  <Button
-                    size="lg"
-                    className="group w-full sm:w-auto"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Napište nám
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                    asChild
-                  >
-                    <a href="tel:+420123456789">
-                      <Phone className="w-4 h-4 mr-2" />
-                      +420 123 456 789
-                    </a>
-                  </Button>
+                  <MagneticWrapper strength={0.15}>
+                    <Button
+                      size="lg"
+                      className="group w-full sm:w-auto"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Napište nám
+                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </MagneticWrapper>
+                  <MagneticWrapper strength={0.15}>
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      asChild
+                    >
+                      <a href="https://github.com/weware-cz" target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        GitHub
+                      </a>
+                    </Button>
+                  </MagneticWrapper>
                 </div>
               </div>
 
@@ -70,41 +75,101 @@ export function CTA() {
               <div className="space-y-4">
                 {/* Quick contact cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-                  <a
+                  <motion.a
                     href="mailto:info@weware.cz"
-                    className="group flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border hover:border-muted-foreground hover:shadow-lg transition-all"
+                    className="group flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border"
+                    whileHover={{
+                      scale: 1.02,
+                      borderColor: 'var(--color-foreground)',
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-surface-secondary group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
-                      <Mail className="w-5 h-5 text-muted group-hover:text-background transition-colors" />
-                    </div>
+                    <motion.div
+                      className="w-12 h-12 rounded-xl bg-surface-secondary flex items-center justify-center flex-shrink-0"
+                      whileHover={{
+                        backgroundColor: 'var(--color-foreground)',
+                        scale: 1.1,
+                        rotate: 5,
+                      }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                      <Mail className="w-5 h-5 text-muted-foreground group-hover:text-background transition-colors" />
+                    </motion.div>
                     <div>
-                      <p className="text-xs text-muted mb-1">Email</p>
-                      <p className="font-medium">info@weware.cz</p>
+                      <p className="text-xs text-muted-foreground mb-1">Email</p>
+                      <motion.p
+                        className="font-medium"
+                        whileHover={{ x: 4 }}
+                      >
+                        info@weware.cz
+                      </motion.p>
                     </div>
-                  </a>
+                    <motion.div
+                      className="ml-auto"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileHover={{ opacity: 1, x: 0 }}
+                    >
+                      <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                    </motion.div>
+                  </motion.a>
 
-                  <a
-                    href="tel:+420123456789"
-                    className="group flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border hover:border-muted-foreground hover:shadow-lg transition-all"
+                  <motion.a
+                    href="https://github.com/weware-cz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border"
+                    whileHover={{
+                      scale: 1.02,
+                      borderColor: 'var(--color-foreground)',
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-surface-secondary group-hover:bg-foreground flex items-center justify-center transition-colors flex-shrink-0">
-                      <Phone className="w-5 h-5 text-muted group-hover:text-background transition-colors" />
-                    </div>
+                    <motion.div
+                      className="w-12 h-12 rounded-xl bg-surface-secondary flex items-center justify-center flex-shrink-0"
+                      whileHover={{
+                        backgroundColor: 'var(--color-foreground)',
+                        scale: 1.1,
+                        rotate: -5,
+                      }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                      <Github className="w-5 h-5 text-muted-foreground group-hover:text-background transition-colors" />
+                    </motion.div>
                     <div>
-                      <p className="text-xs text-muted mb-1">Telefon</p>
-                      <p className="font-medium">+420 123 456 789</p>
+                      <p className="text-xs text-muted-foreground mb-1">Open Source</p>
+                      <motion.p
+                        className="font-medium"
+                        whileHover={{ x: 4 }}
+                      >
+                        github.com/weware-cz
+                      </motion.p>
                     </div>
-                  </a>
+                    <motion.div
+                      className="ml-auto"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileHover={{ opacity: 1, x: 0 }}
+                    >
+                      <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                    </motion.div>
+                  </motion.a>
 
-                  <div className="flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border sm:col-span-2 lg:col-span-1">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                  <motion.div
+                    className="flex items-center gap-4 p-4 sm:p-5 bg-surface rounded-2xl border border-border sm:col-span-2 lg:col-span-1"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  >
+                    <motion.div
+                      className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    >
                       <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                    </div>
+                    </motion.div>
                     <div>
-                      <p className="text-xs text-muted mb-1">Doba odpovědi</p>
+                      <p className="text-xs text-muted-foreground mb-1">Doba odpovědi</p>
                       <p className="font-medium text-emerald-600 dark:text-emerald-400">Do 24 hodin</p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>

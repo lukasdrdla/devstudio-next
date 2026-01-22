@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+@import "../node_modules/tw-animate-css/dist/tw-animate.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -108,9 +108,9 @@
 /* Dark mode overrides */
 .dark {
   --color-background: #0d0d0f;
-  --color-foreground: #ededef;
-  --color-muted: #9ca3af;
-  --color-muted-foreground: #6b7280;
+  --color-foreground: #f4f4f5;
+  --color-muted: #a1a1aa;
+  --color-muted-foreground: #a1a1aa;
   --color-accent-indigo: #a5b4fc;
   --color-accent-pink: #f9a8d4;
   --color-accent-green: #86efac;
@@ -150,8 +150,8 @@
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted: oklch(0.75 0 0);
+  --muted-foreground: oklch(0.75 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -430,6 +430,27 @@ input:focus-visible {
   );
 }
 
+/* Custom animation easings */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Smooth scale hover utility */
+.hover-lift {
+  transition: transform 0.3s var(--ease-out-cubic), box-shadow 0.3s var(--ease-out-cubic);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -443,6 +464,10 @@ input:focus-visible {
 
   .blob {
     animation: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
   }
 }
 

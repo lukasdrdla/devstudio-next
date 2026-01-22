@@ -1,12 +1,46 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import { Play, X } from 'lucide-react'
 import Image from 'next/image'
+import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
 export function Video() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isHovering, setIsHovering] = useState(false)
+  const containerRef = useRef<HTMLButtonElement>(null)
+  const reducedMotion = useReducedMotion()
+
+  // Cursor position tracking
+  const cursorX = useMotionValue(0)
+  const cursorY = useMotionValue(0)
+
+  // Smooth spring animation for cursor following
+  const springConfig = { damping: 25, stiffness: 200 }
+  const smoothX = useSpring(cursorX, springConfig)
+  const smoothY = useSpring(cursorY, springConfig)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (reducedMotion || !containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    // Calculate position relative to container center
+    const x = e.clientX - rect.left - rect.width / 2
+    const y = e.clientY - rect.top - rect.height / 2
+    cursorX.set(x)
+    cursorY.set(y)
+  }
+
+  const handleMouseEnter = () => {
+    setIsHovering(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovering(false)
+    // Reset to center
+    cursorX.set(0)
+    cursorY.set(0)
+  }
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -41,8 +75,12 @@ export function Video() {
         >
           {/* Video wrapper - clickable */}
           <button
+            ref={containerRef}
             onClick={() => setIsOpen(true)}
-            className="relative w-full rounded-3xl overflow-hidden bg-foreground aspect-video cursor-pointer group block"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="relative w-full rounded-3xl overflow-hidden bg-foreground aspect-video cursor-none group block"
           >
             <Image
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=675&fit=crop"
@@ -53,22 +91,82 @@ export function Video() {
               className="object-cover opacity-80 transition-all duration-500 group-hover:opacity-60 group-hover:scale-[1.02]"
             />
 
-            {/* Play button */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Cursor-following play button */}
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              style={{
+                x: reducedMotion ? 0 : smoothX,
+                y: reducedMotion ? 0 : smoothY,
+              }}
+            >
               <motion.div
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-surface rounded-full flex items-center justify-center shadow-lg"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                className="relative"
+                animate={{
+                  scale: isHovering ? 1.15 : 1,
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <Play className="w-6 h-6 sm:w-7 sm:h-7 ml-1 text-foreground" fill="currentColor" />
-              </motion.div>
-            </div>
+                {/* Outer glow ring */}
+                <motion.div
+                  className="absolute -inset-3 rounded-full bg-white/20 blur-md"
+                  animate={{
+                    scale: isHovering ? [1, 1.2, 1] : 1,
+                    opacity: isHovering ? [0.3, 0.5, 0.3] : 0,
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                />
 
-            {/* Ripple effect on hover */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/30 animate-ping opacity-0 group-hover:opacity-100" />
-            </div>
+                {/* Main play button */}
+                <motion.div
+                  className="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface rounded-full flex items-center justify-center shadow-2xl"
+                  animate={{
+                    boxShadow: isHovering
+                      ? '0 20px 50px rgba(0,0,0,0.4)'
+                      : '0 10px 30px rgba(0,0,0,0.2)',
+                  }}
+                >
+                  {/* Inner shine effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent"
+                    animate={{
+                      opacity: isHovering ? 1 : 0.5,
+                    }}
+                  />
+                  <Play className="w-6 h-6 sm:w-7 sm:h-7 ml-1 text-foreground relative z-10" fill="currentColor" />
+                </motion.div>
+
+                {/* Ripple rings */}
+                {isHovering && (
+                  <>
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-white/40"
+                      initial={{ scale: 1, opacity: 0.6 }}
+                      animate={{ scale: 1.8, opacity: 0 }}
+                      transition={{
+                        duration: 1.2,
+                        repeat: Infinity,
+                        ease: 'easeOut',
+                      }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-white/30"
+                      initial={{ scale: 1, opacity: 0.4 }}
+                      animate={{ scale: 2.2, opacity: 0 }}
+                      transition={{
+                        duration: 1.2,
+                        repeat: Infinity,
+                        ease: 'easeOut',
+                        delay: 0.4,
+                      }}
+                    />
+                  </>
+                )}
+              </motion.div>
+            </motion.div>
           </button>
 
           {/* Text */}

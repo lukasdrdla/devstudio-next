@@ -1,15 +1,18 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useMemo, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useInView, animate } from 'framer-motion'
+import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 import {
   Monitor, ShoppingCart, Smartphone, Palette,
   Check, ChevronLeft, ChevronRight, ArrowRight, CheckCircle,
   FileText, Layers, Code, Zap, Settings, Link2, Workflow,
-  Bell, BarChart3, Users, Database, PenTool, Layout, Info
+  Bell, BarChart3, Users, Database, PenTool, Layout, Info,
+  Sparkles
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SectionLabel } from '@/components/shared/SectionLabel'
+import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
 
 // Main categories
 const categories = [
@@ -164,12 +167,39 @@ const timelineOptions = [
   { id: 'flexible', label: 'Flexibilní', desc: '6+ týdnů, sleva', multiplier: 0.85 },
 ]
 
+// Animated price display
+function AnimatedPrice({ value, className }: { value: number; className?: string }) {
+  const reducedMotion = useReducedMotion()
+  const [displayValue, setDisplayValue] = useState(value)
+  const prevValue = useRef(value)
+
+  useEffect(() => {
+    if (reducedMotion || value === prevValue.current) {
+      setDisplayValue(value)
+      prevValue.current = value
+      return
+    }
+
+    const controls = animate(prevValue.current, value, {
+      duration: 0.4,
+      ease: [0.33, 1, 0.68, 1],
+      onUpdate: (latest) => setDisplayValue(Math.round(latest)),
+    })
+
+    prevValue.current = value
+    return () => controls.stop()
+  }, [value, reducedMotion])
+
+  return <span className={className}>{displayValue.toLocaleString('cs-CZ')}</span>
+}
+
 export function Calculator() {
   const [step, setStep] = useState(1)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null)
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   const [timeline, setTimeline] = useState('standard')
+  const reducedMotion = useReducedMotion()
 
   const currentSubcategories = selectedCategory ? subcategories[selectedCategory] : []
   const currentSubcategoryData = currentSubcategories.find(s => s.id === selectedSubcategory)
@@ -284,50 +314,90 @@ export function Calculator() {
   }
 
   return (
-    <section id="calculator" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 mx-2 sm:mx-4 lg:mx-8 bg-surface rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]">
-      <div className="max-w-[900px] mx-auto">
+    <section id="calculator" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-accent-green/10 to-transparent rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+        />
+      </div>
+
+      <div className="max-w-[900px] mx-auto relative">
+        <motion.div
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: reducedMotion ? 0.01 : 0.6 }}
           className="text-center mb-12"
         >
-          <SectionLabel centered>Kalkulačka</SectionLabel>
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 bg-accent-green/10 border border-accent-green/20 rounded-full mb-6"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Sparkles className="w-4 h-4 text-accent-green" />
+            <span className="text-sm font-medium text-accent-green">Interaktivní kalkulačka</span>
+          </motion.div>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight">
             Spočítejte si cenu za 30 sekund
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
+          <p className="text-lg text-muted-foreground mt-4">
             Vyberte co potřebujete a získejte okamžitý odhad
           </p>
         </motion.div>
 
-        {/* Progress bar */}
+        {/* Progress bar - Enhanced */}
         <div className="relative mb-8 sm:mb-12">
-          <div className="absolute top-4 sm:top-5 left-[8%] right-[8%] sm:left-[5%] sm:right-[5%] h-[2px] sm:h-[3px] bg-border z-0">
-            <div
-              className="absolute left-0 top-0 h-full bg-gradient-to-r from-accent-green to-accent-green-dark transition-all duration-500"
-              style={{ width: `${progressWidth}%` }}
+          <div className="absolute top-4 sm:top-5 left-[8%] right-[8%] sm:left-[5%] sm:right-[5%] h-[2px] sm:h-[3px] bg-border/50 z-0 rounded-full overflow-hidden">
+            <motion.div
+              className="absolute left-0 top-0 h-full bg-gradient-to-r from-accent-green via-accent-green to-emerald-400"
+              initial={{ width: 0 }}
+              animate={{ width: `${progressWidth}%` }}
+              transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+            />
+            <motion.div
+              className="absolute top-0 h-full w-20 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              animate={{ left: ['-20%', '120%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+              style={{ width: `${progressWidth}%`, maxWidth: '100px' }}
             />
           </div>
           <div className="flex justify-between relative z-10">
-            {stepLabels.map((s) => (
-              <div key={s.num} className="flex flex-col items-center gap-1 sm:gap-2">
-                <div
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold transition-all ${
+            {stepLabels.map((s, index) => (
+              <motion.div
+                key={s.num}
+                className="flex flex-col items-center gap-1 sm:gap-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <motion.div
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold transition-colors duration-300 ${
                     step >= s.num
                       ? step > s.num
-                        ? 'bg-accent-green border-accent-green text-white'
-                        : 'bg-gray-900 dark:bg-white border-gray-900 dark:border-white text-white dark:text-gray-900'
+                        ? 'bg-accent-green text-white shadow-lg shadow-accent-green/30'
+                        : 'bg-foreground text-background shadow-lg'
                       : 'bg-surface border-2 border-border'
                   }`}
+                  animate={step === s.num ? { scale: [1, 1.1, 1] } : {}}
+                  transition={{ duration: 0.3 }}
                 >
-                  {step > s.num ? <Check className="w-3 h-3 sm:w-4 sm:h-4" /> : s.num}
-                </div>
-                <span className={`text-[10px] sm:text-xs font-medium hidden sm:block ${step === s.num ? 'text-gray-900 dark:text-white' : 'text-muted-foreground'}`}>
+                  {step > s.num ? (
+                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring' }}>
+                      <Check className="w-3 h-3 sm:w-4 sm:h-4" />
+                    </motion.div>
+                  ) : s.num}
+                </motion.div>
+                <span className={`text-[10px] sm:text-xs font-medium hidden sm:block transition-colors duration-300 ${step === s.num ? 'text-foreground' : 'text-muted-foreground'}`}>
                   {s.label}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -344,25 +414,53 @@ export function Calculator() {
               className="space-y-6"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 sm:mb-8">Co potřebujete?</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                {categories.map((cat) => (
-                  <button
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+                {categories.map((cat, index) => (
+                  <motion.button
                     key={cat.id}
                     onClick={() => handleCategorySelect(cat.id)}
-                    className={`p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-[20px] border-2 text-center transition-all ${
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`relative p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-[24px] border-2 text-center transition-all overflow-hidden ${
                       selectedCategory === cat.id
-                        ? 'border-foreground bg-surface shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
-                        : 'border-border bg-surface-secondary hover:border-muted-foreground hover:-translate-y-1'
+                        ? 'border-foreground bg-surface shadow-2xl'
+                        : 'border-border bg-surface hover:border-muted-foreground'
                     }`}
                   >
-                    <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
-                      selectedCategory === cat.id ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900' : 'bg-surface'
-                    }`}>
+                    {/* Subtle gradient overlay on selection */}
+                    {selectedCategory === cat.id && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-accent-green/5 to-transparent"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      />
+                    )}
+                    <motion.div
+                      className={`relative w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-colors ${
+                        selectedCategory === cat.id ? 'bg-foreground text-background' : 'bg-surface-secondary'
+                      }`}
+                      animate={selectedCategory === cat.id ? { rotate: [0, -5, 5, 0] } : {}}
+                      transition={{ duration: 0.4 }}
+                    >
                       <cat.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                    </div>
-                    <h4 className="text-base sm:text-lg font-semibold mb-1">{cat.title}</h4>
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{cat.desc}</p>
-                  </button>
+                    </motion.div>
+                    <h4 className="relative text-base sm:text-lg font-semibold mb-1">{cat.title}</h4>
+                    <p className="relative text-xs sm:text-sm text-muted-foreground">{cat.desc}</p>
+                    {/* Selection indicator */}
+                    {selectedCategory === cat.id && (
+                      <motion.div
+                        className="absolute top-3 right-3 w-6 h-6 bg-accent-green rounded-full flex items-center justify-center"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        <Check className="w-3.5 h-3.5 text-white" />
+                      </motion.div>
+                    )}
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
@@ -378,28 +476,57 @@ export function Calculator() {
               className="space-y-6"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 sm:mb-8">Jaký typ {getCategoryName().toLowerCase()}?</h3>
-              <div className={`grid grid-cols-1 ${currentSubcategories.length > 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 max-w-[600px] mx-auto'} gap-3 sm:gap-4`}>
-                {currentSubcategories.map((sub) => (
-                  <button
+              <div className={`grid grid-cols-1 ${currentSubcategories.length > 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 max-w-[600px] mx-auto'} gap-4 sm:gap-5`}>
+                {currentSubcategories.map((sub, index) => (
+                  <motion.button
                     key={sub.id}
                     onClick={() => handleSubcategorySelect(sub.id)}
-                    className={`p-4 sm:p-6 rounded-2xl sm:rounded-[20px] border-2 text-center transition-all ${
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`relative p-4 sm:p-6 rounded-2xl sm:rounded-[24px] border-2 text-center transition-all overflow-hidden ${
                       selectedSubcategory === sub.id
-                        ? 'border-foreground bg-surface shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
-                        : 'border-border bg-surface-secondary hover:border-muted-foreground hover:-translate-y-1'
+                        ? 'border-foreground bg-surface shadow-2xl'
+                        : 'border-border bg-surface hover:border-muted-foreground'
                     }`}
                   >
-                    <div className={`w-11 h-11 sm:w-14 sm:h-14 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-all ${
-                      selectedSubcategory === sub.id ? 'bg-gray-900 text-white' : 'bg-surface'
-                    }`}>
+                    {selectedSubcategory === sub.id && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-accent-green/5 to-transparent"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      />
+                    )}
+                    <motion.div
+                      className={`relative w-11 h-11 sm:w-14 sm:h-14 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-colors ${
+                        selectedSubcategory === sub.id ? 'bg-foreground text-background' : 'bg-surface-secondary'
+                      }`}
+                      animate={selectedSubcategory === sub.id ? { rotate: [0, -5, 5, 0] } : {}}
+                      transition={{ duration: 0.4 }}
+                    >
                       <sub.icon className="w-5 h-5 sm:w-7 sm:h-7" />
-                    </div>
-                    <h4 className="text-base sm:text-lg font-semibold mb-1">{sub.title}</h4>
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 sm:mb-3">{sub.desc}</p>
-                    <span className="text-xs sm:text-sm font-semibold text-accent-green">
+                    </motion.div>
+                    <h4 className="relative text-base sm:text-lg font-semibold mb-1">{sub.title}</h4>
+                    <p className="relative text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">{sub.desc}</p>
+                    <motion.span
+                      className="relative inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-accent-green/10 text-accent-green"
+                      animate={selectedSubcategory === sub.id ? { scale: [1, 1.05, 1] } : {}}
+                    >
                       od {sub.basePrice.toLocaleString('cs-CZ')} Kč
-                    </span>
-                  </button>
+                    </motion.span>
+                    {selectedSubcategory === sub.id && (
+                      <motion.div
+                        className="absolute top-3 right-3 w-6 h-6 bg-accent-green rounded-full flex items-center justify-center"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        <Check className="w-3.5 h-3.5 text-white" />
+                      </motion.div>
+                    )}
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
@@ -415,55 +542,87 @@ export function Calculator() {
               className="space-y-6"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2">{currentOptions.title}</h3>
-              <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">Vyberte vše, co potřebujete (minimálně 1)</p>
+              <p className="text-center text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">Vyberte vše, co potřebujete (minimálně 1)</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {currentOptions.items.map((option) => (
-                  <div key={option.id} className="relative">
-                    <button
+                {currentOptions.items.map((option, index) => (
+                  <motion.div
+                    key={option.id}
+                    className="relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <motion.button
                       onClick={() => toggleOption(option.id)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       className={`w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                         selectedOptions.includes(option.id)
-                          ? 'border-accent-green bg-accent-green/10'
-                          : 'border-border bg-surface-secondary hover:border-muted-foreground'
+                          ? 'border-accent-green bg-accent-green/5 shadow-lg shadow-accent-green/10'
+                          : 'border-border bg-surface hover:border-muted-foreground'
                       }`}
                     >
-                      <div className={`w-6 h-6 sm:w-7 sm:h-7 ${option.group ? 'rounded-full' : 'rounded-lg'} border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                        selectedOptions.includes(option.id)
-                          ? 'bg-accent-green border-accent-green'
-                          : 'border-muted-foreground'
-                      }`}>
+                      <motion.div
+                        className={`w-6 h-6 sm:w-7 sm:h-7 ${option.group ? 'rounded-full' : 'rounded-lg'} border-2 flex items-center justify-center flex-shrink-0 transition-all ${
+                          selectedOptions.includes(option.id)
+                            ? 'bg-accent-green border-accent-green'
+                            : 'border-muted-foreground'
+                        }`}
+                        animate={selectedOptions.includes(option.id) ? { scale: [1, 1.2, 1] } : {}}
+                        transition={{ duration: 0.2 }}
+                      >
                         {option.group ? (
-                          <div className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
+                          <motion.div
+                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-white"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: selectedOptions.includes(option.id) ? 1 : 0 }}
+                          />
                         ) : (
-                          <Check className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-white transition-opacity ${selectedOptions.includes(option.id) ? 'opacity-100' : 'opacity-0'}`} />
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: selectedOptions.includes(option.id) ? 1 : 0 }}
+                          >
+                            <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                          </motion.div>
                         )}
-                      </div>
-                      <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${
-                        selectedOptions.includes(option.id) ? 'bg-accent-green text-white' : 'bg-surface'
-                      }`}>
+                      </motion.div>
+                      <motion.div
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+                          selectedOptions.includes(option.id) ? 'bg-accent-green text-white' : 'bg-surface-secondary'
+                        }`}
+                        animate={selectedOptions.includes(option.id) ? { rotate: [0, -10, 10, 0] } : {}}
+                        transition={{ duration: 0.3 }}
+                      >
                         <option.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </div>
+                      </motion.div>
                       <div className="flex-grow min-w-0">
                         <div className="flex items-center gap-2">
                           <h4 className="font-semibold text-sm sm:text-[15px]">{option.label}</h4>
                           {option.example && (
                             <div className="group/tip relative">
-                              <Info className="w-4 h-4 text-gray-400 dark:text-gray-600 hover:text-gray-600 dark:hover:text-gray-400 cursor-help" />
-                              <div className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-full mb-2 w-56 sm:w-64 max-w-[calc(100vw-3rem)] p-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs rounded-lg shadow-lg dark:shadow-md opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 z-30 pointer-events-none">
+                              <Info className="w-4 h-4 text-muted-foreground hover:text-foreground cursor-help" />
+                              <div className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-full mb-2 w-56 sm:w-64 max-w-[calc(100vw-3rem)] p-3 bg-foreground text-background text-xs rounded-lg shadow-lg dark:shadow-md opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 z-30 pointer-events-none">
                                 <p className="leading-relaxed">{option.example}</p>
-                                <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-900 dark:border-t-white" />
+                                <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-foreground" />
                               </div>
                             </div>
                           )}
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 truncate">{option.desc}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground truncate">{option.desc}</p>
                       </div>
-                      <span className={`text-xs sm:text-sm font-semibold whitespace-nowrap ${selectedOptions.includes(option.id) ? 'text-accent-green' : 'text-gray-600 dark:text-gray-300'}`}>
+                      <motion.span
+                        className={`text-xs sm:text-sm font-semibold whitespace-nowrap px-2 py-1 rounded-full ${
+                          selectedOptions.includes(option.id)
+                            ? 'bg-accent-green/20 text-accent-green'
+                            : 'text-muted-foreground'
+                        }`}
+                        animate={selectedOptions.includes(option.id) ? { scale: [1, 1.1, 1] } : {}}
+                      >
                         {option.price === 0 ? 'Základ' : `+${option.price.toLocaleString('cs-CZ')} Kč`}
-                      </span>
-                    </button>
-                  </div>
+                      </motion.span>
+                    </motion.button>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -479,29 +638,59 @@ export function Calculator() {
               className="space-y-6"
             >
               <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2">Jak rychle to potřebujete?</h3>
-              <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">Termín ovlivňuje finální cenu</p>
+              <p className="text-center text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">Termín ovlivňuje finální cenu</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                {timelineOptions.map((option) => (
-                  <button
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+                {timelineOptions.map((option, index) => (
+                  <motion.button
                     key={option.id}
                     onClick={() => setTimeline(option.id)}
-                    className={`p-4 sm:p-6 rounded-2xl border-2 text-center transition-all ${
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`relative p-4 sm:p-6 rounded-2xl sm:rounded-[24px] border-2 text-center transition-all overflow-hidden ${
                       timeline === option.id
-                        ? 'border-foreground bg-surface shadow-[0_10px_40px_rgba(0,0,0,0.1)]'
-                        : 'border-border bg-surface-secondary hover:border-muted-foreground hover:-translate-y-1'
+                        ? 'border-foreground bg-surface shadow-2xl'
+                        : 'border-border bg-surface hover:border-muted-foreground'
                     }`}
                   >
-                    <h4 className="text-base sm:text-lg font-semibold mb-1">{option.label}</h4>
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 sm:mb-3">{option.desc}</p>
-                    <span className={`text-xs sm:text-sm font-semibold ${
-                      option.multiplier > 1 ? 'text-orange-500' :
-                      option.multiplier < 1 ? 'text-accent-green' : 'text-gray-900 dark:text-white'
-                    }`}>
+                    {timeline === option.id && (
+                      <motion.div
+                        className={`absolute inset-0 ${
+                          option.multiplier > 1 ? 'bg-gradient-to-br from-orange-500/10' :
+                          option.multiplier < 1 ? 'bg-gradient-to-br from-accent-green/10' :
+                          'bg-gradient-to-br from-blue-500/10'
+                        } to-transparent`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      />
+                    )}
+                    <h4 className="relative text-base sm:text-lg font-semibold mb-1">{option.label}</h4>
+                    <p className="relative text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">{option.desc}</p>
+                    <motion.span
+                      className={`relative inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${
+                        option.multiplier > 1 ? 'bg-orange-500/10 text-orange-500' :
+                        option.multiplier < 1 ? 'bg-accent-green/10 text-accent-green' :
+                        'bg-muted text-foreground'
+                      }`}
+                      animate={timeline === option.id ? { scale: [1, 1.05, 1] } : {}}
+                    >
                       {option.multiplier > 1 ? `+${Math.round((option.multiplier - 1) * 100)}%` :
                        option.multiplier < 1 ? `-${Math.round((1 - option.multiplier) * 100)}%` : 'Standardní cena'}
-                    </span>
-                  </button>
+                    </motion.span>
+                    {timeline === option.id && (
+                      <motion.div
+                        className="absolute top-3 right-3 w-6 h-6 bg-foreground rounded-full flex items-center justify-center"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        <Check className="w-3.5 h-3.5 text-background" />
+                      </motion.div>
+                    )}
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
@@ -515,51 +704,138 @@ export function Calculator() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              <div className="bg-gradient-to-br from-foreground to-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-white text-center">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-accent-green/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                  <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-accent-green" />
+              <div className="relative bg-surface border border-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-center overflow-hidden">
+                {/* Floating particles background */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 rounded-full bg-accent-green/30"
+                      initial={{
+                        x: `${20 + i * 15}%`,
+                        y: '110%',
+                        scale: 0.5 + Math.random() * 0.5,
+                      }}
+                      animate={{
+                        y: '-10%',
+                        x: `${20 + i * 15 + (Math.random() - 0.5) * 20}%`,
+                      }}
+                      transition={{
+                        duration: 4 + Math.random() * 2,
+                        repeat: Infinity,
+                        delay: i * 0.5,
+                        ease: 'linear',
+                      }}
+                    />
+                  ))}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8">Váš odhad je připraven!</h3>
 
-                <div className="bg-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-left">
-                  <div className="flex justify-between py-2 sm:py-3 border-b border-white/10 text-sm sm:text-[15px]">
-                    <span className="text-white/60">Kategorie:</span>
-                    <strong>{getCategoryName()}</strong>
-                  </div>
-                  <div className="flex justify-between py-2 sm:py-3 border-b border-white/10 text-sm sm:text-[15px]">
-                    <span className="text-white/60">Typ:</span>
-                    <strong>{currentSubcategoryData?.title}</strong>
-                  </div>
-                  <div className="flex justify-between py-2 sm:py-3 border-b border-white/10 text-sm sm:text-[15px]">
-                    <span className="text-white/60">Zahrnuje:</span>
-                    <strong className="text-right max-w-[150px] sm:max-w-[200px]">{getSelectedOptionsText()}</strong>
-                  </div>
-                  <div className="flex justify-between py-2 sm:py-3 text-sm sm:text-[15px]">
-                    <span className="text-white/60">Termín:</span>
-                    <strong>{timelineOptions.find(t => t.id === timeline)?.label}</strong>
-                  </div>
+                {/* Animated gradient orbs */}
+                <motion.div
+                  className="absolute -top-20 -right-20 w-40 h-40 bg-accent-green/10 rounded-full blur-3xl"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.div
+                  className="absolute -bottom-20 -left-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl"
+                  animate={{ scale: [1.3, 1, 1.3], opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                />
+
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-transparent via-accent-green to-transparent"
+                    animate={{ x: ['-100%', '100%'] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                  />
                 </div>
 
-                <div className="bg-white/5 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 mb-6 sm:mb-8">
-                  <span className="text-xs sm:text-sm text-white/60 block mb-2">Orientační cena</span>
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
+                <motion.div
+                  className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto mb-4 sm:mb-6"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                >
+                  <div className="absolute inset-0 bg-accent-green/20 rounded-full animate-ping" style={{ animationDuration: '2s' }} />
+                  <div className="relative w-full h-full bg-gradient-to-br from-accent-green to-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-accent-green/30">
+                    <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white" />
+                  </div>
+                </motion.div>
+
+                <motion.h3
+                  className="relative text-xl sm:text-2xl font-semibold mb-6 sm:mb-8"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Váš odhad je připraven!
+                </motion.h3>
+
+                <motion.div
+                  className="relative bg-surface-secondary rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-left border border-border"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  {[
+                    { label: 'Kategorie', value: getCategoryName() },
+                    { label: 'Typ', value: currentSubcategoryData?.title },
+                    { label: 'Zahrnuje', value: getSelectedOptionsText(), maxWidth: true },
+                    { label: 'Termín', value: timelineOptions.find(t => t.id === timeline)?.label, noBorder: true },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={item.label}
+                      className={`flex justify-between py-2 sm:py-3 text-sm sm:text-[15px] ${!item.noBorder ? 'border-b border-border' : ''}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 + index * 0.1 }}
+                    >
+                      <span className="text-muted-foreground">{item.label}:</span>
+                      <strong className={item.maxWidth ? 'text-right max-w-[150px] sm:max-w-[200px]' : ''}>{item.value}</strong>
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                <motion.div
+                  className="relative overflow-hidden rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 mb-6 sm:mb-8 border-2 border-accent-green/30 bg-gradient-to-br from-accent-green/5 to-emerald-500/5"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6, type: 'spring' }}
+                >
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-green/10 to-transparent -skew-x-12"
+                    animate={{ x: ['-100%', '200%'] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'linear', repeatDelay: 2 }}
+                  />
+                  <span className="relative text-xs sm:text-sm text-muted-foreground block mb-2">Orientační cena</span>
+                  <motion.div
+                    className="relative text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-accent-green"
+                    initial={{ scale: 0.5 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.7 }}
+                  >
                     {priceRange.min.toLocaleString('cs-CZ')} - {priceRange.max.toLocaleString('cs-CZ')} Kč
-                  </div>
-                  <span className="text-xs sm:text-sm text-white/50">Přesnou cenu upřesníme po konzultaci</span>
-                </div>
+                  </motion.div>
+                  <span className="relative text-xs sm:text-sm text-muted-foreground">Přesnou cenu upřesníme po konzultaci</span>
+                </motion.div>
 
-                <Button variant="cta" size="lg" className="group w-full sm:w-auto">
-                  Chci nezávaznou nabídku
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-                <p className="text-xs sm:text-sm text-white/50 mt-4">Odpovíme do 24 hodin</p>
+                <MagneticWrapper strength={0.15}>
+                  <Button variant="cta" size="lg" className="group w-full sm:w-auto relative">
+                    <span className="relative z-10">Chci nezávaznou nabídku</span>
+                    <ArrowRight className="relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </MagneticWrapper>
+                <p className="relative text-xs sm:text-sm text-muted-foreground mt-4">Odpovíme do 24 hodin</p>
 
-                <button
+                <motion.button
                   onClick={resetCalculator}
-                  className="mt-4 sm:mt-6 text-xs sm:text-sm text-white/40 hover:text-white/60 transition-colors underline"
+                  className="relative mt-4 sm:mt-6 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors underline"
+                  whileHover={{ scale: 1.05 }}
                 >
                   Spočítat znovu
-                </button>
+                </motion.button>
               </div>
             </motion.div>
           )}
@@ -567,33 +843,56 @@ export function Calculator() {
 
         {/* Navigation */}
         {step < 5 && (
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-border">
-            <button
+          <motion.div
+            className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-border/50"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <motion.button
               onClick={prevStep}
-              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 border border-border rounded-full font-medium transition-all hover:border-gray-900 hover:bg-gray-900 hover:text-white order-2 sm:order-1 ${
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 border border-border rounded-full font-medium transition-colors hover:border-foreground hover:bg-foreground hover:text-background order-2 sm:order-1 ${
                 step === 1 ? 'invisible' : ''
               }`}
             >
               <ChevronLeft className="w-5 h-5" />
               Zpět
-            </button>
+            </motion.button>
 
-            <div className="text-center order-1 sm:order-2">
-              <span className="text-sm text-muted-foreground block">Aktuální odhad:</span>
-              <strong className="text-xl sm:text-2xl font-bold">{totalPrice.toLocaleString('cs-CZ')} Kč</strong>
-            </div>
-
-            <button
-              onClick={nextStep}
-              disabled={!canProceed()}
-              className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-gray-900 text-white rounded-full font-medium transition-all hover:bg-gray-800 order-3 ${
-                !canProceed() ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+            <motion.div
+              className="relative order-1 sm:order-2"
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              Pokračovat
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-green/20 to-emerald-400/20 rounded-2xl blur-xl" />
+              <div className="relative px-6 py-3 bg-surface border border-border rounded-2xl shadow-lg">
+                <span className="text-xs text-muted-foreground block text-center">Aktuální odhad</span>
+                <strong className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-accent-green to-emerald-400 bg-clip-text text-transparent flex items-center justify-center gap-1">
+                  <AnimatedPrice value={totalPrice} />
+                  <span className="text-foreground"> Kč</span>
+                </strong>
+              </div>
+            </motion.div>
+
+            <MagneticWrapper strength={0.1}>
+              <motion.button
+                onClick={nextStep}
+                disabled={!canProceed()}
+                whileHover={{ scale: canProceed() ? 1.02 : 1 }}
+                whileTap={{ scale: canProceed() ? 0.98 : 1 }}
+                className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-foreground text-background rounded-full font-medium transition-all order-3 ${
+                  !canProceed() ? 'opacity-50 cursor-not-allowed' : 'shadow-lg hover:shadow-xl'
+                }`}
+              >
+                Pokračovat
+                <motion.div animate={{ x: canProceed() ? [0, 4, 0] : 0 }} transition={{ duration: 1, repeat: Infinity }}>
+                  <ChevronRight className="w-5 h-5" />
+                </motion.div>
+              </motion.button>
+            </MagneticWrapper>
+          </motion.div>
         )}
       </div>
     </section>

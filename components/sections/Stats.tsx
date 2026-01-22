@@ -1,116 +1,112 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Zap, Lightbulb, Heart, MessageCircle, ArrowRight } from 'lucide-react'
+import { ArrowRight, MapPin, Users, Coffee, Code } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { SectionLabel } from '@/components/shared/SectionLabel'
+import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
+import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
-const values = [
-  {
-    icon: Zap,
-    number: '01',
-    title: 'Mladý tým',
-    description: 'Známe nejnovější technologie a trendy. Držíme krok s dobou.',
-    accent: 'bg-amber-500',
-  },
-  {
-    icon: Lightbulb,
-    number: '02',
-    title: 'Inovativní přístup',
-    description: 'Přinášíme čerstvé nápady a moderní řešení pro váš byznys.',
-    accent: 'bg-blue-500',
-  },
-  {
-    icon: Heart,
-    number: '03',
-    title: 'Vášeň pro web',
-    description: 'Milujeme to, co děláme. A na výsledku je to vidět.',
-    accent: 'bg-rose-500',
-  },
-  {
-    icon: MessageCircle,
-    number: '04',
-    title: 'Přímá komunikace',
-    description: 'Žádné korporátní kecy. Mluvíme na rovinu a rychle.',
-    accent: 'bg-emerald-500',
-  },
+const facts = [
+  { icon: MapPin, label: 'Zlín, CZ', value: 'base' },
+  { icon: Users, label: '2 vývojáři', value: 'team' },
+  { icon: Coffee, label: '∞ káv', value: 'fuel' },
+  { icon: Code, label: '0 bullshit', value: 'style' },
 ]
 
 export function Stats() {
+  const reducedMotion = useReducedMotion()
+  const [hoveredFact, setHoveredFact] = useState<string | null>(null)
+
   return (
     <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12">
-      <div className="max-w-[1200px] mx-auto">
-        {/* Two column layout on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* Left - Statement */}
+      <div className="max-w-[1000px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left - Text */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: reducedMotion ? 0.01 : 0.6 }}
           >
-            <SectionLabel>Proč my</SectionLabel>
-            <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-4 sm:mb-6">
-              Jsme jiní<br className="hidden sm:block" /> než ostatní
+            <SectionLabel>O nás</SectionLabel>
+            <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold tracking-tight mb-4 sm:mb-6">
+              Mladý tým ze Zlína
             </h2>
-            <p className="text-base sm:text-lg text-muted max-w-[400px] mb-6 sm:mb-8 leading-relaxed">
-              Nejsme korporace. Jsme malý tým, který každý projekt bere osobně a dodává výsledky, na které můžete být hrdí.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
+              Jsme dva vývojáři, kteří milují čistý kód a moderní technologie.
+              Děláme weby a aplikace, které fungují rychle a vypadají skvěle.
             </p>
-
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-6 sm:gap-10">
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-1">2 týdny</div>
-                <div className="text-sm text-muted">Průměrná dodávka</div>
-              </div>
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-1">100%</div>
-                <div className="text-sm text-muted">Dodáno včas</div>
-              </div>
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold mb-1">24h</div>
-                <div className="text-sm text-muted">Doba odpovědi</div>
-              </div>
-            </div>
+            <MagneticWrapper strength={0.15}>
+              <Button asChild size="lg" variant="secondary" className="group">
+                <Link href="/o-nas">
+                  Více o nás
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </MagneticWrapper>
           </motion.div>
 
-          {/* Right - Values grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {values.map((value, index) => (
+          {/* Right - Interactive facts grid */}
+          <motion.div
+            initial={{ opacity: 0, x: reducedMotion ? 0 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: reducedMotion ? 0.01 : 0.5, delay: reducedMotion ? 0 : 0.2 }}
+            className="grid grid-cols-2 gap-3"
+          >
+            {facts.map((fact, index) => (
               <motion.div
-                key={value.title}
+                key={fact.value}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group relative bg-surface rounded-2xl p-5 sm:p-6 border border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 overflow-hidden"
+                viewport={{ once: true }}
+                transition={{
+                  duration: reducedMotion ? 0.01 : 0.4,
+                  delay: reducedMotion ? 0 : 0.3 + index * 0.1
+                }}
+                onMouseEnter={() => setHoveredFact(fact.value)}
+                onMouseLeave={() => setHoveredFact(null)}
+                className="relative group cursor-pointer"
               >
-                {/* Accent line */}
-                <div className={`absolute top-0 left-0 right-0 h-1 ${value.accent}`} />
-
-                {/* Number */}
-                <span className="text-xs font-medium text-muted-foreground mb-3 block">
-                  {value.number}
-                </span>
-
-                {/* Icon + Title */}
-                <div className="flex items-center gap-3 mb-2">
-                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${value.accent} bg-opacity-10 flex items-center justify-center`}>
-                    <value.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${value.accent.replace('bg-', 'text-')}`} />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-semibold">{value.title}</h3>
-                </div>
-
-                <p className="text-sm text-muted leading-relaxed">
-                  {value.description}
-                </p>
-
-                {/* Hover arrow */}
-                <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
-                </div>
+                <motion.div
+                  className="bg-surface border border-border rounded-2xl p-5 h-full"
+                  animate={{
+                    borderColor: hoveredFact === fact.value ? 'var(--color-foreground)' : 'var(--color-border)',
+                    scale: hoveredFact === fact.value ? 1.02 : 1,
+                  }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                >
+                  <motion.div
+                    className="w-10 h-10 rounded-xl border border-border flex items-center justify-center mb-3"
+                    animate={{
+                      backgroundColor: hoveredFact === fact.value ? 'var(--color-foreground)' : 'transparent',
+                      borderColor: hoveredFact === fact.value ? 'var(--color-foreground)' : 'var(--color-border)',
+                    }}
+                  >
+                    <motion.div
+                      animate={{
+                        color: hoveredFact === fact.value ? 'var(--color-background)' : 'var(--color-muted-foreground)',
+                      }}
+                    >
+                      <fact.icon className="w-5 h-5" />
+                    </motion.div>
+                  </motion.div>
+                  <motion.p
+                    className="text-lg font-semibold"
+                    animate={{
+                      x: hoveredFact === fact.value ? 4 : 0,
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  >
+                    {fact.label}
+                  </motion.p>
+                </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

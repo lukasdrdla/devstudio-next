@@ -17,15 +17,35 @@ const navLinks = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+
+      // Update scrolled state for background
+      setIsScrolled(currentScrollY > 50)
+
+      // Hide/show based on scroll direction
+      if (currentScrollY < 100) {
+        // Always show near top
+        setIsVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide
+        setIsVisible(false)
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show
+        setIsVisible(true)
+      }
+
+      setLastScrollY(currentScrollY)
     }
-    window.addEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -41,11 +61,14 @@ export function Navbar() {
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: 0 }}
+        animate={{ y: isVisible ? 0 : -100 }}
+        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
         className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-500
+          fixed top-0 left-0 right-0 z-50 transition-colors duration-300
           ${isScrolled
-            ? 'bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl shadow-[0_1px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_1px_20px_rgba(0,0,0,0.4)]'
+            ? 'bg-background/90 backdrop-blur-xl border-b border-border'
             : 'bg-transparent'
           }
         `}
@@ -93,7 +116,7 @@ export function Navbar() {
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile Menu - Outside nav for proper stacking */}
       <AnimatePresence>

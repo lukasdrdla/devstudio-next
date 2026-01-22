@@ -1,101 +1,328 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Monitor, Smartphone, ShoppingCart, Target, Camera, Activity } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { ArrowRight, Globe, Smartphone, ShoppingCart, Zap } from 'lucide-react'
 import { SectionLabel } from '@/components/shared/SectionLabel'
+import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
 const services = [
   {
-    icon: Monitor,
-    title: 'Webové stránky',
-    description: 'Weby na míru bez šablon. Rychlé, bezpečné a optimalizované pro vyhledávače.',
-    price: 'od 25 000 Kč',
+    title: 'Weby',
+    description: 'Next.js, React, rychlé a SEO-ready',
+    price: 'od 25k',
+    icon: Globe,
+    gradient: 'from-blue-500/20 to-cyan-500/20',
+    glowColor: 'blue',
   },
   {
-    icon: Smartphone,
     title: 'Aplikace',
-    description: 'Webové i mobilní aplikace. Od rezervačních systémů po komplexní řešení.',
-    price: 'od 50 000 Kč',
+    description: 'Webové i mobilní, na míru',
+    price: 'od 50k',
+    icon: Smartphone,
+    gradient: 'from-purple-500/20 to-pink-500/20',
+    glowColor: 'purple',
   },
   {
-    icon: ShoppingCart,
     title: 'E-shopy',
-    description: 'Vlastní e-commerce řešení s napojením na platby, dopravce a účetnictví.',
-    price: 'od 50 000 Kč',
+    description: 'Platby, dopravci, účetnictví',
+    price: 'od 50k',
+    icon: ShoppingCart,
+    gradient: 'from-emerald-500/20 to-teal-500/20',
+    glowColor: 'emerald',
   },
   {
-    icon: Target,
-    title: 'Design & Branding',
-    description: 'Logo, vizuální identita, UI/UX design. Váš brand, který zaujme.',
-    price: 'od 5 000 Kč',
-  },
-  {
-    icon: Camera,
-    title: 'Foto & Video',
-    description: 'Profesionální focení, drone záběry, promo videa a 360° prohlídky.',
-    price: 'od 5 000 Kč',
-  },
-  {
-    icon: Activity,
-    title: 'Marketing & SEO',
-    description: 'Optimalizace, reklamy, strategie. Aby vás zákazníci našli.',
-    price: 'od 5 000 Kč',
+    title: 'Automatizace',
+    description: 'Integrace, workflow, API',
+    price: 'od 15k',
+    icon: Zap,
+    gradient: 'from-orange-500/20 to-amber-500/20',
+    glowColor: 'orange',
   },
 ]
 
-export function Services() {
+// 3D Tilt Card Component
+function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+  const reducedMotion = useReducedMotion()
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 })
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 })
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (reducedMotion || !cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    mouseX.set(x)
+    mouseY.set(y)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  const glowColors = {
+    blue: 'shadow-blue-500/25',
+    purple: 'shadow-purple-500/25',
+    emerald: 'shadow-emerald-500/25',
+    orange: 'shadow-orange-500/25',
+  }
+
   return (
-    <section id="services" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 max-w-[1400px] mx-auto">
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{
+        duration: reducedMotion ? 0.01 : 0.5,
+        delay: reducedMotion ? 0 : index * 0.15,
+        ease: [0.25, 0.1, 0.25, 1],
+      }}
+      style={{
+        rotateX: reducedMotion ? 0 : rotateX,
+        rotateY: reducedMotion ? 0 : rotateY,
+        transformPerspective: 1000,
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      className="relative group"
+    >
+      {/* Glow effect behind card */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6 }}
+        className={`absolute -inset-1 rounded-3xl bg-gradient-to-r ${service.gradient} blur-xl transition-opacity duration-500`}
+        animate={{ opacity: isHovered ? 0.8 : 0 }}
+      />
+
+      {/* Card */}
+      <motion.div
+        className={`relative bg-surface border border-border rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 transition-all duration-300 overflow-hidden ${
+          isHovered ? `shadow-2xl ${glowColors[service.glowColor as keyof typeof glowColors]}` : ''
+        }`}
+        animate={{
+          borderColor: isHovered ? 'var(--color-foreground)' : 'var(--color-border)',
+        }}
       >
-        <SectionLabel>Služby</SectionLabel>
-        <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-6 max-w-[700px]">
-          Co pro vás můžeme udělat
-        </h2>
-        <p className="text-base sm:text-lg text-muted max-w-[500px] mb-10 sm:mb-16">
-          Kompletní digitální servis. Nemusíte řešit pět různých dodavatelů.
-        </p>
-      </motion.div>
+        {/* Animated gradient background on hover */}
+        <motion.div
+          className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0`}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {services.map((service, index) => (
+        {/* Shimmer effect */}
+        {isHovered && (
           <motion.div
-            key={service.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            {/* Mobile: horizontal layout, Desktop: vertical */}
-            <div className="group relative bg-surface/70 backdrop-blur-xl border border-border p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl cursor-pointer transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_25px_60px_rgba(0,0,0,0.3)] hover:bg-surface overflow-hidden">
-              {/* Top gradient line on hover */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-indigo via-accent-pink to-emerald-300 scale-x-0 origin-left transition-transform duration-400 group-hover:scale-x-100" />
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+            initial={{ x: '-100%' }}
+            animate={{ x: '200%' }}
+            transition={{ duration: 0.8, ease: 'linear' }}
+          />
+        )}
 
-              {/* Mobile: flex row, Desktop: block */}
-              <div className="flex items-start gap-4 sm:block">
-                {/* Icon */}
-                <div className="w-11 h-11 sm:w-14 sm:h-14 bg-surface border border-border rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 sm:mb-6 transition-all duration-400 group-hover:scale-110 group-hover:bg-foreground group-hover:border-foreground group-hover:text-background">
-                  <service.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
+        <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          {/* Left: Icon + Content */}
+          <div className="flex items-start sm:items-center gap-4 sm:gap-5">
+            {/* Animated icon container */}
+            <motion.div
+              className="relative"
+              animate={{
+                scale: isHovered ? 1.1 : 1,
+                rotate: isHovered ? [0, -5, 5, 0] : 0,
+              }}
+              transition={{ duration: 0.4 }}
+            >
+              {/* Icon glow ring */}
+              <motion.div
+                className={`absolute -inset-2 rounded-2xl bg-gradient-to-r ${service.gradient}`}
+                animate={{
+                  opacity: isHovered ? 0.5 : 0,
+                  scale: isHovered ? 1.1 : 1,
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.div
+                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border border-border bg-surface flex items-center justify-center overflow-hidden"
+                animate={{
+                  backgroundColor: isHovered ? 'var(--color-foreground)' : 'var(--color-surface)',
+                  borderColor: isHovered ? 'var(--color-foreground)' : 'var(--color-border)',
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Rotating particles inside icon */}
+                {isHovered && (
+                  <>
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 rounded-full bg-background/50"
+                        initial={{ scale: 0 }}
+                        animate={{
+                          scale: [0, 1, 0],
+                          x: [0, (i - 1) * 15],
+                          y: [0, (i - 1) * -10],
+                        }}
+                        transition={{
+                          duration: 0.8,
+                          delay: i * 0.1,
+                          repeat: Infinity,
+                          repeatDelay: 0.5,
+                        }}
+                      />
+                    ))}
+                  </>
+                )}
+                <motion.div
+                  animate={{
+                    color: isHovered ? 'var(--color-background)' : 'var(--color-foreground)',
+                    scale: isHovered ? 1.1 : 1,
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <service.icon className="w-6 h-6 sm:w-7 sm:h-7" />
+                </motion.div>
+              </motion.div>
+            </motion.div>
 
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base sm:text-xl font-semibold mb-1 sm:mb-3">{service.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed mb-2 sm:mb-6 line-clamp-2 sm:line-clamp-none">
-                    {service.description}
-                  </p>
-                  <span className="flex items-center gap-2 text-sm font-semibold">
-                    <span className="w-5 h-0.5 bg-gradient-to-r from-accent-indigo to-accent-pink" />
-                    {service.price}
-                  </span>
-                </div>
-              </div>
+            {/* Text content */}
+            <div>
+              <motion.h3
+                className="text-xl sm:text-2xl lg:text-3xl font-semibold"
+                animate={{ x: isHovered ? 4 : 0 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              >
+                {service.title}
+              </motion.h3>
+              <motion.p
+                className="text-sm sm:text-base text-muted-foreground mt-1"
+                animate={{ opacity: isHovered ? 1 : 0.8 }}
+              >
+                {service.description}
+              </motion.p>
             </div>
-          </motion.div>
-        ))}
+          </div>
+
+          {/* Right: Price + Arrow */}
+          <div className="flex items-center gap-3 sm:gap-4 ml-[4.5rem] sm:ml-0">
+            {/* Price badge */}
+            <motion.div
+              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-surface-secondary border border-border"
+              animate={{
+                backgroundColor: isHovered ? 'var(--color-foreground)' : 'var(--color-surface-secondary)',
+                borderColor: isHovered ? 'var(--color-foreground)' : 'var(--color-border)',
+                scale: isHovered ? 1.05 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.span
+                className="text-sm sm:text-base font-semibold"
+                animate={{
+                  color: isHovered ? 'var(--color-background)' : 'var(--color-foreground)',
+                }}
+              >
+                {service.price}
+              </motion.span>
+            </motion.div>
+
+            {/* Arrow button */}
+            <motion.div
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-border flex items-center justify-center bg-surface cursor-pointer"
+              animate={{
+                backgroundColor: isHovered ? 'var(--color-foreground)' : 'var(--color-surface)',
+                borderColor: isHovered ? 'var(--color-foreground)' : 'var(--color-border)',
+                scale: isHovered ? 1.15 : 1,
+                rotate: isHovered ? 0 : 0,
+              }}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              <motion.div
+                animate={{
+                  x: isHovered ? 3 : 0,
+                  color: isHovered ? 'var(--color-background)' : 'var(--color-foreground)',
+                }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom highlight line */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground to-transparent"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{
+            scaleX: isHovered ? 1 : 0,
+            opacity: isHovered ? 1 : 0,
+          }}
+          transition={{ duration: 0.4 }}
+        />
+      </motion.div>
+    </motion.div>
+  )
+}
+
+export function Services() {
+  const reducedMotion = useReducedMotion()
+
+  return (
+    <section id="services" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 overflow-visible relative">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute top-1/4 -left-40 w-80 h-80 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+        />
+      </div>
+
+      <div className="max-w-[1200px] mx-auto relative">
+        <motion.div
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: reducedMotion ? 0.01 : 0.6 }}
+          className="mb-12 sm:mb-16"
+        >
+          <SectionLabel>Služby</SectionLabel>
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight">
+            Co děláme
+          </h2>
+        </motion.div>
+
+        {/* Services grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
+          {services.map((service, index) => (
+            <ServiceCard key={service.title} service={service} index={index} />
+          ))}
+        </div>
+
+        {/* Bottom note */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: reducedMotion ? 0.01 : 0.5, delay: reducedMotion ? 0 : 0.6 }}
+          className="text-sm text-muted-foreground mt-8 sm:mt-12 text-center"
+        >
+          Ceny jsou orientační. Přesnou kalkulaci připravíme po konzultaci.
+        </motion.p>
       </div>
     </section>
   )
