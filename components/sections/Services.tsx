@@ -278,20 +278,6 @@ export function Services() {
 
   return (
     <section id="services" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 overflow-visible relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          className="absolute top-1/4 -left-40 w-80 h-80 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
-        />
-      </div>
-
       <div className="max-w-[1200px] mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 40 }}

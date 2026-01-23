@@ -315,20 +315,6 @@ export function Calculator() {
 
   return (
     <section id="calculator" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-accent-green/10 to-transparent rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        />
-      </div>
-
       <div className="max-w-[900px] mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 40 }}
@@ -729,18 +715,6 @@ export function Calculator() {
                     />
                   ))}
                 </div>
-
-                {/* Animated gradient orbs */}
-                <motion.div
-                  className="absolute -top-20 -right-20 w-40 h-40 bg-accent-green/10 rounded-full blur-3xl"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                />
-                <motion.div
-                  className="absolute -bottom-20 -left-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl"
-                  animate={{ scale: [1.3, 1, 1.3], opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                />
 
                 {/* Top accent line */}
                 <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
