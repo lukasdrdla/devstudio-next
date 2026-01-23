@@ -396,10 +396,18 @@ input[type="range"]::-moz-range-thumb {
 
 /* Focus visible styles for accessibility */
 button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--color-accent-green);
+a:focus-visible {
+  outline: 2px solid var(--color-foreground);
   outline-offset: 2px;
+}
+
+/* Remove outline from inputs - they have custom focus styles */
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Vignette effect for depth - theme aware */

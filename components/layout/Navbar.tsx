@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
+import { ContactModal } from '@/components/shared/ContactModal'
+import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
@@ -12,7 +14,6 @@ const navLinks = [
   { href: '/sluzby', label: 'Služby' },
   { href: '/o-nas', label: 'O nás' },
   { href: '/portfolio', label: 'Portfolio' },
-  { href: '/kontakt', label: 'Kontakt' },
 ]
 
 export function Navbar() {
@@ -20,6 +21,7 @@ export function Navbar() {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,28 +87,44 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
+              <MagneticWrapper key={link.href} strength={0.15}>
+                <Link
+                  href={link.href}
+                  className="relative text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </MagneticWrapper>
+            ))}
+            <MagneticWrapper strength={0.15}>
+              <button
+                onClick={() => setIsContactModalOpen(true)}
                 className="relative text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors group"
               >
-                {link.label}
+                Kontakt
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+              </button>
+            </MagneticWrapper>
           </div>
 
           {/* Desktop: Theme Toggle + CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle variant="dropdown" />
-            <Button size="sm">
-              Konzultace zdarma
-            </Button>
+            <MagneticWrapper strength={0.15}>
+              <ThemeToggle variant="dropdown" />
+            </MagneticWrapper>
+            <MagneticWrapper strength={0.2}>
+              <Button size="sm" onClick={() => setIsContactModalOpen(true)}>
+                Konzultace zdarma
+              </Button>
+            </MagneticWrapper>
           </div>
 
           {/* Mobile: Theme Toggle + Menu Button */}
           <div className="flex lg:hidden items-center gap-2">
-            <ThemeToggle variant="simple" />
+            <MagneticWrapper strength={0.15}>
+              <ThemeToggle variant="simple" />
+            </MagneticWrapper>
             <button
               className="w-10 h-10 rounded-xl bg-surface-secondary flex items-center justify-center hover:bg-surface-hover transition-colors text-gray-900 dark:text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -170,6 +188,21 @@ export function Navbar() {
                     </Link>
                   </motion.div>
                 ))}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                >
+                  <button
+                    className="flex items-center w-full px-4 py-4 text-lg font-medium text-gray-900 dark:text-white hover:bg-surface-hover rounded-xl transition-all"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false)
+                      setIsContactModalOpen(true)
+                    }}
+                  >
+                    Kontakt
+                  </button>
+                </motion.div>
               </div>
 
               {/* CTA - fixed at bottom */}
@@ -177,7 +210,10 @@ export function Navbar() {
                 <Button
                   className="w-full"
                   size="lg"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false)
+                    setIsContactModalOpen(true)
+                  }}
                 >
                   Konzultace zdarma
                 </Button>
@@ -189,6 +225,12 @@ export function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </>
   )
 }

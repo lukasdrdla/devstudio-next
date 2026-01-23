@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { AnimatedBackground } from '@/components/shared/AnimatedBackground'
 import { CustomCursor } from '@/components/shared/CustomCursor'
+import { FloatingElements } from '@/components/shared/FloatingElements'
+import { MouseGlow } from '@/components/shared/MouseGlow'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer, FOOTER_HEIGHT } from '@/components/layout/Footer'
 import { AboutPage } from '@/components/pages/AboutPage'
@@ -20,11 +22,13 @@ export default function ONas() {
   return (
     <>
       <CustomCursor />
+      <MouseGlow />
       <div
         className="relative z-10 bg-background shadow-2xl rounded-b-[2rem] sm:rounded-b-[3rem]"
         style={{ marginBottom: FOOTER_HEIGHT }}
       >
         <AnimatedBackground />
+        <FloatingElements />
         <Navbar />
         <main>
           <AboutPage />
