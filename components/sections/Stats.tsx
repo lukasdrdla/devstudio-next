@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, MapPin, Users, Coffee, Code } from 'lucide-react'
+import { ArrowRight, Briefcase, Users, Award, Clock } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SectionLabel } from '@/components/shared/SectionLabel'
@@ -10,10 +10,10 @@ import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
 const facts = [
-  { icon: MapPin, label: 'Zlín, CZ', value: 'base' },
-  { icon: Users, label: '2 vývojáři', value: 'team' },
-  { icon: Coffee, label: '∞ káv', value: 'fuel' },
-  { icon: Code, label: '0 bullshit', value: 'style' },
+  { icon: Briefcase, label: '50+ projektů', value: 'projects' },
+  { icon: Users, label: '4 v týmu', value: 'team' },
+  { icon: Award, label: '100% spokojenost', value: 'satisfaction' },
+  { icon: Clock, label: 'Rychlé dodání', value: 'delivery' },
 ]
 
 export function Stats() {
@@ -33,11 +33,10 @@ export function Stats() {
           >
             <SectionLabel>O nás</SectionLabel>
             <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold tracking-tight mb-4 sm:mb-6">
-              Mladý tým ze Zlína
+              Tým, který dodává výsledky
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-              Jsme dva vývojáři, kteří milují čistý kód a moderní technologie.
-              Děláme weby a aplikace, které fungují rychle a vypadají skvěle.
+              Jsme čtyři a děláme weby, AI a automatizaci. Žádné zbytečné schůzky, žádné měsíce čekání. Dodáváme rychle, komunikujeme přímo a za férové ceny.
             </p>
             <MagneticWrapper strength={0.15}>
               <Button asChild size="lg" variant="secondary" className="group">

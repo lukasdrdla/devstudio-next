@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion'
-import { Monitor, Smartphone, ShoppingCart, Target, Camera, Activity, ArrowRight, Sparkles, Zap, Clock, Check, ChevronDown } from 'lucide-react'
+import { Monitor, Smartphone, ShoppingCart, Bot, Workflow, ArrowRight, Sparkles, Zap, Clock, Check, ChevronDown } from 'lucide-react'
 import { SectionLabel } from '@/components/shared/SectionLabel'
 import { Button } from '@/components/ui/button'
 import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
@@ -16,73 +16,49 @@ const services = [
     id: 'webove-stranky',
     icon: Monitor,
     title: 'Webové stránky',
-    subtitle: 'Profesionální weby na míru',
-    description: 'Moderní, rychlé a responzivní weby, které přinášejí výsledky. Specializujeme se na Next.js a React.',
-    features: ['React & Next.js', 'SEO optimalizace', 'Rychlé načítání', 'Responzivní design'],
+    subtitle: 'Weby a e-shopy na míru',
+    description: 'Moderní weby, které rychle načítají a přinášejí zákazníky. Firemní prezentace, landing pages i e-shopy s platbami a dopravci.',
+    features: ['Firemní weby a portfolia', 'E-shopy s platební bránou', 'Landing pages pro kampaně', 'SEO optimalizace'],
     price: 'od 25 000 Kč',
     timeline: '2-4 týdny',
     accent: 'from-blue-500 to-cyan-500',
     accentBg: 'bg-blue-500',
   },
   {
-    id: 'aplikace',
-    icon: Smartphone,
-    title: 'Aplikace',
-    subtitle: 'Webové i mobilní řešení',
-    description: 'Vyvíjíme aplikace, které řeší reálné problémy vašeho podnikání. Od PWA po nativní.',
-    features: ['PWA & nativní', 'Real-time funkce', 'API integrace', 'Offline podpora'],
-    price: 'od 50 000 Kč',
-    timeline: '4-12 týdnů',
+    id: 'ai-reseni',
+    icon: Bot,
+    title: 'AI řešení',
+    subtitle: 'Chatboti, asistenti a vlastní AI pro firmu',
+    description: 'Chatbot pro zákazníky, interní AI asistent pro tým, nebo vlastní AI natrénovaná na vašich dokumentech. AI, která odpovídá, plánuje schůzky do kalendáře a pracuje 24/7.',
+    features: ['Chatbot na web', 'Interní AI pro dokumenty', 'AI asistent (kalendář, úkoly)', 'Vlastní AI na míru'],
+    price: 'od 20 000 Kč',
+    timeline: '1-2 týdny',
     accent: 'from-purple-500 to-pink-500',
     accentBg: 'bg-purple-500',
   },
   {
-    id: 'e-shopy',
-    icon: ShoppingCart,
-    title: 'E-shopy',
-    subtitle: 'Prodávejte online efektivně',
-    description: 'E-shopy optimalizované pro konverze s napojením na platby, dopravce a účetnictví.',
-    features: ['Platební brány', 'Integrace dopravců', 'Automatizace', 'Analytika'],
-    price: 'od 50 000 Kč',
-    timeline: '4-8 týdnů',
-    accent: 'from-emerald-500 to-teal-500',
-    accentBg: 'bg-emerald-500',
-  },
-  {
-    id: 'design',
-    icon: Target,
-    title: 'Design & Branding',
-    subtitle: 'Vizuální identita',
-    description: 'Tvoříme vizuální identity, které vystihují podstatu vaší značky.',
-    features: ['Logo & branding', 'UI/UX design', 'Prototypy', 'Design systémy'],
-    price: 'od 5 000 Kč',
+    id: 'automatizace',
+    icon: Workflow,
+    title: 'Automatizace',
+    subtitle: 'Ušetřete hodiny práce každý týden',
+    description: 'Propojíme vaše systémy, aby si povídaly samy. Objednávka → faktura → sklad → dopravce. Automaticky, bez ruční práce.',
+    features: ['Propojení systémů (CRM, účetnictví)', 'Automatické faktury a emaily', 'Workflow pro objednávky', 'Reporty a notifikace'],
+    price: 'od 15 000 Kč',
     timeline: '1-3 týdny',
     accent: 'from-orange-500 to-amber-500',
     accentBg: 'bg-orange-500',
   },
   {
-    id: 'foto-video',
-    icon: Camera,
-    title: 'Foto & Video',
-    subtitle: 'Obsah, který prodává',
-    description: 'Profesionální vizuální obsah pro vaše podnikání.',
-    features: ['Produktové foto', 'Promo videa', 'Drone záběry', '360° prohlídky'],
-    price: 'od 5 000 Kč',
-    timeline: '1-2 týdny',
-    accent: 'from-rose-500 to-red-500',
-    accentBg: 'bg-rose-500',
-  },
-  {
-    id: 'marketing',
-    icon: Activity,
-    title: 'Marketing & SEO',
-    subtitle: 'Aby vás zákazníci našli',
-    description: 'Pomáháme firmám růst online. Měřitelné výsledky.',
-    features: ['SEO audit', 'PPC kampaně', 'Social media', 'Content marketing'],
-    price: 'od 5 000 Kč/měsíc',
-    timeline: 'Průběžně',
-    accent: 'from-indigo-500 to-violet-500',
-    accentBg: 'bg-indigo-500',
+    id: 'aplikace',
+    icon: Smartphone,
+    title: 'Webové aplikace',
+    subtitle: 'Dashboardy, portály, interní systémy',
+    description: 'Aplikace na míru pro vaše podnikání. Rezervační systémy, zákaznické portály, interní nástroje. Vše přístupné z prohlížeče.',
+    features: ['Rezervační systémy', 'Zákaznické portály', 'Interní dashboardy', 'Správa dat a uživatelů'],
+    price: 'od 50 000 Kč',
+    timeline: '4-8 týdnů',
+    accent: 'from-emerald-500 to-teal-500',
+    accentBg: 'bg-emerald-500',
   },
 ]
 
@@ -340,7 +316,7 @@ export function ServicesPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/80 backdrop-blur-sm border border-border mb-8"
           >
             <Sparkles className="w-4 h-4 text-foreground" />
-            <span className="text-sm font-medium">Kompletní digitální servis</span>
+            <span className="text-sm font-medium">Weby, AI a automatizace</span>
           </motion.div>
 
           <h1 className="text-[clamp(2.5rem,10vw,6rem)] font-bold leading-[0.95] tracking-tight mb-6">
@@ -420,12 +396,12 @@ export function ServicesPage() {
             transition={{ duration: 0.6 }}
             className="mb-12 sm:mb-16"
           >
-            <SectionLabel>Co děláme</SectionLabel>
+            <SectionLabel>Služby</SectionLabel>
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-4">
-              Vyberte si, co potřebujete
+              Weby, AI a automatizace
             </h2>
             <p className="text-lg text-muted-foreground max-w-[500px]">
-              Každý projekt děláme na míru. Žádné šablony, žádné kompromisy.
+              Všechno děláme na míru. Klikněte pro detaily a ceny.
             </p>
           </motion.div>
 

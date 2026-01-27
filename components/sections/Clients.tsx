@@ -10,6 +10,8 @@ const technologies = [
   { name: 'TypeScript', symbol: 'TS' },
   { name: 'Tailwind', symbol: '◐' },
   { name: 'Node.js', symbol: '⬢' },
+  { name: 'OpenAI', symbol: '◎' },
+  { name: 'n8n', symbol: '↯' },
   { name: 'Vercel', symbol: '▲' },
   { name: 'PostgreSQL', symbol: '◉' },
   { name: 'Figma', symbol: '◈' },

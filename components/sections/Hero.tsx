@@ -8,7 +8,7 @@ import { ContactModal } from '@/components/shared/ContactModal'
 import Orb from '@/components/Orb'
 import { MagneticWrapper } from '@/components/ui/MagneticWrapper'
 
-const words = ['software', 'branding', 'automatizaci']
+const words = ['Weby', 'Aplikace', 'AI', 'Automatizace']
 
 export function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -89,7 +89,7 @@ export function Hero() {
             transition={{ delay: 0.4 }}
             className="text-lg sm:text-xl text-muted mb-8 sm:mb-12 max-w-[500px] mx-auto leading-relaxed"
           >
-            Mladý tým. Moderní technologie. Výsledky, které mluví za nás.
+            Tvoříme weby, aplikace, AI řešení a automatizace, která posouvají vaši firmu dopředu.
           </motion.p>
 
           {/* Buttons */}

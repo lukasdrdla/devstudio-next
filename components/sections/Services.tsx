@@ -2,38 +2,38 @@
 
 import { useState, useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ArrowRight, Globe, Smartphone, ShoppingCart, Zap } from 'lucide-react'
+import { ArrowRight, Globe, Smartphone, Bot, Zap } from 'lucide-react'
 import { SectionLabel } from '@/components/shared/SectionLabel'
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
 const services = [
   {
-    title: 'Weby',
-    description: 'Next.js, React, rychlé a SEO-ready',
+    title: 'Webové stránky',
+    description: 'Moderní weby a e-shopy na míru',
     price: 'od 25k',
     icon: Globe,
     gradient: 'from-blue-500/20 to-cyan-500/20',
     glowColor: 'blue',
   },
   {
-    title: 'Aplikace',
-    description: 'Webové i mobilní, na míru',
-    price: 'od 50k',
-    icon: Smartphone,
+    title: 'AI řešení',
+    description: 'Chatboti, interní AI, vlastní asistenti pro firmu',
+    price: 'od 20k',
+    icon: Bot,
     gradient: 'from-purple-500/20 to-pink-500/20',
     glowColor: 'purple',
   },
   {
-    title: 'E-shopy',
-    description: 'Platby, dopravci, účetnictví',
+    title: 'Aplikace',
+    description: 'Webové a mobilní aplikace na míru',
     price: 'od 50k',
-    icon: ShoppingCart,
+    icon: Smartphone,
     gradient: 'from-emerald-500/20 to-teal-500/20',
     glowColor: 'emerald',
   },
   {
     title: 'Automatizace',
-    description: 'Integrace, workflow, API',
+    description: 'Propojení systémů, workflow, úspora času',
     price: 'od 15k',
     icon: Zap,
     gradient: 'from-orange-500/20 to-amber-500/20',

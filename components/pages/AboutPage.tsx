@@ -14,17 +14,31 @@ import Orb from '@/components/Orb'
 
 const team = [
   {
-    name: 'Lukáš Drdla',
-    role: 'Vývojář',
+    name: 'Lukáš',
+    role: 'Zakladatel',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    bio: 'Fullstack. React, Next.js, TypeScript.',
+    bio: 'Software, AI, automatizace, vedení projektů.',
     icon: Code,
   },
   {
-    name: 'Pepa Kovařiček',
-    role: 'Designer',
+    name: 'Libor',
+    role: 'Developer',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-    bio: 'UI/UX. Figma, branding, webdesign.',
+    bio: 'Aplikace, software, backend.',
+    icon: Terminal,
+  },
+  {
+    name: 'Šimon',
+    role: 'AI & DevOps',
+    image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&q=80',
+    bio: 'AI, automatizace, deploy, infrastruktura.',
+    icon: Sparkles,
+  },
+  {
+    name: 'Josef',
+    role: 'Designer',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
+    bio: 'Branding, design, vizuální identita.',
     icon: Palette,
   },
 ]
@@ -41,15 +55,15 @@ function StoryTerminal() {
     { prompt: false, text: '' },
     { prompt: false, text: '# Jak to začalo' },
     { prompt: false, text: '' },
-    { prompt: false, text: 'Dva kamarádi. Jeden kóduje, druhý designuje.' },
-    { prompt: false, text: 'Oba nás štvalo, jak agentury pracují.' },
+    { prompt: false, text: 'Firmy ztrácí hodiny na věcech,' },
+    { prompt: false, text: 'které AI zvládne za minuty.' },
     { prompt: false, text: '' },
-    { prompt: false, text: 'Pomalé. Drahé. Plné zbytečných schůzek.' },
+    { prompt: false, text: 'Agentury? Měsíce čekání. Drahé.' },
     { prompt: false, text: '' },
-    { prompt: false, text: 'Tak jsme založili weware.' },
-    { prompt: false, text: 'Mladí, hladoví, bez corporate bullshitu.' },
+    { prompt: false, text: 'Tak vzniklo weware.' },
+    { prompt: false, text: 'Weby, AI, automatizace. Rychle a přímo.' },
     { prompt: false, text: '' },
-    { prompt: false, text: '> "Děláme to jinak. A funguje to."' },
+    { prompt: false, text: '> "Šetříme čas. Zvyšujeme tržby."' },
   ]
 
   useEffect(() => {
@@ -297,9 +311,9 @@ export function AboutPage() {
             transition={{ delay: 0.7 }}
             className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-10 max-w-[550px] mx-auto"
           >
-            Mladý tým. Moderní technologie.
+            Weby, aplikace, AI a automatizace.
             <br className="hidden sm:block" />
-            Žádné zbytečnosti.
+            Řešení, která fungují.
           </motion.p>
 
           <motion.div
@@ -344,10 +358,10 @@ export function AboutPage() {
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { icon: MapPin, label: 'Zlín, CZ', sublabel: 'Odkud jsme' },
-              { icon: Coffee, label: '∞ káv', sublabel: 'Palivo' },
-              { icon: Rocket, label: 'Startup', sublabel: 'Mindset' },
-              { icon: Terminal, label: 'Kód > Meetings', sublabel: 'Filosofie' },
+              { icon: MapPin, label: 'Zlín, CZ', sublabel: 'Sídlo' },
+              { icon: Users, label: '4 v týmu', sublabel: 'Tým' },
+              { icon: Rocket, label: '50+ projektů', sublabel: 'Zkušenosti' },
+              { icon: Terminal, label: 'AI & Web', sublabel: 'Zaměření' },
             ].map((item, index) => (
               <motion.div
                 key={item.label}
@@ -388,13 +402,13 @@ export function AboutPage() {
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  Oba jsme viděli, jak agentury pracují. <span className="text-foreground font-medium">Nekonečné schůzky. Předražené projekty. Měsíce čekání.</span>
+                  Viděli jsme, jak firmy ztrácí čas. <span className="text-foreground font-medium">Ruční práce místo automatizace. Hodiny na úkolech, které AI zvládne za minuty.</span>
                 </p>
                 <p>
-                  Řekli jsme si: to musí jít lépe. A tak vzniklo weware.
+                  A když chtěly pomoct od agentur? Měsíce čekání, předražené projekty, nekonečné schůzky.
                 </p>
                 <p>
-                  Jsme dva kamarádi ze Zlína. Lukáš kóduje, Pepa designuje. Bez zbytečných vrstev, bez projekťáků. <span className="text-foreground font-medium">Přímo k věci.</span>
+                  Tak vzniklo weware. Čtyři lidi, co dělají weby, AI a automatizaci. <span className="text-foreground font-medium">Rychle, přímo a za rozumné peníze.</span>
                 </p>
               </div>
             </motion.div>
@@ -448,19 +462,19 @@ export function AboutPage() {
           >
             <SectionLabel>Jak pracujeme</SectionLabel>
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight mb-4">
-              Bez bullshitu
+              Rovnou k věci
             </h2>
             <p className="text-lg text-muted-foreground max-w-[500px]">
-              Krátký call, pochopíme co potřebujete, a jdeme na to.
+              Krátký call, pochopíme co potřebujete a začneme pracovat.
             </p>
           </motion.div>
 
           <div className="space-y-4">
             {[
-              { icon: Zap, title: 'Rychlá dodávka', desc: 'Web za 2 týdny. Ne měsíce.', accent: 'from-amber-500 to-orange-500' },
-              { icon: Users, title: 'Přímá komunikace', desc: 'Mluvíte s vývojáři. Žádní projekťáci.', accent: 'from-blue-500 to-cyan-500' },
-              { icon: Clock, title: 'Vždy dostupní', desc: 'Odpověď do 24h. Většinou rychleji.', accent: 'from-emerald-500 to-green-500' },
-              { icon: Terminal, title: 'Moderní stack', desc: 'Next.js, React, TypeScript. To nejlepší.', accent: 'from-purple-500 to-pink-500' },
+              { icon: Zap, title: 'Rychlá realizace', desc: 'Web do 2-3 týdnů, ne měsíců.', accent: 'from-amber-500 to-orange-500' },
+              { icon: Users, title: 'Přímá komunikace', desc: 'Komunikujete přímo s těmi, kdo projekt tvoří.', accent: 'from-blue-500 to-cyan-500' },
+              { icon: Clock, title: 'Rychlá odezva', desc: 'Odpovídáme do 24 hodin, obvykle dříve.', accent: 'from-emerald-500 to-green-500' },
+              { icon: Terminal, title: 'Moderní technologie', desc: 'Next.js, React, TypeScript, AI integrace.', accent: 'from-purple-500 to-pink-500' },
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -551,7 +565,7 @@ export function AboutPage() {
                 Máte nápad?
               </h2>
               <p className="text-white/60 text-lg mb-10 max-w-[450px] mx-auto">
-                První konzultace je na nás. Bez závazků, bez bullshitu.
+                První konzultace je zdarma a bez závazků.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

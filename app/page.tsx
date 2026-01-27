@@ -8,6 +8,7 @@ import { Hero } from '@/components/sections/Hero'
 import { Clients } from '@/components/sections/Clients'
 import { Video } from '@/components/sections/Video'
 import { Services } from '@/components/sections/Services'
+import { UseCases } from '@/components/sections/UseCases'
 import { BeforeAfter } from '@/components/sections/BeforeAfter'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { Calculator } from '@/components/sections/Calculator'
@@ -34,6 +35,7 @@ export default function Home() {
           <Clients />
           <Video />
           <Services />
+          <UseCases />
           <BeforeAfter />
           <Portfolio />
           <Calculator />

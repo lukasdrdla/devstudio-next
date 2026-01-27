@@ -8,32 +8,32 @@ import { useReducedMotion } from '@/lib/hooks/useReducedMotion'
 
 const faqs = [
   {
-    question: 'Jak dlouho trvá vytvoření webu?',
-    answer: 'Záleží na rozsahu projektu. Jednoduchý prezentační web zvládneme do 2-3 týdnů. Komplexnější projekty jako e-shopy nebo aplikace trvají 4-8 týdnů. Přesný časový plán dostanete v nabídce.',
+    question: 'Jak dlouho trvá vytvoření webu nebo aplikace?',
+    answer: 'Jednoduchý web do 2-3 týdnů, složitější aplikace 4-8 týdnů. AI chatbot nasadíme do 1-2 týdnů. Přesný harmonogram dostanete v nabídce.',
     gradient: 'from-blue-500/20 to-cyan-500/20',
     glowColor: 'blue',
   },
   {
-    question: 'Kolik stojí vytvoření webu?',
-    answer: 'Ceny začínají od 25 000 Kč za jednoduchý web. Použijte naši kalkulačku výše pro orientační cenu, nebo nám napište – nabídku připravíme zdarma.',
+    question: 'Jak funguje AI chatbot a co všechno umí?',
+    answer: 'Chatbot odpovídá na dotazy zákazníků 24/7, natrénujeme ho na vašich datech (produkty, FAQ, dokumenty). Zvládne rezervace, objednávky i komplexní konzultace. Integrujeme ho přímo na váš web.',
     gradient: 'from-purple-500/20 to-pink-500/20',
     glowColor: 'purple',
   },
   {
-    question: 'Co když nebudu spokojený s výsledkem?',
-    answer: 'Máme garanci spokojenosti. Pokud nebudete s výsledkem spokojeni, vrátíme vám peníze. Navíc během realizace pravidelně konzultujeme postup, takže máte plnou kontrolu.',
+    question: 'Kolik stojí vaše služby?',
+    answer: 'Weby od 25 000 Kč, AI chatbot od 20 000 Kč, automatizace od 15 000 Kč. Přesnou cenu spočítáme v kalkulačce výše nebo vám připravíme nabídku zdarma.',
     gradient: 'from-emerald-500/20 to-teal-500/20',
     glowColor: 'emerald',
   },
   {
-    question: 'Pomůžete mi i s texty a fotkami?',
-    answer: 'Ano! Nabízíme kompletní servis včetně copywritingu, profesionálního focení i video produkce. Nemusíte řešit více dodavatelů.',
+    question: 'Je AI bezpečné pro firemní data?',
+    answer: 'Ano. Používáme šifrování a můžeme provozovat AI na vašich serverech. Data neopustí vaši infrastrukturu. Splňujeme GDPR a podepisujeme NDA.',
     gradient: 'from-orange-500/20 to-amber-500/20',
     glowColor: 'orange',
   },
   {
-    question: 'Budu moct web sám upravovat?',
-    answer: 'Samozřejmě. Každý web předáváme s jednoduchým administračním rozhraním a kompletním zaškolením. Základní úpravy zvládnete sami během pár minut.',
+    question: 'Poskytujete podporu po dokončení projektu?',
+    answer: 'Ano, ke každému projektu nabízíme podporu a údržbu. U AI řešení průběžně vylepšujeme model podle zpětné vazby. Jsme tu pro vás dlouhodobě.',
     gradient: 'from-rose-500/20 to-red-500/20',
     glowColor: 'rose',
   },
